@@ -3,7 +3,8 @@
 
   color-scheme: light dark;
   --primary-color: whitesmoke;
-  --secondary-color: black;
+  --secondary-color: rgb(25, 25, 25);
+  --tertiary-color: rgb(80, 80, 80);
   color: var(--primary-color);
   background-color: var(--secondary-color);
 }

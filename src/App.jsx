@@ -2,11 +2,13 @@ import './App.css'
 
 const items = [
   {id: 1, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/70/header.jpg?t=1745368462', title: 'Half-Life', dev: 'VALVe', date: '19 nov. 1998', mode: 'Solo', pf: 'Steam', mc: 96},
-  {id: 2, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/400/header.jpg?t=1745368554', title: 'Portal', dev: 'VALVe', date: '10 oct. 2007', mode: 'Solo', pf: 'Steam', mc: 90},
-  {id: 3, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/10/header.jpg?t=1745368572', title: 'Counter-Strike', dev: 'VALVe', date: '1 nov. 2000', mode: 'Multiplayer', pf: 'Steam', mc: 74}
+  {id: 2, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220/header.jpg?t=1745368545', title: 'Half-Life 2', dev: 'VALVe', date: '16 nov. 2004', mode: 'Solo', pf: 'Steam', mc: 96},
+  {id: 3, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/400/header.jpg?t=1745368554', title: 'Portal', dev: 'VALVe', date: '10 oct. 2007', mode: 'Solo', pf: 'Steam', mc: 90},
+  {id: 4, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/620/header.jpg?t=1745363004', title: 'Portal 2', dev: 'VALVe', date: '19 apr. 2011', mode: 'Solo', pf: 'Steam', mc: 95},
+  {id: 5, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861', title: 'Counter-Strike 2', dev: 'VALVe', date: '27 sep. 2023', mode: 'Multiplayer', pf: 'Steam', mc: 82}
 ]
 
-function Card({src, title, dev, date, mode, pf}){
+function Card({src, title, dev, date, mode, pf, mc}){
   return (
     <div className='card'>
       <img src={src}></img>
@@ -16,6 +18,9 @@ function Card({src, title, dev, date, mode, pf}){
         <p>{date}</p>
         <p>{mode}</p>
         <p>{pf}</p>
+      </div>
+      <div className='card_mc'>
+        <p>{mc}</p>
       </div>
     </div>
   )
@@ -31,6 +36,7 @@ function App() {
     date={item.date}
     mode={item.mode}
     pf={item.pf}
+    mc={item.mc}
     />
   )
 
