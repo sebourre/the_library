@@ -1,4 +1,5 @@
 import './App.css'
+import Log from './Log.jsx'
 import Mode from './Mode.jsx'
 import Card from './Card.jsx'
 
@@ -28,7 +29,10 @@ function App(){
     <>
       <header>
         <h1>The Library</h1>
-        <Mode />
+        <div className='buttons'>
+          <Log />
+          <Mode />
+        </div>
       </header>
       <div className='library'>
         {cards}

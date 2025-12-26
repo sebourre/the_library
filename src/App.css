@@ -3,6 +3,11 @@
   margin: 0 auto;
 }
 
+.buttons{
+  display: flex;
+  gap: 1rem;
+}
+
 .library{
   display: flex;
   flex-wrap: wrap;
