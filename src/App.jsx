@@ -1,4 +1,6 @@
 import './App.css'
+import Mode from './Mode.jsx'
+import Card from './Card.jsx'
 
 const items = [
   {id: 1, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/70/header.jpg?t=1745368462', title: 'Half-Life', dev: 'VALVe', date: '19 nov. 1998', mode: 'Solo', pf: 'Steam', mc: 96},
@@ -8,25 +10,7 @@ const items = [
   {id: 5, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861', title: 'Counter-Strike 2', dev: 'VALVe', date: '27 sep. 2023', mode: 'Multiplayer', pf: 'Steam', mc: 82}
 ]
 
-function Card({src, title, dev, date, mode, pf, mc}){
-  return (
-    <div className='card'>
-      <img src={src}></img>
-      <p className='card_title'>{title}</p>
-      <div className='card_info'>
-        <p>{dev}</p>
-        <p>{date}</p>
-        <p>{mode}</p>
-        <p>{pf}</p>
-      </div>
-      <div className='card_mc'>
-        <p>{mc}</p>
-      </div>
-    </div>
-  )
-}
-
-function App() {
+function App(){
   const cards = items.map(item => 
     <Card 
     key={item.id} 
@@ -40,9 +24,12 @@ function App() {
     />
   )
 
-  return (
+  return(
     <>
-      <h1>The Library</h1>
+      <header>
+        <h1>The Library</h1>
+        <Mode />
+      </header>
       <div className='library'>
         {cards}
       </div>
