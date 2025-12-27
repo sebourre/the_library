@@ -20,8 +20,8 @@
 }
 
 .card_title{
-  margin: 5px 0 5px 0;
-  padding: 0 5px 0 5px;
+  margin: 5px 0;
+  padding: 0 5px;
   text-align: center;
   color: var(--secondary-color);
   font-size: 1.2rem;

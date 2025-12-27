@@ -11,6 +11,10 @@ const items = [
   {id: 5, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861', title: 'Counter-Strike 2', dev: 'VALVe', date: '27 sep. 2023', mode: 'Multiplayer', pf: 'Steam', mc: 82}
 ]
 
+function addItem(){
+  console.log('CHECK');
+}
+
 function App(){
   const cards = items.map(item => 
     <Card 
@@ -30,11 +34,11 @@ function App(){
       <header>
         <h1>The Library</h1>
         <div className='buttons'>
-          <Log />
+          <Log onClick={addItem}/>
           <Mode />
         </div>
       </header>
-      <div className='library'>
+      <div className='library' id='library'>
         {cards}
       </div>
     </>

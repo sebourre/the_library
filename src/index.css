@@ -5,6 +5,7 @@
   --primary-color: rgb(25, 25, 25);
   --secondary-color: whitesmoke;
   --tertiary-color: rgb(80, 80, 80);
+  --blue-hue: blue;
   color: var(--secondary-color);
   background-color: var(--primary-color);
 }
@@ -24,12 +25,49 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem 0 1rem;
+  padding: 0 1rem;
 }
 
 h1{
   margin: 1rem 0;
   text-align: center;
+}
+h2{
+  text-align: center;
+}
+
+input[type=text]{
+  width: 100%;
+  padding: 0 3px;
+  color: var(--primary-color);
+  font-size: 1rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+}
+input[type=date]{
+  margin-left: auto;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+}
+input[type=number]{
+  width: 3.5rem;
+  margin-left: auto;
+  padding: 0 3px;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+}
+select{
+  margin-left: auto;
+  padding: 0 3px;
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
 }
 
 @media(prefers-color-scheme: light){
