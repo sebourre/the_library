@@ -5,6 +5,8 @@
   --primary-color: rgb(25, 25, 25);
   --secondary-color: whitesmoke;
   --tertiary-color: rgb(80, 80, 80);
+  --black-hue: rgb(25, 25, 25);
+  --white-hue: whitesmoke;
   --blue-hue: blue;
   --red-hue: red;
   color: var(--secondary-color);
@@ -36,40 +38,40 @@ h1{
 h2{
   text-align: center;
 }
+h3{
+  margin-top: 3rem;
+  color: var(--red-hue);
+  font-style: italic;
+}
 
-input[type=text]{
-  margin-left: auto;
-  width: 150px;
-  padding: 0 3px;
-  color: var(--primary-color);
-  font-size: 1rem;
+input, select{
+  color: var(--black-hue);
   border: none;
   border-radius: 3px;
-  background-color: var(--secondary-color);
+  background-color: var(--white-hue);
+}
+input:focus{
+  outline: 2px solid var(--black-hue);
+}
+input[type=text], input[type=url]{
+  width: 100%;
+  padding: 0 3px;
+  font-size: 1rem;
 }
 input[type=date]{
-  margin-left: auto;
-  color: var(--primary-color);
-  border: none;
-  border-radius: 3px;
-  background-color: var(--secondary-color);
+  width: fit-content;
+  padding: 3px;
 }
 input[type=number]{
-  width: 3.5rem;
-  margin-left: auto;
-  padding: 0 3px;
-  color: var(--primary-color);
-  border: none;
-  border-radius: 3px;
-  background-color: var(--secondary-color);
+  width: 3rem;
+  padding: 3px;
+  text-align: center;
+  appearance: none;
+  -moz-appearance: textfield;
 }
 select{
-  margin-left: auto;
-  padding: 0 3px;
-  color: var(--primary-color);
-  border: none;
-  border-radius: 3px;
-  background-color: var(--secondary-color);
+  width: fit-content;
+  padding: 3px 5px;
 }
 
 @media(prefers-color-scheme: light){

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './Log.css'
 
 export default function Log({handleSubmit}){
@@ -14,6 +15,25 @@ export default function Log({handleSubmit}){
     library.style.filter = 'none';
     library.style.pointerEvents = 'auto';
     logWindow.style.display = 'none';
+  }
+
+  const [imagePreview, setImagePreview] = useState(null)
+
+  function updateImagePreview(e){
+    setImagePreview(e.target.value)
+  }
+
+  function reseted(e){
+    const svg = e.target;
+    const form = e.target.parentNode.parentNode;
+    svg.style.animation = '.5s ease rotate';
+    svg.style.pointerEvents = 'none';
+    form.reset();
+    setImagePreview(null)
+    setTimeout(() => {
+      svg.style.animation = 'none';
+      svg.style.pointerEvents = 'auto';
+    }, 500);
   }
 
   return(
@@ -45,7 +65,7 @@ export default function Log({handleSubmit}){
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--secondary-color)"
+            stroke="var(--white-hue)"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -56,40 +76,77 @@ export default function Log({handleSubmit}){
         </button>
         <h2>Log</h2>
         <div className='log_inputs'>
-          <label htmlFor="image">Image:</label>
-          <input type="text" name='image' id='image' placeholder='url'/>
-        </div>
-        <div className='log_inputs'>
           <label htmlFor="title">Title:</label>
           <input type="text" name='title' id='title'/>
+        </div>
+        <div className='log_row'>
+          <div className='log_inputs'>
+            <label htmlFor="image">Image:</label>
+            <input type="url" name='image' id='image' onChange={updateImagePreview} placeholder='url'/>
+          </div>
+          <div className='image_preview'>
+            <img src={imagePreview}/>
+          </div>
         </div>
         <div className='log_inputs'>
           <label htmlFor="maker">Maker:</label>
           <input type="text" name='maker' id='maker'/>
         </div>
         <div className='log_inputs'>
-          <label htmlFor="date_of_release">Date of release:</label>
-          <input type="date" name='date_of_release' id='date_of_release'/>
-        </div>
-        <div className='log_inputs'>
           <label htmlFor="tag">Tag:</label>
           <input type="text" name='tag' id='tag'/>
         </div>
-        <div className='log_inputs'>
-          <label htmlFor="note">Note:</label>
-          <input type="number" name='note' id='note' min={0} max={100}/>
+        <div className='log_row'>
+          <div className='log_inputs'>
+            <label htmlFor="note">Note:</label>
+            <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100}/>
+          </div>
+          <div className='log_inputs'>
+            <label htmlFor="date_of_release">Date of release:</label>
+            <input type="date" name='date_of_release' id='date_of_release'/>
+          </div>
+          <div className='log_inputs'>
+            <label htmlFor="type">Type:</label>
+            <select name='type' id="type">
+              <option value="Game">Game</option>
+              <option value="Movie">Movie</option>
+              <option value="Series">Series</option>
+            </select>
+          </div>
         </div>
-        <div className='log_inputs'>
-          <label htmlFor="type">Type:</label>
-          <select name='type' id="type">
-            <option value="Game">Game</option>
-            <option value="Movie">Movie</option>
-            <option value="Series">Series</option>
-          </select>
+        <div className='log_buttons'>
+          <svg
+            onClick={reseted}
+            className='log_reset'
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--white-hue)"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
+            <path d="M20 4v5h-5" />
+          </svg>
+          <button type='submit' className='log_in' onClick={hideLogWindow}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--white-hue)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12l5 5l10 -10" />
+            </svg>
+          </button>
         </div>
-        <button type='submit' className='log_in' onClick={hideLogWindow}>
-          Log in
-        </button>
       </form>
     </>
   )

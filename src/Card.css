@@ -30,10 +30,16 @@
   font-weight: bold;
 }
 .card_options{
+  transition: .1s;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+  opacity: 0;
+}
+.card:hover .card_options{
+  transition: .1s;
+  opacity: 1;
 }
 .card_options svg{
   cursor: pointer;
@@ -62,6 +68,19 @@
 }
 .card_info p:not(:first-child){
   text-align: end;
+}
+
+.card_bar{
+  transition: .3s;
+  margin: auto 0 auto auto;
+  width: 0;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--primary-color);
+}
+.card:hover .card_bar{
+  transition: .3s;
+  width: 80%;
 }
 
 .card_note{

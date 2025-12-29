@@ -19,7 +19,6 @@ export default function Mode(){
   return(
     <div className='mode'>
       <svg
-        id='light'
         style={{
           display: mode=='dark' ? 'block' : 'none'
         }}
@@ -38,7 +37,6 @@ export default function Mode(){
         <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
       </svg>
       <svg
-        id='dark'
         style={{
           display: mode=='light' ? 'block' : 'none'
         }}

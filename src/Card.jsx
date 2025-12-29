@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import './Card.css'
 
-export default function Card({pos, onDelete, id, src, title, maker, date, tag, note, type}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, pos, isBookmarked, onDelete, id, src, title, maker, date, tag, note, type}){
   const [bookmark, setBookmark] = useState(false)
 
   return(
-    <div className='card'>
+    <div style={styleCard} className='card'>
       <div className='card_head'>
         <p>{pos + 1}</p>
-        <div className='card_options'>
+        <div style={styleCardOptions} className='card_options'>
           <svg
-            onClick={() => setBookmark(!bookmark)}
+            onClick={() => {setBookmark(!bookmark); isBookmarked(id ,!bookmark)}}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -24,6 +24,7 @@ export default function Card({pos, onDelete, id, src, title, maker, date, tag, n
             <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
           </svg>
           <svg
+            style={{cursor: 'not-allowed'}}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -58,11 +59,12 @@ export default function Card({pos, onDelete, id, src, title, maker, date, tag, n
         </div>
         </div>
       <img src={src}/>
-      <div className='card_info'>
+      <div style={styleCardInfo} className='card_info'>
         <p><b>{title}</b></p>
         <p>{maker}</p>
         <p>{date}</p>
         <p>{tag}</p>
+        <div style={styleCardBar} className='card_bar'></div>
       </div>
       <div 
         className='card_note'
@@ -75,7 +77,7 @@ export default function Card({pos, onDelete, id, src, title, maker, date, tag, n
       >
         <p>{note}</p>
       </div>
-      <p className='card_type'>{type}</p>
+      <p style={styleCardType} className='card_type'>{type}</p>
     </div>
   )
 }
