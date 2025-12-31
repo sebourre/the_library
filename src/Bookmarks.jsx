@@ -31,7 +31,7 @@ export default function Bookmarks({filterCards}){
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="var(--secondary-color)"
+        stroke="var(--red-hue)"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"

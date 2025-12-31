@@ -1,28 +1,38 @@
 import { useState } from 'react'
 import './Types.css'
 
-export default function Types({displayGamesCards, displayMoviesCards, displaySeriesCards}){
-  const [games, setGames] = useState(false)
-  const [movies, setMovies] = useState(false)
-  const [series, setSeries] = useState(false)
+export default function Types({displayTypesCards}){
+  const [types, setTypes] = useState(null)
 
   return(
     <div className='types'>
       <button 
-        style={{color: games ? 'var(--red-hue)' : 'var(--secondary-color)'}}
-        onClick={() => {setGames(!games); displayGamesCards(!games)}}
+        style={{color: types == 'games' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
+        onClick={() => {
+          const newTypes = (types == null || types != 'games') ? 'games' : null;
+          setTypes(newTypes);
+          displayTypesCards(newTypes);
+        }}
       >
         Games
       </button>
       <button
-        style={{color: movies ? 'var(--red-hue)' : 'var(--secondary-color)'}}
-        onClick={() => {setMovies(!movies); displayMoviesCards(!movies)}}
+        style={{color: types == 'movies' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
+        onClick={() => {
+          const newTypes = (types == null || types != 'movies') ? 'movies' : null;
+          setTypes(newTypes);
+          displayTypesCards(newTypes);
+        }}
       >
         Movies
       </button>
       <button
-        style={{color: series ? 'var(--red-hue)' : 'var(--secondary-color)'}}
-        onClick={() => {setSeries(!series); displaySeriesCards(!series)}}
+        style={{color: types == 'series' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
+        onClick={() => {
+          const newTypes = (types == null || types != 'series') ? 'series' : null;
+          setTypes(newTypes);
+          displayTypesCards(newTypes);
+        }}
       >
         Series
       </button>

@@ -1,21 +1,18 @@
-import { useState } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, pos, isBookmarked, onDelete, id, src, title, maker, date, tag, note, type}){
-  const [bookmark, setBookmark] = useState(false)
-
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
   return(
     <div style={styleCard} className='card'>
       <div className='card_head'>
         <p>{pos + 1}</p>
         <div style={styleCardOptions} className='card_options'>
           <svg
-            onClick={() => {setBookmark(!bookmark); isBookmarked(id ,!bookmark)}}
+            onClick={() => {isBookmarked(id)}}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             viewBox="0 0 24 24"
-            fill={bookmark ? 'var(--red-hue)' : 'none'}
+            fill={bookmarked ? 'var(--red-hue)' : 'none'}
             stroke="var(--red-hue)"
             stroke-width="2"
             stroke-linecap="round"

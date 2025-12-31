@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Log.css'
 
-export default function Log({handleSubmit}){
+export default function Log({formSubmit}){
   function displayLogWindow(){
     const library = document.getElementById('library');
     const logWindow = document.getElementById('log_window');
@@ -24,19 +24,29 @@ export default function Log({handleSubmit}){
   }
 
   const [error, setError] = useState(null)
-  function isInputValid(e){
-    const input = e.target;
-    const value = input.value;
-    if(value < input.min || value > input.max || isNaN(value) == true){
-      setError('Input invalid')
-    }else{
-      setError(null)
+
+  function formValidation(e){
+    const form = e.target;
+    const inputs = form.querySelectorAll('input');
+    let empty = false;
+    inputs.forEach(input => {
+      if(!input.value){
+        empty = true;
+      }
+    });
+    if(empty){
+      setError('Input(s) empty.');
+      e.preventDefault();
+      return;
     }
+    setError(null);
+    hideLogWindow();
+    formSubmit(e);
   }
 
   function reseted(e){
     const svg = e.target;
-    const form = e.target.parentNode.parentNode;
+    const form = e.target.parentNode.parentNode.parentNode;
     svg.style.animation = '.5s ease rotate';
     svg.style.pointerEvents = 'none';
     form.reset();
@@ -67,7 +77,7 @@ export default function Log({handleSubmit}){
         <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
       </svg>
 
-      <form onSubmit={handleSubmit} className='log_window' id='log_window'>
+      <form onSubmit={formValidation} className='log_window' id='log_window'>
         <button type='button' className='log_close'>
           <svg
             onClick={hideLogWindow}
@@ -110,7 +120,7 @@ export default function Log({handleSubmit}){
         <div className='log_row'>
           <div className='log_inputs'>
             <label htmlFor="note">Note:</label>
-            <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100} onChange={isInputValid}/>
+            <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100}/>
           </div>
           <div className='log_inputs'>
             <label htmlFor="date_of_release">Date of release:</label>
@@ -144,7 +154,7 @@ export default function Log({handleSubmit}){
               <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
               <path d="M20 4v5h-5" />
             </svg>
-            <button type='submit' className='log_in' onClick={hideLogWindow}>
+            <button type='submit' className='log_in'>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
