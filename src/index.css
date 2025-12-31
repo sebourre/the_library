@@ -44,6 +44,11 @@ h3{
   font-style: italic;
 }
 
+button{
+  border: none;
+  background-color: transparent;
+}
+
 input, select{
   color: var(--black-hue);
   border: none;

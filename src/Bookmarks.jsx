@@ -7,9 +7,7 @@ export default function Bookmarks({filterCards}){
   return(
     <div className='bookmarks'>
       <svg
-        style={{
-          display: bookmarks==false ? 'block' : 'none'
-        }}
+        style={{display: bookmarks==false ? 'block' : 'none'}}
         onClick={() => {setBookmarks(true); filterCards(!bookmarks)}}
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -26,9 +24,7 @@ export default function Bookmarks({filterCards}){
         <path d="M3 3l18 18" />
       </svg>
       <svg
-        style={{
-          display: bookmarks==true ? 'block' : 'none'
-        }}
+        style={{display: bookmarks==true ? 'block' : 'none'}}
         onClick={() => {setBookmarks(false); filterCards(!bookmarks)}}
         xmlns="http://www.w3.org/2000/svg"
         width="24"

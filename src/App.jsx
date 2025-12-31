@@ -1,42 +1,33 @@
 import { useState } from 'react'
 import './App.css'
+import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
-import Animation from './Animation.jsx'
 import Log from './Log.jsx'
+import Animation from './Animation.jsx'
 import Mode from './Mode.jsx'
 import Card from './Card.jsx'
 
 function App(){
   const [cards, setCards] = useState([
-    {id: 0, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/70/header.jpg?t=1745368462', title: 'Half-Life', maker: 'VALVe', date: '1998-11-19', tag: 'FPS', note: 96, type: 'Game'},
-    {id: 1, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220/header.jpg?t=1745368545', title: 'Half-Life 2', maker: 'VALVe', date: '2004-11-16', tag: 'FPS', note: 96, type: 'Game'},
-    {id: 2, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/400/header.jpg?t=1745368554', title: 'Portal', maker: 'VALVe', date: '2007-10-10', tag: 'FPS', note: 90, type: 'Game'},
-    {id: 3, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/620/header.jpg?t=1745363004', title: 'Portal 2', maker: 'VALVe', date: '2011-04-19', tag: 'FPS', note: 95, type: 'Game'},
-    {id: 4, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1749053861', title: 'Counter-Strike 2', maker: 'VALVe', date: '2023-09-27', tag: 'FPS', note: 82, type: 'Game'}
+    {id: 0, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/70/header.jpg?t=1745368462', title: 'Half-Life', maker: 'VALVe', date: '1998-11-19', tag: 'FPS', note: 100, type: 'Game'},
+    {id: 1, bookmarked: false, src: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1808500/04baafaf64a5aa5f46ecda5d71889a4848dc0628/header.jpg?t=1765441443', title: 'Arc Raiders', maker: 'Embark Studios', date: '2025-10-30', tag: 'Extraction Shooter', note: 70, type: 'Game'},
+    {id: 2, bookmarked: false, src: 'https://m.media-amazon.com/images/M/MV5BZDY5ODFhZjctZGIxNi00YzBmLThmYzItNDdmZTFmNWUwZWQ1XkEyXkFqcGdeQW1yb3NzZXI@._V1_QL75_UY281_CR8,0,500,281_.jpg', title: 'Spider-Man: Into the Spider-Verse', maker: 'Bob Persichetti, Peter Ramsey and Rodney Rothman', date: '2018-12-14', tag: 'Animation', note: 100, type: 'Movie'},
+    {id: 3, bookmarked: false, src: 'https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABQviwRi9D1MAfx6Yl4ApfCUEDDW03_fiZt35ct4l-Zqs1JQ6_OBdlPo5Izt5GIJUAum8A--kta20z1pGYjZrTtEhMuCudgnZYQ-A.jpg?r=ada', title: 'La La Land', maker: 'Damien Chazelle', date: '2016-12-09', tag: 'Musical', note: 0, type: 'Movie'},
+    {id: 4, bookmarked: false, src: 'https://media.gqmagazine.fr/photos/6565c827d0161a1a0165d0f6/16:9/w_2560%2Cc_limit/TheBearS01.jpg', title: 'The Bear', maker: 'Christopher Storer', date: '2022-06-23', tag: 'Drama', note: 70, type: 'Series'},
+    {id: 5, bookmarked: false, src: 'https://lepauledorion.com/wp-content/uploads/2022/01/arcane.jpeg', title: 'Arcane', maker: 'Fortiche', date: '2021-11-06', tag: 'Animation', note: 0, type: 'Series'}
   ])
 
-  const [animationOn, setAnimationOn] = useState(true);
+  const [gamesOn, setGamesOn] = useState(false);
+  const [moviesOn, setMoviesOn] = useState(false);
+  const [seriesOn, setSeriesOn] = useState(false);
 
   const [bookmarksOn, setBookmarksOn] = useState(false);
-
-  const filteredCards = bookmarksOn ? cards.filter(card => card.bookmarked == true) : cards
-
-  const logIn = (e) => {
-    e.preventDefault();
-    const newCard = {
-      id: (cards[cards.length - 1]?.id ?? -1) + 1,
-      bookmarked: false, 
-      src: e.target.image.value, 
-      title: e.target.title.value, 
-      maker: e.target.maker.value, 
-      date: e.target.date_of_release.value, 
-      tag: e.target.tag.value, 
-      note: e.target.note.value,
-      type: e.target.type.value
-    };
-    setCards([...cards, newCard]);
-    e.target.reset();
-  }
+  const filteredCards = 
+    bookmarksOn ? cards.filter(card => card.bookmarked == true) : 
+    gamesOn ? cards.filter(card => card.type == 'Game') : 
+    moviesOn ? cards.filter(card => card.type == 'Movie') : 
+    seriesOn ? cards.filter(card => card.type == 'Series') : 
+    cards
 
   function isBookmarked(cardId, bookmark){
     console.log('Is card ' + cardId + ' bookmarked?', bookmark);
@@ -50,6 +41,27 @@ function App(){
     setCards(bookmarkedCards);
   }
 
+  const logIn = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const newCard = {
+      id: (cards[cards.length - 1]?.id ?? -1) + 1,
+      bookmarked: false, 
+      src: formData.get('image'), 
+      title: formData.get('title'), 
+      maker: formData.get('maker'), 
+      date: formData.get('date_of_release'), 
+      tag: formData.get('tag'), 
+      note: formData.get('note'),
+      type: formData.get('type')
+    };
+    setCards([...cards, newCard]);
+    e.target.reset();
+    e.target.querySelector('img').src = '';
+  }
+
+  const [animationOn, setAnimationOn] = useState(true);
+
   const onDelete = (cardId) => {
     setCards(curr => curr.filter(card => card.id !== cardId));
   }
@@ -59,9 +71,14 @@ function App(){
       <header>
         <h1>The Library</h1>
         <div className='buttons'>
-          <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
+          <Types 
+            displayGamesCards={(games) => setGamesOn(games)} 
+            displayMoviesCards={(movies) => setMoviesOn(movies)} 
+            displaySeriesCards={(series) => setSeriesOn(series)}
+          />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
           <Log handleSubmit={logIn}/>
+          <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
           <Mode />
         </div>
       </header>

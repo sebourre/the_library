@@ -11,8 +11,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 25%;
-  min-width: 20%;
+  min-width: 20rem;
+  /* min-width: ; */
   height: fit-content;
   padding: 1rem;
   color: var(--white-hue);
@@ -58,11 +58,22 @@
   object-fit: center;
 }
 
+.log_footer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: .5rem;
+}
+
+.log_error{
+  color: var(--red-hue);
+}
+
 .log_buttons{
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin: .5rem 0 0 auto;
 }
 
 .log_reset{

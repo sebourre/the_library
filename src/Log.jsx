@@ -23,6 +23,17 @@ export default function Log({handleSubmit}){
     setImagePreview(e.target.value)
   }
 
+  const [error, setError] = useState(null)
+  function isInputValid(e){
+    const input = e.target;
+    const value = input.value;
+    if(value < input.min || value > input.max || isNaN(value) == true){
+      setError('Input invalid')
+    }else{
+      setError(null)
+    }
+  }
+
   function reseted(e){
     const svg = e.target;
     const form = e.target.parentNode.parentNode;
@@ -99,7 +110,7 @@ export default function Log({handleSubmit}){
         <div className='log_row'>
           <div className='log_inputs'>
             <label htmlFor="note">Note:</label>
-            <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100}/>
+            <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100} onChange={isInputValid}/>
           </div>
           <div className='log_inputs'>
             <label htmlFor="date_of_release">Date of release:</label>
@@ -114,25 +125,12 @@ export default function Log({handleSubmit}){
             </select>
           </div>
         </div>
-        <div className='log_buttons'>
-          <svg
-            onClick={reseted}
-            className='log_reset'
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="var(--white-hue)"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
-            <path d="M20 4v5h-5" />
-          </svg>
-          <button type='submit' className='log_in' onClick={hideLogWindow}>
+        <div className='log_footer'>
+          <p className='log_error'>{error}</p>
+          <div className='log_buttons'>
             <svg
+              onClick={reseted}
+              className='log_reset'
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -143,9 +141,25 @@ export default function Log({handleSubmit}){
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M5 12l5 5l10 -10" />
+              <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
+              <path d="M20 4v5h-5" />
             </svg>
-          </button>
+            <button type='submit' className='log_in' onClick={hideLogWindow}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--white-hue)"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12l5 5l10 -10" />
+              </svg>
+            </button>
+          </div>
         </div>
       </form>
     </>

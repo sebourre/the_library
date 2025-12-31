@@ -7,9 +7,7 @@ export default function Animation({changeAnimation}){
   return(
     <div className='animation'>
       <svg
-        style={{
-          display: animation==true ? 'block' : 'none'
-        }}
+        style={{display: animation==true ? 'block' : 'none'}}
         onClick={() => {setAnimation(false); changeAnimation(!animation)}}
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -25,9 +23,7 @@ export default function Animation({changeAnimation}){
         <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
       </svg>
       <svg
-        style={{
-          display: animation==false ? 'block' : 'none'
-        }}
+        style={{display: animation==false ? 'block' : 'none'}}
         onClick={() => {setAnimation(true); changeAnimation(!animation)}}
         xmlns="http://www.w3.org/2000/svg"
         width="24"
