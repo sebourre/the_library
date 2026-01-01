@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
@@ -7,7 +7,7 @@ import Animation from './Animation.jsx'
 import Mode from './Mode.jsx'
 import Card from './Card.jsx'
 
-function App(){
+export default function App(){
   const [cards, setCards] = useState(() => {
     const saveCards = localStorage.getItem('cards');
     return saveCards ? JSON.parse(saveCards) : [];
@@ -43,7 +43,8 @@ function App(){
     setCards(bookmarkedCards);
   }
 
-  const logIn = (e) => {
+  const libraryRef = useRef(null);
+  function logIn(e){
     e.preventDefault();
     const formData = new FormData(e.target);
     const newCard = {
@@ -64,7 +65,7 @@ function App(){
 
   const [animationOn, setAnimationOn] = useState(true);
 
-  const onDelete = (cardId) => {
+  function onDelete(cardId){
     setCards(curr => curr.filter(card => card.id !== cardId));
   }
 
@@ -75,12 +76,12 @@ function App(){
         <div className='buttons'>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
-          <Log formSubmit={logIn}/>
+          <Log libraryRef={libraryRef} formSubmit={logIn}/>
           <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
           <Mode />
         </div>
       </header>
-      <div className='library' id='library'>
+      <div ref={libraryRef} className='library'>
         {filteredCards.length != 0 ? 
           filteredCards.map((card, index)=> 
           <Card 
@@ -108,5 +109,3 @@ function App(){
     </>
   )
 }
-
-export default App

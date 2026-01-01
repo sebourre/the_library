@@ -1,33 +1,23 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './Log.css'
 
-export default function Log({formSubmit}){
-  function displayLogWindow(){
-    const library = document.getElementById('library');
-    const logWindow = document.getElementById('log_window');
-    library.style.filter = 'blur(10px)';
-    library.style.pointerEvents = 'none';
-    logWindow.style.display = 'flex';
-  }
-  function hideLogWindow(){
-    const library = document.getElementById('library');
-    const logWindow = document.getElementById('log_window');
-    library.style.filter = 'none';
-    library.style.pointerEvents = 'auto';
-    logWindow.style.display = 'none';
+export default function Log({formSubmit, libraryRef}){
+  const logWindowRef = useRef(null);
+  const [logWindow, setLogWindow] = useState(false);
+  function displayLogWindow(logWindow){
+    libraryRef.current.style.filter = logWindow ? 'blur(10px)' : 'none';
+    libraryRef.current.style.pointerEvents = logWindow ? 'none' : 'auto';
+    logWindowRef.current.style.display = logWindow ? 'flex' : 'none';
   }
 
   const [imagePreview, setImagePreview] = useState(null)
-
   function updateImagePreview(e){
     setImagePreview(e.target.value)
   }
 
   const [error, setError] = useState(null)
-
   function formValidation(e){
-    const form = e.target;
-    const inputs = form.querySelectorAll('input');
+    const inputs = logWindowRef.current.querySelectorAll('input');
     let empty = false;
     inputs.forEach(input => {
       if(!input.value){
@@ -40,20 +30,20 @@ export default function Log({formSubmit}){
       return;
     }
     setError(null);
-    hideLogWindow();
+    displayLogWindow(!logWindow);
     formSubmit(e);
   }
 
-  function reseted(e){
-    const svg = e.target;
-    const form = e.target.parentNode.parentNode.parentNode;
-    svg.style.animation = '.5s ease rotate';
-    svg.style.pointerEvents = 'none';
-    form.reset();
-    setImagePreview(null)
+  const resetRef = useRef(null);
+  function formReset(){
+    resetRef.current.style.animation = '.5s ease rotate';
+    resetRef.current.style.pointerEvents = 'none';
+    logWindowRef.current.reset();
+    setImagePreview(null);
+    setError(null);
     setTimeout(() => {
-      svg.style.animation = 'none';
-      svg.style.pointerEvents = 'auto';
+      resetRef.current.style.animation = 'none';
+      resetRef.current.style.pointerEvents = 'auto';
     }, 500);
   }
 
@@ -61,35 +51,36 @@ export default function Log({formSubmit}){
     <>
       <svg
         className='log'
-        onClick={displayLogWindow}
+        onClick={() => {
+          setLogWindow(!logWindow);
+          displayLogWindow(!logWindow);
+        }}
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
         fill="none"
         stroke="var(--secondary-color)"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
       >
         <path d="M9 12h6" />
         <path d="M12 9v6" />
         <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
       </svg>
 
-      <form onSubmit={formValidation} className='log_window' id='log_window'>
+      <form 
+        ref={logWindowRef}
+        className='log_window' 
+        style={{display: logWindow ? 'flex' : 'none'}}
+        onSubmit={formValidation} 
+      >
         <button type='button' className='log_close'>
           <svg
-            onClick={hideLogWindow}
+            onClick={() => {
+              setLogWindow(!logWindow);
+              displayLogWindow(!logWindow);
+            }}
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="var(--white-hue)"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
           >
             <path d="M18 6l-12 12" />
             <path d="M6 6l12 12" />
@@ -139,17 +130,13 @@ export default function Log({formSubmit}){
           <p className='log_error'>{error}</p>
           <div className='log_buttons'>
             <svg
-              onClick={reseted}
+              ref={resetRef}
+              onClick={formReset}
               className='log_reset'
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="var(--white-hue)"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
             >
               <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
               <path d="M20 4v5h-5" />
@@ -157,14 +144,9 @@ export default function Log({formSubmit}){
             <button type='submit' className='log_in'>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="var(--white-hue)"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
               >
                 <path d="M5 12l5 5l10 -10" />
               </svg>

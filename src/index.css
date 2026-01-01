@@ -1,7 +1,4 @@
 :root{
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  color-scheme: light dark;
   --primary-color: rgb(25, 25, 25);
   --secondary-color: whitesmoke;
   --tertiary-color: rgb(80, 80, 80);
@@ -9,6 +6,9 @@
   --white-hue: whitesmoke;
   --blue-hue: blue;
   --red-hue: red;
+  
+  color-scheme: light dark;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: var(--secondary-color);
   background-color: var(--primary-color);
 }
@@ -47,6 +47,14 @@ h3{
 button{
   border: none;
   background-color: transparent;
+}
+
+svg{
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 input, select{
