@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import './Animation.css'
+import './App.css'
 
 export default function Animation({changeAnimation}){
   const [animation, setAnimation] = useState(true);
 
   return(
-    <div className='animation'>
+    <div className='animation' title='Animation'>
       <svg
         style={{display: animation == true ? 'block' : 'none'}}
         onClick={() => {

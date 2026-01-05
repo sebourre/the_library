@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Mode.css'
+import './App.css'
 
 export default function Mode(){
   const [mode, setMode] = useState(window.matchMedia('(prefers-color-scheme: dark)') ? 'dark' : 'light');
@@ -11,7 +11,7 @@ export default function Mode(){
   }
 
   return(
-    <div className='mode'>
+    <div className='mode' title='Mode'>
       <svg
         style={{display: mode == 'dark' ? 'block' : 'none'}}
         onClick={() => changeMode(mode)}

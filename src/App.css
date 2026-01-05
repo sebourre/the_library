@@ -16,3 +16,24 @@
   gap: 2rem;
   padding: 0 2rem;
 }
+
+.bookmarks, .log, .animation, .mode{
+  cursor: pointer;
+}
+
+.types{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.types button{
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 600px){
+  .types{
+    display: none;
+  }
+}

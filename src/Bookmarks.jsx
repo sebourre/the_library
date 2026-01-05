@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import './Bookmarks.css'
+import './App.css'
 
 export default function Bookmarks({filterCards}){
   const [bookmarks, setBookmarks] = useState(false);
 
   return(
-    <div className='bookmarks'>
+    <div className='bookmarks' title='Bookmarks'>
       <svg
         style={{display: bookmarks == false ? 'block' : 'none'}}
         onClick={() => {

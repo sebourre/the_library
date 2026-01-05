@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './Types.css'
+import './App.css'
 
 export default function Types({displayTypesCards}){
   const [types, setTypes] = useState(null)

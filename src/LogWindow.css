@@ -1,7 +1,3 @@
-.log{
-  cursor: pointer;
-}
-
 .log_window{
   display: none;
   flex-direction: column;

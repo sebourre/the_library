@@ -3,6 +3,7 @@ import './App.css'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
 import Log from './Log.jsx'
+import LogWindow from './LogWindow.jsx'
 import Animation from './Animation.jsx'
 import Mode from './Mode.jsx'
 import Card from './Card.jsx'
@@ -43,6 +44,14 @@ export default function App(){
     setCards(bookmarkedCards);
   }
 
+  const logWindowRef = useRef(null);
+  const [logWindowOn, setLogWindowOn] = useState(false);
+  function displayLogWindow(logWindow){
+    libraryRef.current.style.filter = logWindow ? 'blur(10px)' : 'none';
+    libraryRef.current.style.pointerEvents = logWindow ? 'none' : 'auto';
+    logWindowRef.current.style.display = logWindow ? 'flex' : 'none';
+  }
+
   const libraryRef = useRef(null);
   function logIn(e){
     e.preventDefault();
@@ -76,7 +85,7 @@ export default function App(){
         <div className='buttons'>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
-          <Log libraryRef={libraryRef} formSubmit={logIn}/>
+          <Log setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn}/>
           <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
           <Mode />
         </div>
@@ -106,6 +115,7 @@ export default function App(){
           />
         ) : <h3>Empty</h3>}
       </div>
+      <LogWindow formSubmit={logIn} ref={logWindowRef} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>
     </>
   )
 }
