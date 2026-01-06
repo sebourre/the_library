@@ -28,13 +28,23 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
 }
 
 h1{
-  margin: 1rem 0;
   text-align: center;
+  cursor: pointer;
 }
+h1:hover{
+  color: var(--red-hue);
+}
+
+@media (max-width: 850px){
+  h1{
+    display: none;
+  }
+}
+
 h2{
   text-align: center;
 }

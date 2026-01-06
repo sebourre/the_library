@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import './App.css'
+import Books from './Books.jsx'
 import SearchBar from './SearchBar.jsx'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
@@ -19,8 +20,14 @@ export default function App(){
     localStorage.setItem('cards', JSON.stringify(cards))
   }, [cards]);
 
-  function searchCards(e){
-    console.log(e.target.value);
+  function reload(){
+    location.reload();
+  }
+
+  const [searchValue, setSearchValue] = useState('');
+  function searchCards(searchRef){
+    const value = searchRef.current.value.trim().toLowerCase();
+    setSearchValue(value);
   }
 
   const [typesOn, setTypesOn] = useState(null);
@@ -34,6 +41,9 @@ export default function App(){
       c = c.filter(card => card.type === 'Movie');
     }else if(typesOn == 'series'){
       c = c.filter(card => card.type === 'Series');
+    }
+    if(searchValue){
+      c = c.filter(card => card.title.toLowerCase().includes(searchValue));
     }
     return c;
   })();
@@ -86,9 +96,10 @@ export default function App(){
   return(
     <>
       <header>
-        <h1>The Library</h1>
+        <Books />
+        <h1 onClick={reload}>The Library</h1>
         <div className='settings'>
-          <SearchBar searchCards={(e) => searchCards(e)}/>
+          <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
           <Log setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn}/>
