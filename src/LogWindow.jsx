@@ -65,12 +65,12 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       <h2>Log</h2>
       <div className='log_inputs'>
         <label htmlFor="title">Title:</label>
-        <input type="text" name='title' id='title' />
+        <input type="text" name='title'/>
       </div>
       <div className='log_row'>
         <div className='log_inputs'>
           <label htmlFor="image">Image:</label>
-          <input type="url" name='image' id='image' onChange={updateImagePreview} placeholder='url' />
+          <input type="url" name='image' onChange={updateImagePreview} placeholder='url' />
         </div>
         <div className='image_preview'>
           <img src={imagePreview} />
@@ -78,24 +78,24 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       </div>
       <div className='log_inputs'>
         <label htmlFor="maker">Maker:</label>
-        <input type="text" name='maker' id='maker' />
+        <input type="text" name='maker'/>
       </div>
       <div className='log_inputs'>
         <label htmlFor="tag">Tag:</label>
-        <input type="text" name='tag' id='tag' />
+        <input type="text" name='tag'/>
       </div>
       <div className='log_row'>
         <div className='log_inputs'>
           <label htmlFor="note">Note:</label>
-          <input type="number" name='note' id='note' placeholder='0/100' min={0} max={100} />
+          <input type="number" name='note' placeholder='0/100' min={0} max={100} />
         </div>
         <div className='log_inputs'>
           <label htmlFor="date_of_release">Date of release:</label>
-          <input type="date" name='date_of_release' id='date_of_release' />
+          <input type="date" name='date_of_release'/>
         </div>
         <div className='log_inputs'>
           <label htmlFor="type">Type:</label>
-          <select name='type' id="type">
+          <select name='type'>
             <option value="Game">Game</option>
             <option value="Movie">Movie</option>
             <option value="Series">Series</option>

@@ -3,8 +3,9 @@
   margin: 0 auto;
 }
 
-.buttons{
+.settings{
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -19,6 +20,10 @@
 
 .bookmarks, .log, .animation, .mode{
   cursor: pointer;
+}
+
+.log{
+  margin-top: 4px;
 }
 
 .types{
