@@ -18,6 +18,11 @@
   stroke: var(--secondary-color);
 }
 
+.clock{
+  font-size: 1rem;
+  font-weight: bold;
+}
+
 .settings{
   display: flex;
   align-items: center;

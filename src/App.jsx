@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Books from './Books.jsx'
+import Clock from './Clock.jsx'
 import SearchBar from './SearchBar.jsx'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
@@ -98,6 +99,7 @@ export default function App(){
       <header>
         <Books />
         <h1 onClick={reload}>The Library</h1>
+        <Clock />
         <div className='settings'>
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
