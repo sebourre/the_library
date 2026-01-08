@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Books from './Books.jsx'
-import Clock from './Clock.jsx'
 import SearchBar from './SearchBar.jsx'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
@@ -9,6 +8,8 @@ import Log from './Log.jsx'
 import LogWindow from './LogWindow.jsx'
 import Animation from './Animation.jsx'
 import Mode from './Mode.jsx'
+import Infos from './Infos.jsx'
+import Clock from './Clock.jsx'
 import Card from './Card.jsx'
 
 export default function App(){
@@ -99,7 +100,6 @@ export default function App(){
       <header>
         <Books />
         <h1 onClick={reload}>The Library</h1>
-        <Clock />
         <div className='settings'>
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
@@ -134,6 +134,8 @@ export default function App(){
           />
         ) : <h3>Empty</h3>}
       </div>
+      <Infos cards={cards}/>
+      <Clock />
       <LogWindow formSubmit={logIn} ref={logWindowRef} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>
     </>
   )

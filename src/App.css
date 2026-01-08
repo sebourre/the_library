@@ -18,9 +18,17 @@
   stroke: var(--secondary-color);
 }
 
-.clock{
+.infos, .clock{
+  position: absolute;
+  bottom: 1rem;
   font-size: 1rem;
   font-weight: bold;
+}
+.infos{
+  left: 1rem;
+}
+.clock{
+  right: 1rem;
 }
 
 .settings{
