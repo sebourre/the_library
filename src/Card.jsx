@@ -1,6 +1,6 @@
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, displayCardWindow, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
   return(
     <div className='card' style={styleCard}>
       <div className='card_head'>
@@ -41,7 +41,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         </div>
         </div>
       <img src={src}/>
-      <div className='card_info' style={styleCardInfo}>
+      <div className='card_info' style={styleCardInfo} onClick={() => displayCardWindow(true, id)}>
         <p><b>{title}</b></p>
         <p>{maker}</p>
         <p>{date}</p>
@@ -52,9 +52,9 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         className='card_note'
         style={{
           backgroundColor: 
-            note >= 75 ? 'green' : 
-            note >= 40 ? 'orange' : 
-            'red'
+            note >= 75 ? 'var(--green-hue)' : 
+            note >= 40 ? 'var(--orange-hue)' : 
+            'var(--red-hue)'
         }}
       >
         <p>{note}</p>

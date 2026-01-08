@@ -11,6 +11,7 @@ import Mode from './Mode.jsx'
 import Infos from './Infos.jsx'
 import Clock from './Clock.jsx'
 import Card from './Card.jsx'
+import CardWindow from './CardWindow.jsx'
 
 export default function App(){
   const [cards, setCards] = useState(() => {
@@ -50,6 +51,27 @@ export default function App(){
     return c;
   })();
 
+  const cardWindowRef = useRef(null);
+  const [cardImg, setCardImg] = useState(null);
+  const [cardTitle, setCardTitle] = useState(null);
+  const [cardType, setCardType] = useState(null);
+  const [cardMaker, setCardMaker] = useState(null);
+  const [cardTag, setCardTag] = useState(null);
+  const [cardDate, setCardDate] = useState(null);
+  const [cardNote, setCardNote] = useState(null);
+  function displayCardWindow(boolean, id){
+    cardWindowRef.current.style.display = boolean ? 'flex' : 'none';
+    setCardImg(boolean ? cards[id].src : null);
+    if(id != null){
+      setCardTitle(cards[id].title);
+      setCardType(cards[id].type);
+      setCardMaker(cards[id].maker);
+      setCardTag(cards[id].tag);
+      setCardDate(cards[id].date);
+      setCardNote(cards[id].note);
+    }
+  }
+
   function isBookmarked(cardId){
     const bookmarkedCards = cards.map(card => {
       if(card.id == cardId){
@@ -61,15 +83,18 @@ export default function App(){
     setCards(bookmarkedCards);
   }
 
+  const headerRef = useRef(null);
+  const libraryRef = useRef(null);
   const logWindowRef = useRef(null);
   const [logWindowOn, setLogWindowOn] = useState(false);
   function displayLogWindow(logWindow){
+    headerRef.current.style.filter = logWindow ? 'blur(10px)' : 'none';
+    headerRef.current.style.pointerEvents = logWindow ? 'none' : 'auto';
     libraryRef.current.style.filter = logWindow ? 'blur(10px)' : 'none';
     libraryRef.current.style.pointerEvents = logWindow ? 'none' : 'auto';
     logWindowRef.current.style.display = logWindow ? 'flex' : 'none';
   }
 
-  const libraryRef = useRef(null);
   function logIn(e){
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -97,7 +122,7 @@ export default function App(){
 
   return(
     <>
-      <header>
+      <header ref={headerRef}>
         <Books />
         <h1 onClick={reload}>The Library</h1>
         <div className='settings'>
@@ -119,6 +144,7 @@ export default function App(){
             styleCardBar={!animationOn ? {width: '80%'} : null}
             styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
             key={card.id} 
+            displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
             pos={index}
             isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
             onDelete={(id) => onDelete(id)}
@@ -132,8 +158,9 @@ export default function App(){
             note={card.note}
             type={card.type}
           />
-        ) : <h3>Empty</h3>}
+        ) : <span>Empty</span>}
       </div>
+      <CardWindow cardWindowRef={cardWindowRef} displayCardWindow={(boolean) => displayCardWindow(boolean)} cardImg={cardImg} cardTitle={cardTitle} cardType={cardType} cardMaker={cardMaker} cardTag={cardTag} cardDate={cardDate} cardNote={cardNote}/>
       <Infos cards={cards}/>
       <Clock />
       <LogWindow formSubmit={logIn} ref={logWindowRef} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>

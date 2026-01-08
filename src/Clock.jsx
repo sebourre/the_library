@@ -6,8 +6,14 @@ export default function Clock(){
   function updateTime(){
     const date = new Date();
     const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
+    let minutes = date.getMinutes();
+    if(minutes < 10){
+      minutes = '0' + minutes;
+    }
+    let seconds = date.getSeconds();
+    if(seconds < 10){
+      seconds = '0' + seconds;
+    }
     setTime(`${hours}:${minutes}:${seconds}`);
   }
 

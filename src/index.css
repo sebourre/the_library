@@ -5,6 +5,8 @@
   --black-hue: rgb(25, 25, 25);
   --white-hue: whitesmoke;
   --blue-hue: blue;
+  --green-hue: green;
+  --orange-hue: orange;
   --red-hue: red;
   
   color-scheme: light dark;
@@ -43,9 +45,14 @@ h1{
 }
 
 h2{
-  text-align: center;
+  margin: 2rem 0 .5rem 0;
+  font-size: 1.75rem;
 }
 h3{
+  text-align: center;
+  font-size: 1.5rem;
+}
+span{
   margin-top: 3rem;
   color: var(--red-hue);
   font-style: italic;

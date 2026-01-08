@@ -76,11 +76,14 @@
   width: 0;
   height: 2px;
   border-radius: 1px;
-  background-color: var(--primary-color);
+  background: var(--primary-color);
 }
 .card:hover .card_bar{
   transition: .3s;
   width: 80%;
+}
+.card_info:has(+ .card_note:hover) .card_bar{
+  background: linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%);
 }
 
 .card_note{
@@ -94,6 +97,7 @@
   height: 2.5rem;
   border: 2px solid var(--primary-color);
   border-radius: 50%;
+  cursor: default;
 }
 
 .card_type{

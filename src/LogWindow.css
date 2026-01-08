@@ -22,8 +22,6 @@
   position: absolute;
   top: .5rem;
   right: .5rem;
-  border: none;
-  background-color: transparent;
   cursor: pointer;
 }
 

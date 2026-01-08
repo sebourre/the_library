@@ -47,22 +47,21 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       style={{ display: logWindowOn ? 'flex' : 'none' }}
       onSubmit={formValidation}
     >
-      <button type='button' className='log_close'>
-        <svg
-          onClick={() => {
-            setLogWindowOn(!logWindowOn);
-            displayLogWindow(!logWindowOn);
-          }}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--white-hue)"
-        >
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
-      </button>
-      <h2>Log</h2>
+      <svg
+        className='log_close'
+        onClick={() => {
+          setLogWindowOn(!logWindowOn);
+          displayLogWindow(!logWindowOn);
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="var(--white-hue)"
+      >
+        <path d="M18 6l-12 12" />
+        <path d="M6 6l12 12" />
+      </svg>
+      <h3>Log</h3>
       <div className='log_inputs'>
         <label htmlFor="title">Title:</label>
         <input type="text" name='title'/>
