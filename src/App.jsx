@@ -60,6 +60,10 @@ export default function App(){
   const [cardDate, setCardDate] = useState(null);
   const [cardNote, setCardNote] = useState(null);
   function displayCardWindow(boolean, id){
+    headerRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
+    headerRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
+    libraryRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
+    libraryRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
     cardWindowRef.current.style.display = boolean ? 'flex' : 'none';
     setCardImg(boolean ? cards[id].src : null);
     if(id != null){

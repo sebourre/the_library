@@ -1,32 +1,68 @@
 .card_window{
   display: none;
+  align-items: flex-start;
+  justify-content: center;
   z-index: 1;
+  overflow: hidden;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  height: 30rem;
+  color: var(--white-hue);
+  border: 3px solid var(--black-hue);
+  border-radius: 10px;
+  background-color: var(--tertiary-color);
+  box-shadow: 0 0 5rem var(--primary-color);
+}
+
+@media (max-width: 480px){
+  .card_window{
+    width: 18rem;
+    height: 25rem;
+    border-radius: 5px;
+  }
+}
+
+.card_window img{
   width: 100%;
-  height: 100vh;
-  background-size: 10%;
+  height: auto;
 }
 
 .card_window_content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 50%;
+  width: 100%;
   height: 100%;
-  outline: .5rem solid var(--primary-color);
-  background-color: rgba(25, 25, 25, .5);
+  background-image: linear-gradient(to top, var(--tertiary-color) 60%, rgba(25, 25, 25, .5));
   backdrop-filter: blur(5px);
 }
-.card_window_content p:first-of-type{
-  margin-bottom: 2rem;
+
+.card_window_header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  height: 35%;
+}
+.card_window_header p{
   font-style: italic;
   font-weight: bold;
+}
+
+.card_window_footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: 100%;
+  height: 65%;
 }
 
 .card_window_close{
@@ -34,4 +70,27 @@
   top: .5rem;
   right: .5rem;
   cursor: pointer;
+}
+
+.card_window_bar{
+  position: relative;
+  width: 15rem;
+  height: .5rem;
+  border-radius: 2px;
+  background-image: linear-gradient(to right, var(--green-hue) 20%, var(--orange-hue) 30% 55%, var(--red-hue) 65%);
+}
+
+@media (max-width: 480px){
+  .card_window_bar{
+    width: 10rem;
+  }
+}
+
+.card_window_point{
+  position: absolute;
+  top: 50%;
+  width: .5rem;
+  height: 1rem;
+  border-radius: 2px;
+  background-color: var(--black-hue);
 }

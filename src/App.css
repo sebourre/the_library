@@ -58,7 +58,7 @@
   opacity: 1;
 }
 
-@media (max-width: 450px){
+@media (max-width: 480px){
   .search_bar{
     display: none;
   }
@@ -88,18 +88,15 @@
   cursor: pointer;
 }
 
-@media (max-width: 650px){
+@media (max-width: 768px){
   .types{
     display: none;
   }
 }
 
 .bookmarks, .log, .animation, .mode{
+  display: flex;
   cursor: pointer;
-}
-
-.log{
-  margin-top: 4px;
 }
 
 .library{
