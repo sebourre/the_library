@@ -14,7 +14,7 @@
   border-radius: 5px;
   background-color: var(--tertiary-color);
   box-shadow: 
-    inset  0 0 5px var(--primary-color), 
+    inset 0 0 5px var(--primary-color), 
     0 0 2rem var(--primary-color);
 }
 
