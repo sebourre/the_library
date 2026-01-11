@@ -38,6 +38,21 @@ h1{
   text-align: center;
   cursor: pointer;
 }
+h1:hover{
+  animation: duplication .5s ease-in-out;
+}
+
+@keyframes duplication{
+  0%{
+    text-shadow: 0 0 0 var(--red-hue);
+  }
+  50%{
+    text-shadow: 3px 3px 0 var(--red-hue);
+  }
+  100%{
+    text-shadow: 0 0 0 var(--red-hue);
+  }
+}
 
 @media (max-width: 1024px){
   h1{
@@ -49,6 +64,7 @@ h2{
   text-align: center;
   font-size: 3rem;
   line-height: 3rem;
+  text-shadow: 0 0 3px var(--black-hue);
 }
 
 @media (max-width: 480px){
@@ -91,7 +107,7 @@ input, select{
 input:focus{
   outline: 2px solid var(--black-hue);
 }
-input[type=text], input[type=url]{
+input[type=text], input[type=url], input[type=search]{
   width: 100%;
   padding: 0 3px;
   font-size: 1rem;

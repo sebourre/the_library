@@ -10,6 +10,10 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         <p>{pos + 1}</p>
         <div className='card_options' style={styleCardOptions}>
           <svg
+            style={{
+              filter: edit ? 'blur(2px)' : 'none',
+              pointerEvents: edit ? 'none' : 'auto'
+            }}
             onClick={() => {isBookmarked(id)}}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -41,6 +45,10 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             <path d="M6 6l12 12" />
           </svg>
           <svg
+            style={{
+              filter: edit ? 'blur(2px)' : 'none',
+              pointerEvents: edit ? 'none' : 'auto'
+            }}
             onClick={() => onDelete(id)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -56,35 +64,31 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         </div>
         </div>
       <img src={src}/>
-      <div 
-        className='card_info' 
-        style={{
-          styleCardInfo, 
-          color: edit ? 'var(--red-hue)' : 'var(--primary-color)',
-          outline: edit ? '2px solid var(--red-hue)' : 'none',
-          cursor: edit ? 'default' : 'pointer'
-        }} 
-        onClick={edit ? null : () => displayCardWindow(true, id)}
-      >
-        <p contentEditable={edit ? 'true' : 'false'}><b>{title}</b></p>
-        <p contentEditable={edit ? 'true' : 'false'}>{maker}</p>
-        <p contentEditable={edit ? 'true' : 'false'}>{date}</p>
-        <p contentEditable={edit ? 'true' : 'false'}>{tag}</p>
+      <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
+        <p style={{display: edit ? 'none' : 'block'}}>{title}</p>
+        <input type='text' name='edit_title' placeholder={title} style={{display: edit ? 'block' : 'none'}}/>
+        <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
+        <input type='text' name='edit_maker' placeholder={maker} style={{display: edit ? 'block' : 'none'}}/>
+        <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
+        <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} style={{display: edit ? 'block' : 'none'}} required/>
+        <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
+        <input type='text' name='edit_tag' placeholder={tag} style={{display: edit ? 'block' : 'none'}}/>
         <div className='card_bar' style={styleCardBar}></div>
       </div>
       <div 
         className='card_note'
         style={{
-          backgroundColor: 
+          backgroundColor:
+            edit ? 'var(--white-hue)' : 
             note >= 75 ? 'var(--green-hue)' : 
             note >= 40 ? 'var(--orange-hue)' : 
-            'var(--red-hue)',
-            outline: edit ? '2px solid var(--red-hue)' : 'none'
+            'var(--red-hue)'
         }}
       >
-        <p contentEditable={edit ? 'true' : 'false'}>{note}</p>
+        <p style={{display: edit ? 'none' : 'block'}}>{note}</p>
+        <input type='number' name='edit_note' placeholder={note} style={{display: edit ? 'block' : 'none'}} min={0} max={100}/>
       </div>
-      <button type='button' className='card_edit' style={{display: edit ? 'block' : 'none'}}>Edit</button>
+      <button type='button' className='card_edit' style={{display: edit ? 'block' : 'none'}} onClick={() => {console.log('Editing...'); setEdit(false)}}>Edit</button>
       <p className='card_type' style={styleCardType}>{type}</p>
     </div>
   )

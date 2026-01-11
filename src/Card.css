@@ -64,10 +64,26 @@
   text-wrap: nowrap;
   text-overflow: ellipsis;
 }
-.card_info p:first-child{
+.card_info p:first-of-type{
   margin-bottom: 5px;
+  font-weight: bold;
 }
-.card_info p:not(:first-child){
+.card_info p:not(:first-of-type){
+  text-align: end;
+}
+.card_info input{
+  margin-top: 2px;
+  padding-left: auto;
+  background-color: transparent;
+}
+.card_info input:focus{
+  outline: none;
+}
+.card_info input:first-of-type{
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.card_info input:not(:first-of-type){
   text-align: end;
 }
 
@@ -100,10 +116,17 @@
   border-radius: 50%;
   cursor: default;
 }
+.card_note input{
+  margin-top: 2px;
+  background-color: transparent;
+}
+.card_note input:focus{
+  outline: none;
+}
 
 .card_edit{
   position: absolute;
-  bottom: -.7rem;
+  bottom: -.5rem;
   left: 50%;
   transform: translateX(-50%);
   padding: 1px 7px;
@@ -112,7 +135,7 @@
   font-weight: 700;
   border-radius: 2px;
   background-color: var(--blue-hue);
-  outline: 2px solid var(--red-hue);
+  outline: 2px solid var(--white-hue);
   cursor: pointer;
 }
 
