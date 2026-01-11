@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import './Card.css'
 
 export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, displayCardWindow, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+  const [edit, setEdit] = useState(false);
+  
   return(
     <div className='card' style={styleCard}>
       <div className='card_head'>
@@ -16,7 +19,8 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
           </svg>
           <svg
-            style={{cursor: 'not-allowed'}}
+            style={{display: edit ? 'none' : 'block'}}
+            onClick={() => setEdit(true)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -24,6 +28,17 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           >
             <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
             <path d="M13.5 6.5l4 4" />
+          </svg>
+          <svg
+            style={{display: edit ? 'block' : 'none'}}
+            onClick={() => setEdit(false)}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--red-hue)"
+          >
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
           </svg>
           <svg
             onClick={() => onDelete(id)}
@@ -41,11 +56,20 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         </div>
         </div>
       <img src={src}/>
-      <div className='card_info' style={styleCardInfo} onClick={() => displayCardWindow(true, id)}>
-        <p><b>{title}</b></p>
-        <p>{maker}</p>
-        <p>{date}</p>
-        <p>{tag}</p>
+      <div 
+        className='card_info' 
+        style={{
+          styleCardInfo, 
+          color: edit ? 'var(--red-hue)' : 'var(--primary-color)',
+          outline: edit ? '2px solid var(--red-hue)' : 'none',
+          cursor: edit ? 'default' : 'pointer'
+        }} 
+        onClick={edit ? null : () => displayCardWindow(true, id)}
+      >
+        <p contentEditable={edit ? 'true' : 'false'}><b>{title}</b></p>
+        <p contentEditable={edit ? 'true' : 'false'}>{maker}</p>
+        <p contentEditable={edit ? 'true' : 'false'}>{date}</p>
+        <p contentEditable={edit ? 'true' : 'false'}>{tag}</p>
         <div className='card_bar' style={styleCardBar}></div>
       </div>
       <div 
@@ -54,11 +78,13 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           backgroundColor: 
             note >= 75 ? 'var(--green-hue)' : 
             note >= 40 ? 'var(--orange-hue)' : 
-            'var(--red-hue)'
+            'var(--red-hue)',
+            outline: edit ? '2px solid var(--red-hue)' : 'none'
         }}
       >
-        <p>{note}</p>
+        <p contentEditable={edit ? 'true' : 'false'}>{note}</p>
       </div>
+      <button type='button' className='card_edit' style={{display: edit ? 'block' : 'none'}}>Edit</button>
       <p className='card_type' style={styleCardType}>{type}</p>
     </div>
   )

@@ -101,6 +101,21 @@
   cursor: default;
 }
 
+.card_edit{
+  position: absolute;
+  bottom: -.7rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 7px;
+  color: var(--white-hue);
+  font-size: .7rem;
+  font-weight: 700;
+  border-radius: 2px;
+  background-color: var(--blue-hue);
+  outline: 2px solid var(--red-hue);
+  cursor: pointer;
+}
+
 .card_type{
   transition: .1s;
   position: absolute;
