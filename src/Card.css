@@ -1,6 +1,5 @@
 .card{
   transition: .1s;
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -9,6 +8,13 @@
   filter: grayscale(1);
   color: var(--primary-color);
 }
+
+@media (max-width: 480px){
+  .card{
+    width: 140px;
+  }
+}
+
 .card:hover{
   transition: .1s;
   filter: grayscale(0);
@@ -18,6 +24,12 @@
   max-height: 70px;
   border-radius: 3px;
   object-fit: cover;
+}
+
+@media (max-width: 480px){
+  .card img{
+    height: 80px;
+  }
 }
 
 .card_head{
@@ -47,6 +59,7 @@
 
 .card_info{
   transition: .1s;
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -103,6 +116,21 @@
   background: linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%);
 }
 
+.card_edit{
+  position: absolute;
+  bottom: -.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1px 7px;
+  color: var(--white-hue);
+  font-size: .7rem;
+  font-weight: 700;
+  border-radius: 2px;
+  background-color: var(--blue-hue);
+  outline: 2px solid var(--white-hue);
+  cursor: pointer;
+}
+
 .card_note{
   position: absolute;
   display: flex;
@@ -122,21 +150,6 @@
 }
 .card_note input:focus{
   outline: none;
-}
-
-.card_edit{
-  position: absolute;
-  bottom: -.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1px 7px;
-  color: var(--white-hue);
-  font-size: .7rem;
-  font-weight: 700;
-  border-radius: 2px;
-  background-color: var(--blue-hue);
-  outline: 2px solid var(--white-hue);
-  cursor: pointer;
 }
 
 .card_type{

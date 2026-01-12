@@ -51,40 +51,15 @@ export default function App(){
     return c;
   })();
 
-  const cardWindowRef = useRef(null);
-  const [cardImg, setCardImg] = useState(null);
-  const [cardTitle, setCardTitle] = useState(null);
-  const [cardType, setCardType] = useState(null);
-  const [cardMaker, setCardMaker] = useState(null);
-  const [cardTag, setCardTag] = useState(null);
-  const [cardDate, setCardDate] = useState(null);
-  const [cardNote, setCardNote] = useState(null);
-  function displayCardWindow(boolean, id){
-    headerRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
-    headerRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
-    libraryRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
-    libraryRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
-    cardWindowRef.current.style.display = boolean ? 'flex' : 'none';
-    setCardImg(boolean ? cards[id].src : null);
-    if(id != null){
-      setCardTitle(cards[id].title);
-      setCardType(cards[id].type);
-      setCardMaker(cards[id].maker);
-      setCardTag(cards[id].tag);
-      setCardDate(cards[id].date);
-      setCardNote(cards[id].note);
-    }
-  }
-
   function isBookmarked(cardId){
-    const bookmarkedCards = cards.map(card => {
+    const bookmarkedCard = cards.map(card => {
       if(card.id == cardId){
         return {...card, bookmarked: !card.bookmarked};
       }else{
         return card;
       }
     })
-    setCards(bookmarkedCards);
+    setCards(bookmarkedCard);
   }
 
   const headerRef = useRef(null);
@@ -120,8 +95,45 @@ export default function App(){
 
   const [animationOn, setAnimationOn] = useState(true);
 
+  function editCard(e, id, newTitle, newMaker, newDate, newTag){
+    e.preventDefault();
+    const editedCard = cards.map(card => {
+      if(card.id == id){
+        return {...card, title: newTitle, maker: newMaker, date: newDate, tag: newTag};
+      }else{
+        return card;
+      }
+    })
+    setCards(editedCard);
+  }
+
   function onDelete(cardId){
     setCards(curr => curr.filter(card => card.id !== cardId));
+  }
+
+  const cardWindowRef = useRef(null);
+  const [cardImg, setCardImg] = useState(null);
+  const [cardTitle, setCardTitle] = useState(null);
+  const [cardType, setCardType] = useState(null);
+  const [cardMaker, setCardMaker] = useState(null);
+  const [cardTag, setCardTag] = useState(null);
+  const [cardDate, setCardDate] = useState(null);
+  const [cardNote, setCardNote] = useState(null);
+  function displayCardWindow(boolean, id){
+    headerRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
+    headerRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
+    libraryRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
+    libraryRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
+    cardWindowRef.current.style.display = boolean ? 'flex' : 'none';
+    setCardImg(boolean ? cards[id].src : null);
+    if(id != null){
+      setCardTitle(cards[id].title);
+      setCardType(cards[id].type);
+      setCardMaker(cards[id].maker);
+      setCardTag(cards[id].tag);
+      setCardDate(cards[id].date);
+      setCardNote(cards[id].note);
+    }
   }
 
   return(
@@ -149,6 +161,7 @@ export default function App(){
             styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
             key={card.id} 
             displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
+            formSubmit={(e, id, newTitle, newMaker, newDate, newTag) => editCard(e, id, newTitle, newMaker, newDate, newTag)}
             pos={index}
             isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
             onDelete={(id) => onDelete(id)}

@@ -1,8 +1,27 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, displayCardWindow, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+  const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
+
+  function formValidation(e){
+    const formData = new FormData(e.target);
+    const newTitle = formData.get('edit_title');
+    const newMaker = formData.get('edit_maker');
+    const newDate = formData.get('edit_date');
+    const newTag = formData.get('edit_tag');
+    clearForm();
+    setEdit(false);
+    formSubmit(e, id, newTitle, newMaker, newDate, newTag);
+  }
+
+  function clearForm(){
+    const inputs = cardEditRef.current.querySelectorAll('input');
+    inputs.forEach(input => {
+      input.value = '';
+    });
+  }
   
   return(
     <div className='card' style={styleCard}>
@@ -35,7 +54,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           </svg>
           <svg
             style={{display: edit ? 'block' : 'none'}}
-            onClick={() => setEdit(false)}
+            onClick={() => {setEdit(false); clearForm();}}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -66,29 +85,29 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
       <img src={src}/>
       <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
         <p style={{display: edit ? 'none' : 'block'}}>{title}</p>
-        <input type='text' name='edit_title' placeholder={title} style={{display: edit ? 'block' : 'none'}}/>
         <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
-        <input type='text' name='edit_maker' placeholder={maker} style={{display: edit ? 'block' : 'none'}}/>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
-        <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} style={{display: edit ? 'block' : 'none'}} required/>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
-        <input type='text' name='edit_tag' placeholder={tag} style={{display: edit ? 'block' : 'none'}}/>
+        <form ref={cardEditRef} style={{display: edit ? 'block' : 'none'}} onSubmit={formValidation} autoComplete='off'>
+        <input type='text' name='edit_title' placeholder={title}/>
+        <input type='text' name='edit_maker' placeholder={maker}/>
+        <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} /*required*//>
+        <input type='text' name='edit_tag' placeholder={tag}/>
+        <button type='submit' className='card_edit'>Edit</button>
+        </form>
         <div className='card_bar' style={styleCardBar}></div>
       </div>
       <div 
         className='card_note'
         style={{
           backgroundColor:
-            edit ? 'var(--white-hue)' : 
             note >= 75 ? 'var(--green-hue)' : 
             note >= 40 ? 'var(--orange-hue)' : 
             'var(--red-hue)'
         }}
       >
-        <p style={{display: edit ? 'none' : 'block'}}>{note}</p>
-        <input type='number' name='edit_note' placeholder={note} style={{display: edit ? 'block' : 'none'}} min={0} max={100}/>
+        <p>{note}</p>
       </div>
-      <button type='button' className='card_edit' style={{display: edit ? 'block' : 'none'}} onClick={() => {console.log('Editing...'); setEdit(false)}}>Edit</button>
       <p className='card_type' style={styleCardType}>{type}</p>
     </div>
   )
