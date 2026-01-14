@@ -72,21 +72,22 @@
   transition: .1s;
   background-color: var(--secondary-color);
 }
-.card_info p{
+.card_info > p{
   overflow: hidden;
   text-wrap: nowrap;
   text-overflow: ellipsis;
 }
-.card_info p:first-of-type{
+.card_info > p:first-of-type{
   margin-bottom: 5px;
   font-weight: bold;
 }
-.card_info p:not(:first-of-type){
+.card_info > p:not(:first-of-type){
   text-align: end;
 }
 .card_info input{
   margin-top: 2px;
   padding-left: auto;
+  color: var(--primary-color);
   background-color: transparent;
 }
 .card_info input:focus{
@@ -98,6 +99,11 @@
 }
 .card_info input:not(:first-of-type){
   text-align: end;
+}
+.card_info input[type=number]{
+  margin: auto 0;
+  color: var(--primary-color);
+  font-weight: 100;
 }
 
 .card_bar{
@@ -112,7 +118,7 @@
   transition: .3s;
   width: 80%;
 }
-.card_info:has(+ .card_note:hover) .card_bar{
+.card_note:hover ~ .card_bar{
   background: linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%);
 }
 
@@ -127,7 +133,7 @@
   font-weight: 700;
   border-radius: 2px;
   background-color: var(--blue-hue);
-  outline: 2px solid var(--white-hue);
+  outline: 2px solid var(--secondary-color);
   cursor: pointer;
 }
 

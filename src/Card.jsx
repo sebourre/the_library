@@ -11,9 +11,10 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
     const newMaker = formData.get('edit_maker');
     const newDate = formData.get('edit_date');
     const newTag = formData.get('edit_tag');
+    const newNote = formData.get('edit_note');
     clearForm();
     setEdit(false);
-    formSubmit(e, id, newTitle, newMaker, newDate, newTag);
+    formSubmit(e, id, newTitle, newMaker, newDate, newTag, newNote);
   }
 
   function clearForm(){
@@ -24,7 +25,16 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
   }
   
   return(
-    <div className='card' style={styleCard}>
+    <div 
+      className='card' 
+      style={styleCard} 
+      onMouseLeave={() => {
+        if(edit){
+          setEdit(false);
+          clearForm();
+        }
+      }}
+    >
       <div className='card_head'>
         <p>{pos + 1}</p>
         <div className='card_options' style={styleCardOptions}>
@@ -88,25 +98,30 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
+        <div 
+          className='card_note'
+          style={{
+            backgroundColor:
+              note >= 75 ? 'var(--green-hue)' : 
+              note >= 40 ? 'var(--orange-hue)' : 
+              'var(--red-hue)'
+          }}
+        >
+          <p>{note}</p>
+        </div>
         <form ref={cardEditRef} style={{display: edit ? 'block' : 'none'}} onSubmit={formValidation} autoComplete='off'>
-        <input type='text' name='edit_title' placeholder={title}/>
-        <input type='text' name='edit_maker' placeholder={maker}/>
-        <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} /*required*//>
-        <input type='text' name='edit_tag' placeholder={tag}/>
-        <button type='submit' className='card_edit'>Edit</button>
+          <input type='text' name='edit_title' placeholder={title}/>
+          <input type='text' name='edit_maker' placeholder={maker}/>
+          <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date}/>
+          <input type='text' name='edit_tag' placeholder={tag}/>
+          <div 
+            className='card_note'
+            style={{backgroundColor: 'var(--secondary-color)'}}>
+            <input type='number' name='edit_note' placeholder={note}/>
+          </div>
+          <button type='submit' className='card_edit'>Edit</button>
         </form>
         <div className='card_bar' style={styleCardBar}></div>
-      </div>
-      <div 
-        className='card_note'
-        style={{
-          backgroundColor:
-            note >= 75 ? 'var(--green-hue)' : 
-            note >= 40 ? 'var(--orange-hue)' : 
-            'var(--red-hue)'
-        }}
-      >
-        <p>{note}</p>
       </div>
       <p className='card_type' style={styleCardType}>{type}</p>
     </div>

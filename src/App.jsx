@@ -95,11 +95,19 @@ export default function App(){
 
   const [animationOn, setAnimationOn] = useState(true);
 
-  function editCard(e, id, newTitle, newMaker, newDate, newTag){
+  function editCard(e, id, newTitle, newMaker, newDate, newTag, newNote){
     e.preventDefault();
+    const newData = [newTitle, newMaker, newDate, newTag, newNote];
+    const info = ['title', 'maker', 'date', 'tag', 'note'];
+    const cleanedData = [];
     const editedCard = cards.map(card => {
       if(card.id == id){
-        return {...card, title: newTitle, maker: newMaker, date: newDate, tag: newTag};
+        for(let i = 0; i < newData.length; i++){
+          let data = newData[i];
+          data.trim() == "" ? data = card[info[i]]: null;
+          cleanedData.push(data);
+        }
+        return {...card, title: cleanedData[0], maker: cleanedData[1], date: cleanedData[2], tag: cleanedData[3], note: cleanedData[4]};
       }else{
         return card;
       }
@@ -161,7 +169,7 @@ export default function App(){
             styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
             key={card.id} 
             displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
-            formSubmit={(e, id, newTitle, newMaker, newDate, newTag) => editCard(e, id, newTitle, newMaker, newDate, newTag)}
+            formSubmit={(e, id, newTitle, newMaker, newDate, newTag, newNote) => editCard(e, id, newTitle, newMaker, newDate, newTag, newNote)}
             pos={index}
             isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
             onDelete={(id) => onDelete(id)}
