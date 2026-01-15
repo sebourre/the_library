@@ -1,6 +1,25 @@
 import './CardWindow.css'
 
 export default function CardWindow({cardWindowRef, displayCardWindow, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote}){
+  function trueDate(date){
+    const year = date.slice(0, 4);
+    let month = date.slice(5, 7);
+    if(month == '01'){month = 'January'}
+    else if(month == '02'){month = 'February'}
+    else if(month == '03'){month = 'March'}
+    else if(month == '04'){month = 'April'}
+    else if(month == '05'){month = 'May'}
+    else if(month == '06'){month = 'June'}
+    else if(month == '07'){month = 'July'}
+    else if(month == '08'){month = 'August'}
+    else if(month == '09'){month = 'September'}
+    else if(month == '10'){month = 'October'}
+    else if(month == '11'){month = 'November'}
+    else if(month == '12'){month = 'December'}
+    const day = date.slice(8, 10);
+    return `${day} ${month} ${year}`;
+  }
+  
   return(
     <div ref={cardWindowRef} className='card_window'>
       <img src={cardImg}/>
@@ -65,7 +84,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardImg, c
               <rect width="18" height="18" x="3" y="4" rx="2"/>
               <path d="M3 10h18"/>
             </svg>
-            <b>Date of release:</b> {cardDate}
+            <b>Date of release:</b> {cardDate ? trueDate(cardDate) : '-'}
           </p>
           <p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">

@@ -1,4 +1,5 @@
 .card{
+  box-sizing: content-box;
   transition: .1s;
   display: flex;
   flex-direction: column;
@@ -7,6 +8,7 @@
   height: 225px;
   filter: grayscale(1);
   color: var(--primary-color);
+  border-bottom: 1rem solid transparent;
 }
 
 @media (max-width: 480px){
@@ -93,17 +95,33 @@
 .card_info input:focus{
   outline: none;
 }
-.card_info input:first-of-type{
+.card_info input[type=url]{
+  position: absolute;
+  top: -1.6rem;
+  right: 0;
+  color: var(--secondary-color);
+  border-radius: 0 0 3px 3px;
+  background-color: rgba(245, 245, 245, 0.2);
+  backdrop-filter: blur(5px);
+}
+.card_info input:nth-of-type(2){
   margin-bottom: 5px;
   font-weight: bold;
 }
-.card_info input:not(:first-of-type){
+.card_info input:not([type=url], :nth-of-type(2), [type=number]){
   text-align: end;
 }
-.card_info input[type=number]{
-  margin: auto 0;
-  color: var(--primary-color);
-  font-weight: 100;
+.card_info input[type=text]:last-of-type{
+  position: absolute;
+  bottom: -1rem;
+  right: 0;
+  color: var(--secondary-color);
+  font-size: .8rem;
+  font-weight: bold;
+}
+.card_info > input[type=number]{
+  text-align: end;
+  color: red;
 }
 
 .card_bar{
@@ -124,16 +142,17 @@
 
 .card_edit{
   position: absolute;
-  bottom: -.5rem;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   padding: 1px 7px;
   color: var(--white-hue);
-  font-size: .7rem;
+  font-size: .8rem;
   font-weight: 700;
-  border-radius: 2px;
+  border: 2px solid var(--primary-color);
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
   background-color: var(--blue-hue);
-  outline: 2px solid var(--secondary-color);
   cursor: pointer;
 }
 

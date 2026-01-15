@@ -5,16 +5,31 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
+  function validFormat(e){
+    const value = e.target.value;
+    if(value.length > 10){
+      e.target.value = value.slice(0, 10);
+      return;
+    }
+    if(e.nativeEvent.inputType === 'insertText' || e.nativeEvent.inputType === 'insertFromPaste'){
+      if(value.length == 4 || value.length == 7){
+        e.target.value = value + '-';
+      }
+    }
+  }
+
   function formValidation(e){
     const formData = new FormData(e.target);
+    const newSrc = formData.get('edit_src');
     const newTitle = formData.get('edit_title');
     const newMaker = formData.get('edit_maker');
     const newDate = formData.get('edit_date');
     const newTag = formData.get('edit_tag');
     const newNote = formData.get('edit_note');
+    const newType = formData.get('edit_type');
     clearForm();
     setEdit(false);
-    formSubmit(e, id, newTitle, newMaker, newDate, newTag, newNote);
+    formSubmit(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType);
   }
 
   function clearForm(){
@@ -110,20 +125,22 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           <p>{note}</p>
         </div>
         <form ref={cardEditRef} style={{display: edit ? 'block' : 'none'}} onSubmit={formValidation} autoComplete='off'>
+          <input type='url' name='edit_src' placeholder='url'/>
           <input type='text' name='edit_title' placeholder={title}/>
           <input type='text' name='edit_maker' placeholder={maker}/>
-          <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date}/>
+          <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} onChange={validFormat}/>
           <input type='text' name='edit_tag' placeholder={tag}/>
           <div 
             className='card_note'
             style={{backgroundColor: 'var(--secondary-color)'}}>
-            <input type='number' name='edit_note' placeholder={note}/>
+            <input type='number' name='edit_note' placeholder={note} min={0} max={100}/>
           </div>
+          <input type='text' name='edit_type' placeholder={type}/>
           <button type='submit' className='card_edit'>Edit</button>
         </form>
-        <div className='card_bar' style={styleCardBar}></div>
+        <div className='card_bar' style={{...styleCardBar, display: edit ? 'none' : 'block'}}></div>
+        <p className='card_type' style={{...styleCardType, display: edit ? 'none' : 'block'}}>{type}</p>
       </div>
-      <p className='card_type' style={styleCardType}>{type}</p>
     </div>
   )
 }
