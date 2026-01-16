@@ -2,7 +2,10 @@ import { useState } from 'react'
 import './App.css'
 
 export default function Animation({changeAnimation}){
-  const [animation, setAnimation] = useState(true);
+  const [animation, setAnimation] = useState(() => {
+    const saveAnimation = localStorage.getItem('animation');
+    return saveAnimation ? JSON.parse(saveAnimation) : true;
+  });
 
   return(
     <div className='animation' title='Animation'>

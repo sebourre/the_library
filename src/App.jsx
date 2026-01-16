@@ -7,7 +7,7 @@ import Bookmarks from './Bookmarks.jsx'
 import Log from './Log.jsx'
 import LogWindow from './LogWindow.jsx'
 import Animation from './Animation.jsx'
-import Mode from './Mode.jsx'
+import Theme from './Theme.jsx'
 import Infos from './Infos.jsx'
 import Clock from './Clock.jsx'
 import Card from './Card.jsx'
@@ -18,7 +18,6 @@ export default function App(){
     const saveCards = localStorage.getItem('cards');
     return saveCards ? JSON.parse(saveCards) : [];
   });
-
   useEffect(() => {
     localStorage.setItem('cards', JSON.stringify(cards))
   }, [cards]);
@@ -93,7 +92,13 @@ export default function App(){
     e.target.querySelector('img').src = '';
   }
 
-  const [animationOn, setAnimationOn] = useState(true);
+  const [animationOn, setAnimationOn] = useState(() => {
+    const saveAnimation = localStorage.getItem('animation');
+    return saveAnimation ? JSON.parse(saveAnimation) : true;
+  });
+  useEffect(() => {
+    localStorage.setItem('animation', JSON.stringify(animationOn))
+  }, [animationOn]);
 
   function editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType){
     e.preventDefault();
@@ -155,7 +160,7 @@ export default function App(){
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
           <Log setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn}/>
           <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
-          <Mode />
+          <Theme />
         </div>
       </header>
       <div ref={libraryRef} className='library'>

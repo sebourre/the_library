@@ -87,6 +87,9 @@
   font-weight: bold;
   cursor: pointer;
 }
+.types button:hover{
+  text-decoration: underline;
+}
 
 @media (max-width: 768px){
   .types{
@@ -94,7 +97,7 @@
   }
 }
 
-.bookmarks, .log, .animation, .mode{
+.bookmarks, .log, .animation, .theme{
   display: flex;
   cursor: pointer;
 }
