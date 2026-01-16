@@ -10,6 +10,7 @@ import Animation from './Animation.jsx'
 import Theme from './Theme.jsx'
 import Infos from './Infos.jsx'
 import Clock from './Clock.jsx'
+import Message from './Message.jsx'
 import Card from './Card.jsx'
 import CardWindow from './CardWindow.jsx'
 
@@ -100,6 +101,29 @@ export default function App(){
     localStorage.setItem('animation', JSON.stringify(animationOn))
   }, [animationOn]);
 
+  const messageRef = useRef(null);
+  const [message, setMessage] = useState(null);
+  useEffect(() => {
+    if(message){
+      messageRef.current.style.display = 'block';
+      const timer = setTimeout(() => {
+        messageRef.current.style.display = 'none';
+        setMessage(null);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
+  function updateMessage(action, title){
+    if(action == 'edit'){
+      setMessage(`${title} edited`);
+      return;
+    }else if(action == 'delete'){
+      setMessage(`${title} deleted`);
+      return;
+    }
+    action ? setMessage(`${title} bookmarked`) : setMessage(`${title} unbookmarked`);
+  }
+
   function editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType){
     e.preventDefault();
     const newData = [newSrc, newTitle, newMaker, newDate, newTag, newNote, newType];
@@ -177,6 +201,7 @@ export default function App(){
             formSubmit={(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType) => editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType)}
             pos={index}
             isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
+            updateMessage={(bookmarked, title) => updateMessage(bookmarked, title)}
             onDelete={(id) => onDelete(id)}
             id={card.id}
             bookmarked={card.bookmarked}
@@ -193,7 +218,8 @@ export default function App(){
       <CardWindow cardWindowRef={cardWindowRef} displayCardWindow={(boolean) => displayCardWindow(boolean)} cardImg={cardImg} cardTitle={cardTitle} cardType={cardType} cardMaker={cardMaker} cardTag={cardTag} cardDate={cardDate} cardNote={cardNote}/>
       <Infos cards={cards}/>
       <Clock />
-      <LogWindow formSubmit={logIn} ref={logWindowRef} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>
+      <Message messageRef={messageRef} message={message}/>
+      <LogWindow formSubmit={logIn} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>
     </>
   )
 }

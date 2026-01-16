@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
@@ -30,6 +30,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
     clearForm();
     setEdit(false);
     formSubmit(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType);
+    updateMessage('edit', title);
   }
 
   function clearForm(){
@@ -58,7 +59,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
               filter: edit ? 'blur(2px)' : 'none',
               pointerEvents: edit ? 'none' : 'auto'
             }}
-            onClick={() => {isBookmarked(id)}}
+            onClick={() => {isBookmarked(id); updateMessage(!bookmarked, title);}}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill={bookmarked ? 'var(--red-hue)' : 'none'}
@@ -93,7 +94,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
               filter: edit ? 'blur(2px)' : 'none',
               pointerEvents: edit ? 'none' : 'auto'
             }}
-            onClick={() => onDelete(id)}
+            onClick={() => {onDelete(id); updateMessage('delete', title);}}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
