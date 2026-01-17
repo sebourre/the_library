@@ -63,9 +63,16 @@
   outline: none;
 }
 
+.search_end{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 3.5rem;
+}
+
 .search_shortcut{
-  width: 24px;
-  font-size: .4rem;
+  margin-right: auto;
+  font-size: .7rem;
 }
 
 .types{

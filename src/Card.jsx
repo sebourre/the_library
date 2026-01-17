@@ -65,6 +65,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             fill={bookmarked ? 'var(--red-hue)' : 'none'}
             stroke="var(--red-hue)"
           >
+            <title>Bookmark</title>
             <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
           </svg>
           <svg
@@ -75,6 +76,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             fill="none"
             stroke="var(--red-hue)"
           >
+            <title>Edit</title>
             <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
             <path d="M13.5 6.5l4 4" />
           </svg>
@@ -86,6 +88,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             fill="none"
             stroke="var(--red-hue)"
           >
+            <title>Cancel</title>
             <path d="M18 6l-12 12" />
             <path d="M6 6l12 12" />
           </svg>
@@ -100,6 +103,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             fill="none"
             stroke="var(--red-hue)"
           >
+            <title>Delete</title>
             <path d="M4 7l16 0" />
             <path d="M10 11l0 6" />
             <path d="M14 11l0 6" />

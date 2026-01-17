@@ -35,7 +35,7 @@ export default function SearchBar({searchCards, resetSearchValue}){
   }
 
   return(
-    <div className='search_bar'>
+    <div className='search_bar' title='Search'>
       <svg
         onClick={searchFocus}
         xmlns="http://www.w3.org/2000/svg"
@@ -49,13 +49,13 @@ export default function SearchBar({searchCards, resetSearchValue}){
         <path d="M21 21l-6 -6" />
       </svg>
       <input type="search" ref={searchRef} className='search' onChange={() => {searchCards(searchRef); displayResetSearchButton();}} placeholder='Search'/>
-      <div>
-        <div 
+      <div className='search_end'>
+        <code
           className='search_shortcut'
           style={{display: resetSearchButton ? 'none' : 'block'}}
         >
           Ctrl + K
-        </div>
+        </code>
         <svg
           style={{display: resetSearchButton ? 'block' : 'none'}}
           onClick={() => {resetSearch(); resetSearchValue();}}
