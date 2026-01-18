@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import './App.css'
 import Books from './Books.jsx'
+import BooksWindow from './BooksWindow.jsx'
 import SearchBar from './SearchBar.jsx'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
@@ -22,6 +23,12 @@ export default function App(){
   useEffect(() => {
     localStorage.setItem('cards', JSON.stringify(cards))
   }, [cards]);
+
+  const booksWindowRef = useRef(null);
+  // const [booksWindowOn, setBooksWindowOn] = useState(false);
+  // function displayBooksWindow(){
+  //   console.log('Books window!');
+  // }
 
   function reload(){
     location.reload();
@@ -187,33 +194,36 @@ export default function App(){
           <Theme />
         </div>
       </header>
-      <div ref={libraryRef} className='library'>
-        {filteredCards.length != 0 ? 
-          filteredCards.map((card, index)=> 
-          <Card 
-            styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
-            styleCardOptions={!animationOn ? {transition: 'none'} : null}
-            styleCardInfo={!animationOn ? {backgroundColor: 'var(--secondary-color)'} : null}
-            styleCardBar={!animationOn ? {width: '80%'} : null}
-            styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
-            key={card.id} 
-            displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
-            formSubmit={(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType) => editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType)}
-            pos={index}
-            isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
-            updateMessage={(bookmarked, title) => updateMessage(bookmarked, title)}
-            onDelete={(id) => onDelete(id)}
-            id={card.id}
-            bookmarked={card.bookmarked}
-            src={card.src}
-            title={card.title}
-            maker={card.maker}
-            date={card.date}
-            tag={card.tag}
-            note={card.note}
-            type={card.type}
-          />
-        ) : <span>Empty</span>}
+      <div className='container'>
+        <BooksWindow booksWindowRef={booksWindowRef}/>
+        <div ref={libraryRef} className='library'>
+          {filteredCards.length != 0 ? 
+            filteredCards.map((card, index)=> 
+            <Card 
+              styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
+              styleCardOptions={!animationOn ? {transition: 'none'} : null}
+              styleCardInfo={!animationOn ? {backgroundColor: 'var(--secondary-color)'} : null}
+              styleCardBar={!animationOn ? {width: '80%'} : null}
+              styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
+              key={card.id} 
+              displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
+              formSubmit={(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType) => editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType)}
+              pos={index}
+              isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
+              updateMessage={(bookmarked, title) => updateMessage(bookmarked, title)}
+              onDelete={(id) => onDelete(id)}
+              id={card.id}
+              bookmarked={card.bookmarked}
+              src={card.src}
+              title={card.title}
+              maker={card.maker}
+              date={card.date}
+              tag={card.tag}
+              note={card.note}
+              type={card.type}
+            />
+          ) : <span>Empty</span>}
+        </div>
       </div>
       <CardWindow cardWindowRef={cardWindowRef} displayCardWindow={(boolean) => displayCardWindow(boolean)} cardImg={cardImg} cardTitle={cardTitle} cardType={cardType} cardMaker={cardMaker} cardTag={cardTag} cardDate={cardDate} cardNote={cardNote}/>
       <Infos cards={cards}/>
