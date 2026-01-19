@@ -1,9 +1,10 @@
 import './App.css'
 
-export default function Books(){
+export default function Books({displayBooksWindow}){
   return(
     <div className='books' title='Books'>
       <svg
+        onClick={displayBooksWindow}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"

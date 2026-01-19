@@ -25,10 +25,15 @@ export default function App(){
   }, [cards]);
 
   const booksWindowRef = useRef(null);
-  // const [booksWindowOn, setBooksWindowOn] = useState(false);
-  // function displayBooksWindow(){
-  //   console.log('Books window!');
-  // }
+  const [booksWindowOn, setBooksWindowOn] = useState(false);
+  function displayBooksWindow(){
+    setBooksWindowOn(!booksWindowOn);
+    if(!booksWindowOn){
+      booksWindowRef.current.style.display = 'flex';
+    }else{
+      booksWindowRef.current.style.display = 'none';
+    }
+  }
 
   function reload(){
     location.reload();
@@ -183,7 +188,7 @@ export default function App(){
   return(
     <>
       <header ref={headerRef}>
-        <Books />
+        <Books displayBooksWindow={displayBooksWindow}/>
         <h1 onClick={reload}>The Library</h1>
         <div className='settings'>
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>

@@ -1,7 +1,40 @@
 .books_window{
   display: none;
+  flex-direction: column;
+  overflow: hidden;
   margin: 1rem 2rem 1rem 1rem;
   width: 15rem;
   border-radius: 5px;
   background-color: var(--tertiary-color);
+}
+
+.books_list{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  height: 100%;
+  padding: .5rem;
+}
+.books_list p{
+  font-weight: bold;
+}
+
+.books_separator{
+  margin: 0 .5rem;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--secondary-color);
+}
+
+.books_settings{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: fit-content;
+  padding: .5rem;
+}
+
+.books_settings svg{
+  stroke: var(--secondary-color);
+  cursor: pointer;
 }
