@@ -1,12 +1,12 @@
 import './BooksWindow.css';
 
-export default function BooksWindow({booksWindowRef}){
+export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount}){
   return(
     <div ref={booksWindowRef} className='books_window'>
       <div className='books_list'>
-        <p>Games</p>
-        <p>Movies</p>
-        <p>Series</p>
+        <p>Games<span>{gamesCount}</span></p>
+        <p>Movies<span>{moviesCount}</span></p>
+        <p>Series<span>{seriesCount}</span></p>
       </div>
       <div className='books_separator'></div>
       <div className='books_settings'>

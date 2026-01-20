@@ -200,7 +200,12 @@ export default function App(){
         </div>
       </header>
       <div className='container'>
-        <BooksWindow booksWindowRef={booksWindowRef}/>
+        <BooksWindow 
+          booksWindowRef={booksWindowRef} 
+          gamesCount={cards.filter(card => card.type === 'Game').length} 
+          moviesCount={cards.filter(card => card.type === 'Movie').length} 
+          seriesCount={cards.filter(card => card.type === 'Series').length}
+        />
         <div ref={libraryRef} className='library'>
           {filteredCards.length != 0 ? 
             filteredCards.map((card, index)=> 

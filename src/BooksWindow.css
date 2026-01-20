@@ -16,7 +16,12 @@
   padding: .5rem;
 }
 .books_list p{
+  display: flex;
   font-weight: bold;
+}
+.books_list span{
+  all : unset;
+  margin-left: auto;
 }
 
 .books_separator{
