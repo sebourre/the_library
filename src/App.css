@@ -81,6 +81,7 @@
 
 .search_shortcut{
   margin-right: auto;
+  color: var(--white-hue);
   font-size: .7rem;
 }
 

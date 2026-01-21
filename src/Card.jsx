@@ -7,6 +7,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
 
   function validFormat(e){
     const value = e.target.value;
+    e.target.value = value.replace(/[^0-9-]/g, '');
     if(value.length > 10){
       e.target.value = value.slice(0, 10);
       return;
@@ -133,7 +134,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           <input type='url' name='edit_src' placeholder='url'/>
           <input type='text' name='edit_title' placeholder={title}/>
           <input type='text' name='edit_maker' placeholder={maker}/>
-          <input type='text' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} onChange={validFormat}/>
+          <input type='text' inputMode='numeric' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} onChange={validFormat}/>
           <input type='text' name='edit_tag' placeholder={tag}/>
           <div 
             className='card_note'
