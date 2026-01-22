@@ -1,6 +1,6 @@
 import './CardWindow.css'
 
-export default function CardWindow({cardWindowRef, displayCardWindow, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote}){
+export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote, cardLog}){
   function trueDate(date){
     const year = date.slice(0, 4);
     let month = date.slice(5, 7);
@@ -24,7 +24,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardImg, c
     <div ref={cardWindowRef} className='card_window'>
       <img src={cardImg}/>
       <div className='card_window_content'>
-        <div className='card_window_ribbon'></div>
+        <div className='card_window_ribbon' style={{display: cardBookmarked ? 'block' : 'none'}}></div>
         <svg
           className='card_window_close'
           onClick={() => displayCardWindow(false, null)}
@@ -102,6 +102,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardImg, c
             ></div>
           </div>
         </div>
+        <div className='card_window_log'>Log on {cardLog}</div>
       </div>
     </div>
   )

@@ -130,3 +130,13 @@
   border-radius: 2px;
   background-color: var(--black-hue);
 }
+
+.card_window_log{
+  position: absolute;
+  bottom: .5rem;
+  left: .5rem;
+  color: rgba(245, 245, 245, 0.7);
+  font-size: .7rem;
+  font-weight: bold;
+  font-style: italic;
+}

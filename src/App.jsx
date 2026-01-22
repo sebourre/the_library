@@ -98,7 +98,8 @@ export default function App(){
       date: formData.get('date_of_release'), 
       tag: formData.get('tag'), 
       note: formData.get('note'),
-      type: formData.get('type')
+      type: formData.get('type'),
+      log: new Date().toLocaleString()
     };
     setCards([...cards, newCard]);
     e.target.reset();
@@ -161,6 +162,7 @@ export default function App(){
   }
 
   const cardWindowRef = useRef(null);
+  const [cardBookmarked, setCardBookmarked] = useState(null);
   const [cardImg, setCardImg] = useState(null);
   const [cardTitle, setCardTitle] = useState(null);
   const [cardType, setCardType] = useState(null);
@@ -168,6 +170,7 @@ export default function App(){
   const [cardTag, setCardTag] = useState(null);
   const [cardDate, setCardDate] = useState(null);
   const [cardNote, setCardNote] = useState(null);
+  const [cardLog, setCardLog] = useState(null);
   function displayCardWindow(boolean, id){
     headerRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
     headerRef.current.style.pointerEvents = boolean ? 'none' : 'auto';
@@ -176,12 +179,14 @@ export default function App(){
     cardWindowRef.current.style.display = boolean ? 'flex' : 'none';
     setCardImg(boolean ? cards[id].src : null);
     if(id != null){
+      setCardBookmarked(cards[id].bookmarked);
       setCardTitle(cards[id].title);
       setCardType(cards[id].type);
       setCardMaker(cards[id].maker);
       setCardTag(cards[id].tag);
       setCardDate(cards[id].date);
       setCardNote(cards[id].note);
+      setCardLog(cards[id].log);
     }
   }
 
@@ -235,11 +240,29 @@ export default function App(){
           ) : <span>Empty</span>}
         </div>
       </div>
-      <CardWindow cardWindowRef={cardWindowRef} displayCardWindow={(boolean) => displayCardWindow(boolean)} cardImg={cardImg} cardTitle={cardTitle} cardType={cardType} cardMaker={cardMaker} cardTag={cardTag} cardDate={cardDate} cardNote={cardNote}/>
+      <CardWindow 
+        cardWindowRef={cardWindowRef} 
+        displayCardWindow={(boolean) => displayCardWindow(boolean)} 
+        cardBookmarked={cardBookmarked} 
+        cardImg={cardImg} 
+        cardTitle={cardTitle} 
+        cardType={cardType} 
+        cardMaker={cardMaker} 
+        cardTag={cardTag} 
+        cardDate={cardDate} 
+        cardNote={cardNote}
+        cardLog={cardLog}
+      />
       <Infos cards={cards}/>
       <Clock />
       <Message messageRef={messageRef} message={message}/>
-      <LogWindow formSubmit={logIn} setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn} logWindowRef={logWindowRef}/>
+      <LogWindow 
+        formSubmit={logIn} 
+        setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} 
+        displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} 
+        logWindowOn={logWindowOn}
+        logWindowRef={logWindowRef}
+      />
     </>
   )
 }
