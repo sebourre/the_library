@@ -70,6 +70,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
         </div>
         <div className='books_additional' style={{display: booksAdditional ? 'flex' : 'none'}}>
           <svg
+            onClick={() => localStorage.clear()}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
