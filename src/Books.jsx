@@ -1,9 +1,10 @@
 import './App.css'
 
-export default function Books({displayBooksWindow}){
+export default function Books({displayBooksWindow, booksWindowOn}){
   return(
     <div className='books' title='Books'>
       <svg
+        style={{stroke: booksWindowOn ? 'var(--red-hue)' : 'var(--secondary-color)'}}
         onClick={displayBooksWindow}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

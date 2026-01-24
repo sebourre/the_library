@@ -193,7 +193,7 @@ export default function App(){
   return(
     <>
       <header ref={headerRef}>
-        <Books displayBooksWindow={displayBooksWindow}/>
+        <Books displayBooksWindow={displayBooksWindow} booksWindowOn={booksWindowOn}/>
         <h1 onClick={reload}>The Library</h1>
         <div className='settings'>
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>

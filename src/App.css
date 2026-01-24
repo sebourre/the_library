@@ -21,10 +21,23 @@
 .books{
   cursor: pointer;
 }
+
+@media (max-width: 768px){
+  .books{
+    display: none;
+  }
+}
+
 .books svg{
+  transition: .1s;
   width: 32px;
   height: 32px;
   stroke: var(--secondary-color);
+}
+
+.books:hover svg{
+  transition: .1s;
+  stroke: var(--red-hue) !important;
 }
 
 .settings{
@@ -109,6 +122,28 @@
 .bookmarks, .log, .animation, .theme{
   display: flex;
   cursor: pointer;
+}
+
+.bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
+  animation: jiggle .3s linear;
+}
+
+@keyframes jiggle{
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(5deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  75%{
+    transform: rotate(-5deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
 }
 
 .infos, .clock{
