@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './BooksWindow.css';
 
 export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount}){
+  const [sort, setSort] = useState('digits');
   const [booksAdditional, setBooksAdditional] = useState(false);
 
   return(
@@ -14,8 +15,10 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
       <span className='books_separator'></span>
       <span className='books_separator'></span>
       <div className='books_settings'>
-        <div title='Order'>
+        <div title='Sort'>
           <svg
+            style={{display: sort == 'digits' ? 'block' : 'none'}}
+            onClick={() => setSort('alphabet')}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -27,7 +30,8 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             <path d="M6 10v-6l-2 2" />
           </svg>
           <svg
-            style={{display: 'none'}}
+            style={{display: sort == 'alphabet' ? 'block' : 'none'}}
+            onClick={() => setSort('digits')}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
