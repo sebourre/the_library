@@ -51,11 +51,14 @@
   align-items: center;
   gap: .5rem;
 }
+.books_settings svg{
+  stroke: var(--secondary-color);
+  cursor: pointer;
+}
 
-.books_additional{
+.books_adjustments, .books_additional{
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 5px;
   left: calc(100% + .5rem);
   display: none;
   flex-direction: column;
@@ -67,7 +70,9 @@
   background-color: var(--tertiary-color);
 }
 
-.books_settings svg, .books_additional svg{
-  stroke: var(--secondary-color);
-  cursor: pointer;
+.books_adjustments div{
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background-color: red;
 }
