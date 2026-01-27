@@ -3,8 +3,7 @@ import './BooksWindow.css';
 
 export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount}){
   const [sort, setSort] = useState('digits');
-  const [booksAdjustments, setBooksAdjustments] = useState(false);
-  const [booksAdditional, setBooksAdditional] = useState(false);
+  const [booksPlus, setBooksPlus] = useState(null);
 
   return(
     <div ref={booksWindowRef} className='books_window'>
@@ -47,7 +46,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
         </div>
         <div>
           <svg
-            onClick={() => setBooksAdjustments(!booksAdjustments)}
+            onClick={() => booksPlus == null || booksPlus == 'additional' ? setBooksPlus('adjustments') : setBooksPlus(null)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -64,7 +63,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             <path d="M18 9v11" />
           </svg>
           <svg
-            onClick={() => setBooksAdditional(!booksAdditional)}
+            onClick={() => booksPlus == null || booksPlus == 'adjustments' ? setBooksPlus('additional') : setBooksPlus(null)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -74,12 +73,12 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
           </svg>
         </div>
-        <div className='books_adjustments' style={{display: booksAdjustments ? 'flex' : 'none'}}>
+        <div className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <div className='books_additional' style={{display: booksAdditional ? 'flex' : 'none'}}>
+        <div className='books_additional' style={{display: booksPlus == 'additional' ? 'flex' : 'none'}}>
           <svg
             onClick={() => localStorage.clear()}
             xmlns="http://www.w3.org/2000/svg"
