@@ -29,15 +29,9 @@
 }
 
 .books svg{
-  transition: .1s;
   width: 32px;
   height: 32px;
   stroke: var(--secondary-color);
-}
-
-.books:hover svg{
-  transition: .1s;
-  stroke: var(--red-hue) !important;
 }
 
 .settings{
@@ -124,7 +118,7 @@
   cursor: pointer;
 }
 
-.bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
+.books:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
   animation: jiggle .3s linear;
 }
 
