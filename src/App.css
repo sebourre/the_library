@@ -99,12 +99,25 @@
   margin-right: 1rem;
 }
 .types button{
+  position: relative;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
 }
-.types button:hover{
-  text-decoration: underline;
+.types button::after{
+  content: "";
+  transition: .2s;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+.types button:hover::after{
+  transition: .2s;
+  left: 0;
+  width: 100%;
 }
 
 @media (max-width: 768px){
