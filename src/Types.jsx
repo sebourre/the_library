@@ -7,6 +7,7 @@ export default function Types({displayTypesCards}){
   return(
     <div className='types'>
       <button 
+        className={types == 'games' ? 'active' : null}
         style={{color: types == 'games' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
         onClick={() => {
           const newTypes = (types == null || types != 'games') ? 'games' : null;
@@ -17,6 +18,7 @@ export default function Types({displayTypesCards}){
         Games
       </button>
       <button
+        className={types == 'movies' ? 'active' : null}
         style={{color: types == 'movies' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
         onClick={() => {
           const newTypes = (types == null || types != 'movies') ? 'movies' : null;
@@ -27,6 +29,7 @@ export default function Types({displayTypesCards}){
         Movies
       </button>
       <button
+        className={types == 'series' ? 'active' : null}
         style={{color: types == 'series' ? 'var(--red-hue)' : 'var(--secondary-color)'}}
         onClick={() => {
           const newTypes = (types == null || types != 'series') ? 'series' : null;

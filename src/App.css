@@ -119,6 +119,9 @@
   left: 0;
   width: 100%;
 }
+.types button.active::after{
+  background-color: var(--red-hue);
+}
 
 @media (max-width: 768px){
   .types{
