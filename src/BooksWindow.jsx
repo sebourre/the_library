@@ -5,6 +5,11 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
   const [sort, setSort] = useState('digits');
   const [booksPlus, setBooksPlus] = useState(null);
 
+  function changeAccentColor(e){
+    const element = e.target;
+    element.className.toggle('selected');
+  }
+
   return(
     <div ref={booksWindowRef} className='books_window'>
       <div className='books_list'>
@@ -74,9 +79,10 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
           </svg>
         </div>
         <div className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div style={{backgroundColor: 'var(--blue-hue)'}} onClick={changeAccentColor}></div>
+          <div style={{backgroundColor: 'var(--green-hue)'}} onClick={changeAccentColor}></div>
+          <div style={{backgroundColor: 'var(--orange-hue)'}} onClick={changeAccentColor}></div>
+          <div className='selected' style={{backgroundColor: 'var(--red-hue)'}} onClick={changeAccentColor}></div>
         </div>
         <div className='books_additional' style={{display: booksPlus == 'additional' ? 'flex' : 'none'}}>
           <svg
