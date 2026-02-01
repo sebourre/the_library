@@ -7,7 +7,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
 
   function changeAccentColor(e){
     const element = e.target;
-    element.className.toggle('selected');
+    element.classList.toggle('selected');
   }
 
   return(

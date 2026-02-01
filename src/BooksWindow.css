@@ -21,6 +21,7 @@
 }
 .books_list p{
   display: flex;
+  color: var(--white-hue);
   font-weight: bold;
 }
 .books_list span{
@@ -32,7 +33,7 @@
   margin: 0 .5rem;
   height: 2px;
   border-radius: 1px;
-  background-color: var(--secondary-color);
+  background-color: var(--white-hue);
 }
 .books_window span:last-of-type{
   margin-top: auto;
@@ -52,7 +53,7 @@
   gap: .5rem;
 }
 .books_settings svg{
-  stroke: var(--secondary-color);
+  stroke: var(--white-hue);
   cursor: pointer;
 }
 
