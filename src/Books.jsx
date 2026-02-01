@@ -4,7 +4,7 @@ export default function Books({displayBooksWindow, booksWindowOn}){
   return(
     <div className='books' title='Books'>
       <svg
-        style={{stroke: booksWindowOn ? 'var(--red-hue)' : 'var(--secondary-color)'}}
+        style={{stroke: booksWindowOn ? 'var(--accent-color)' : 'var(--secondary-color)'}}
         onClick={displayBooksWindow}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

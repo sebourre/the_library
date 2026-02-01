@@ -63,8 +63,8 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             onClick={() => {isBookmarked(id); updateMessage(!bookmarked, title);}}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill={bookmarked ? 'var(--red-hue)' : 'none'}
-            stroke="var(--red-hue)"
+            fill={bookmarked ? 'var(--accent-color)' : 'none'}
+            stroke="var(--accent-color)"
           >
             <title>Bookmark</title>
             <path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4z" />
@@ -75,7 +75,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--red-hue)"
+            stroke="var(--accent-color)"
           >
             <title>Edit</title>
             <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
@@ -87,7 +87,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--red-hue)"
+            stroke="var(--accent-color)"
           >
             <title>Cancel</title>
             <path d="M18 6l-12 12" />
@@ -102,7 +102,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="var(--red-hue)"
+            stroke="var(--accent-color)"
           >
             <title>Delete</title>
             <path d="M4 7l16 0" />

@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './BooksWindow.css';
 
 export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount}){
   const [sort, setSort] = useState('digits');
   const [booksPlus, setBooksPlus] = useState(null);
 
+  const booksAdjustmentsRef = useRef(null);
   function changeAccentColor(e){
     const element = e.target;
-    element.classList.toggle('selected');
+    if(element.classList.contains('selected')){
+      return;
+    }
+    element.classList.add('selected');
+    document.documentElement.style.setProperty('--accent-color', `var(--${element.id}-hue)`);
+    booksAdjustmentsRef.current.querySelectorAll('div').forEach(div => {
+      if(div != element){
+        div.classList.remove('selected');
+      }
+    });
   }
 
   return(
@@ -78,11 +88,11 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
           </svg>
         </div>
-        <div className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
-          <div style={{backgroundColor: 'var(--blue-hue)'}} onClick={changeAccentColor}></div>
-          <div style={{backgroundColor: 'var(--green-hue)'}} onClick={changeAccentColor}></div>
-          <div style={{backgroundColor: 'var(--orange-hue)'}} onClick={changeAccentColor}></div>
-          <div className='selected' style={{backgroundColor: 'var(--red-hue)'}} onClick={changeAccentColor}></div>
+        <div ref={booksAdjustmentsRef} className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
+          <div id="blue" style={{backgroundColor: 'var(--blue-hue)'}} onClick={changeAccentColor}></div>
+          <div id="green" style={{backgroundColor: 'var(--green-hue)'}} onClick={changeAccentColor}></div>
+          <div id="orange" style={{backgroundColor: 'var(--orange-hue)'}} onClick={changeAccentColor}></div>
+          <div id="red" className='selected' style={{backgroundColor: 'var(--red-hue)'}} onClick={changeAccentColor}></div>
         </div>
         <div className='books_additional' style={{display: booksPlus == 'additional' ? 'flex' : 'none'}}>
           <svg

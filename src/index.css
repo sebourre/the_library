@@ -51,13 +51,13 @@ h1:hover{
 
 @keyframes duplication{
   0%{
-    text-shadow: 0 0 0 var(--red-hue);
+    text-shadow: 0 0 0 var(--accent-color);
   }
   50%{
-    text-shadow: 3px 3px 0 var(--red-hue);
+    text-shadow: 3px 3px 0 var(--accent-color);
   }
   100%{
-    text-shadow: 0 0 0 var(--red-hue);
+    text-shadow: 0 0 0 var(--accent-color);
   }
 }
 
@@ -86,7 +86,7 @@ h3{
 }
 span{
   margin-top: 3rem;
-  color: var(--red-hue);
+  color: var(--accent-color);
   font-style: italic;
   font-weight: bold;
 }

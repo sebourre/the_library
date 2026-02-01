@@ -52,7 +52,7 @@
   background-color: var(--tertiary-color);
 }
 .search_bar:focus-within{
-  outline: 2px solid var(--red-hue);
+  outline: 2px solid var(--accent-color);
 }
 .search_bar svg{
   cursor: pointer;
@@ -120,7 +120,7 @@
   width: 100%;
 }
 .types button.active::after{
-  background-color: var(--red-hue);
+  background-color: var(--accent-color);
 }
 
 @media (max-width: 768px){

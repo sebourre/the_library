@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 5px;
-  color: var(--red-hue);
+  color: var(--accent-color);
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -121,7 +121,7 @@
 }
 .card_info > input[type=number]{
   text-align: end;
-  color: red;
+  color: var(--accent-color);
 }
 
 .card_bar{
