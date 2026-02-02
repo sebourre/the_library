@@ -12,7 +12,11 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
       return;
     }
     element.classList.add('selected');
-    document.documentElement.style.setProperty('--accent-color', `var(--${element.id}-hue)`);
+    if(element.id == 'mode'){
+      document.documentElement.style.setProperty('--accent-color', `var(--secondary-color)`);
+    }else{
+      document.documentElement.style.setProperty('--accent-color', `var(--${element.id}-hue)`);
+    }
     booksAdjustmentsRef.current.querySelectorAll('div').forEach(div => {
       if(div != element){
         div.classList.remove('selected');
@@ -89,8 +93,11 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
           </svg>
         </div>
         <div ref={booksAdjustmentsRef} className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
+          <div id="mode" style={{backgroundImage: 'linear-gradient(110deg, var(--white-hue) 50%, var(--black-hue) 50%)'}} onClick={changeAccentColor}></div>
+          <div id="violet" style={{backgroundColor: 'var(--violet-hue)'}} onClick={changeAccentColor}></div>
           <div id="blue" style={{backgroundColor: 'var(--blue-hue)'}} onClick={changeAccentColor}></div>
           <div id="green" style={{backgroundColor: 'var(--green-hue)'}} onClick={changeAccentColor}></div>
+          <div id="yellow" style={{backgroundColor: 'var(--yellow-hue)'}} onClick={changeAccentColor}></div>
           <div id="orange" style={{backgroundColor: 'var(--orange-hue)'}} onClick={changeAccentColor}></div>
           <div id="red" className='selected' style={{backgroundColor: 'var(--red-hue)'}} onClick={changeAccentColor}></div>
         </div>
