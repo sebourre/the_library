@@ -102,7 +102,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             ></div>
           </div>
         </div>
-        <div className='card_window_log'>Log on {cardLog}</div>
+        <div className='card_window_log'>Logged on {cardLog}</div>
       </div>
     </div>
   )
