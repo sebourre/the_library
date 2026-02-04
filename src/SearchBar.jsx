@@ -53,6 +53,7 @@ export default function SearchBar({searchCards, resetSearchValue}){
         <code
           className='search_shortcut'
           style={{display: resetSearchButton ? 'none' : 'block'}}
+          onClick={searchFocus}
         >
           Ctrl + K
         </code>
