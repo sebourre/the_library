@@ -104,6 +104,16 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
           <div id="red" className='selected' style={{backgroundColor: 'var(--red-hue)'}} onClick={changeAccentColor}></div>
         </div>
         <div className='books_additional' style={{display: booksPlus == 'additional' ? 'flex' : 'none'}}>
+          <svg 
+            onClick={() => console.log('Deleting all books...')}
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            fill="none"
+          >
+            <title>Delete all books</title>
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
+            <path d="M9 10h6"/>
+          </svg>
           <svg
             onClick={() => localStorage.clear()}
             xmlns="http://www.w3.org/2000/svg"
@@ -111,11 +121,10 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             fill="none"
           >
             <title>Clear localStorage</title>
-            <path d="M4 7l16 0" />
-            <path d="M10 11l0 6" />
-            <path d="M14 11l0 6" />
-            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            <path d="M20.926 13.15a9 9 0 1 0 -7.835 7.784" />
+            <path d="M12 7v5l2 2" />
+            <path d="M22 22l-5 -5" />
+            <path d="M17 22l5 -5" />
           </svg>
         </div>
       </div>
