@@ -143,3 +143,8 @@ select{
     --secondary-color: rgb(25, 25, 25);
   }
 }
+
+mark{
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}

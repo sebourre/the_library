@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type, searchValue}){
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
@@ -39,6 +39,15 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
     inputs.forEach(input => {
       input.value = '';
     });
+  }
+
+  function hightlight(text, search){
+    if(!search) return text;
+    const regex = new RegExp(`(${search})`, "gi");
+    const parts = text.split(regex);
+    return parts.map((part, i) =>
+      regex.test(part) ? <mark key={i}>{part}</mark> : part
+    );
   }
   
   return(
@@ -115,7 +124,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         </div>
       <img src={src}/>
       <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
-        <p style={{display: edit ? 'none' : 'block'}}>{title}</p>
+        <p style={{display: edit ? 'none' : 'block'}}>{hightlight(title, searchValue)}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>

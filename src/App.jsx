@@ -236,6 +236,7 @@ export default function App(){
               tag={card.tag}
               note={card.note}
               type={card.type}
+              searchValue={searchValue}
             />
           ) : <span>Empty</span>}
         </div>
