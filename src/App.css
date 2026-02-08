@@ -50,12 +50,10 @@
   padding: 4px 8px;
   border-radius: 50vh;
   background-color: var(--tertiary-color);
+  cursor: pointer;
 }
 .search_bar:focus-within{
   outline: 2px solid var(--accent-color);
-}
-.search_bar svg{
-  cursor: pointer;
 }
 .search_bar svg:last-child{
   opacity: 1;
