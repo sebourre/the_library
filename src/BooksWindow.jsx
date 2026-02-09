@@ -65,7 +65,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
         </div>
         <div>
           <svg
-            style={{stroke: booksPlus == 'adjustments' ? 'var(--accent-color)' : 'var(--secondary-color)'}}
+            style={{stroke: booksPlus == 'adjustments' ? 'var(--accent-color)' : 'var(--white-hue)'}}
             onClick={() => booksPlus == null || booksPlus == 'additional' ? setBooksPlus('adjustments') : setBooksPlus(null)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -83,7 +83,7 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
             <path d="M18 9v11" />
           </svg>
           <svg
-            style={{stroke: booksPlus == 'additional' ? 'var(--accent-color)' : 'var(--secondary-color)'}}
+            style={{stroke: booksPlus == 'additional' ? 'var(--accent-color)' : 'var(--white-hue)'}}
             onClick={() => booksPlus == null || booksPlus == 'adjustments' ? setBooksPlus('additional') : setBooksPlus(null)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
