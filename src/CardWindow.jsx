@@ -1,6 +1,16 @@
 import './CardWindow.css'
 
 export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote, cardLog}){
+  function shorten(text, n){
+    if(!text){
+      return;
+    }else if(text.length > n){
+      return text.slice(0, n) + '...';
+    }else{
+      return text;
+    }
+  }
+  
   function trueDate(date){
     const year = date.slice(0, 4);
     let month = date.slice(5, 7);
@@ -37,7 +47,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           <path d="M6 6l12 12" />
         </svg>
         <div className='card_window_header'>
-          <h2>{cardTitle}</h2>
+          <h2 title={cardTitle}>{shorten(cardTitle, 25)}</h2>
         </div>
         <div className='card_window_separator'>
           <div>
@@ -62,20 +72,20 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           </div>
         </div>
         <div className='card_window_footer'>
-          <p>
+          <p title={cardMaker}>
             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)" >
               <path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/>
               <path d="m18 15 4-4"/>
               <path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/>
             </svg>
-            <b>Maker:</b> {cardMaker}
+            <b>Maker:</b> {shorten(cardMaker, 20)}
           </p>
-          <p>
+          <p title={cardTag}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/>
               <circle cx="7.5" cy="7.5" r=".5" fill="var(--white-hue)"/>
             </svg>
-            <b>Tag:</b> {cardTag}
+            <b>Tag:</b> {shorten(cardTag, 20)}
           </p>
           <p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
