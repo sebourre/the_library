@@ -132,7 +132,7 @@
   cursor: pointer;
 }
 
-.books:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
+.books:hover, .search_bar svg:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
   animation: jiggle .3s linear;
 }
 
