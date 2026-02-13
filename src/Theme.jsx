@@ -11,6 +11,7 @@ export default function Theme(){
     const root = document.documentElement;
     root.style.setProperty('--primary-color', theme == 'light' ? 'whitesmoke' : 'rgb(25, 25, 25)');
     root.style.setProperty('--secondary-color', theme == 'light' ? 'rgb(25, 25, 25)' : 'whitesmoke');
+    root.style.setProperty('--tertiary-color', theme == 'light' ? 'rgb(120, 120, 120)' : 'rgb(80, 80, 80)');
     lightRef.current.style.display = theme == 'dark' ? 'block' : 'none';
     darkRef.current.style.display = theme == 'light' ? 'block' : 'none';
   }, [theme]);
