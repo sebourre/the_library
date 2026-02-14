@@ -144,3 +144,16 @@
   font-weight: bold;
   font-style: italic;
 }
+
+.card_window_search{
+  position: absolute;
+  bottom: .5rem;
+  right: .5rem;
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.75;
+  cursor: pointer;
+}
+.card_window_search:hover{
+  stroke: var(--white-hue);
+}
