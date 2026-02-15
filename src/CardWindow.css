@@ -105,10 +105,20 @@
   height: 20px;
 }
 
-.card_window_close{
+.card_window_buttons{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
   position: absolute;
   top: .5rem;
   right: .5rem;
+}
+
+.card_window_maximize{
+  cursor: pointer;
+}
+
+.card_window_close{
   cursor: pointer;
 }
 

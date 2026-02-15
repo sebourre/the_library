@@ -35,17 +35,32 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
       <img src={cardImg}/>
       <div className='card_window_content'>
         <div className='card_window_ribbon' style={{display: cardBookmarked ? 'block' : 'none'}}></div>
-        <svg
-          className='card_window_close'
-          onClick={() => displayCardWindow(false, null)}
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="var(--white-hue)"
-        >
-          <path d="M18 6l-12 12" />
-          <path d="M6 6l12 12" />
-        </svg>
+        <div className='card_window_buttons'>
+          <svg
+            className='card_window_maximize'
+            onClick={() => console.log('Maximize')}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--white-hue)"
+          >
+            <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+            <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+            <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+          </svg>
+          <svg
+            className='card_window_close'
+            onClick={() => displayCardWindow(false, null)}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--white-hue)"
+          >
+            <path d="M18 6l-12 12" />
+            <path d="M6 6l12 12" />
+          </svg>
+        </div>
         <div className='card_window_header'>
           <h2 title={cardTitle}>{shorten(cardTitle, 25)}</h2>
         </div>
