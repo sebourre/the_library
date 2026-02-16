@@ -13,9 +13,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
       return;
     }
     if(e.nativeEvent.inputType === 'insertText' || e.nativeEvent.inputType === 'insertFromPaste'){
-      if(value.length == 4 || value.length == 7){
-        e.target.value = value + '-';
-      }
+      if(value.length == 4 || value.length == 7){e.target.value = value + '-';}
     }
   }
 
@@ -36,9 +34,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
 
   function clearForm(){
     const inputs = cardEditRef.current.querySelectorAll('input');
-    inputs.forEach(input => {
-      input.value = '';
-    });
+    inputs.forEach(input => {input.value = '';});
   }
 
   function hightlight(text, search){

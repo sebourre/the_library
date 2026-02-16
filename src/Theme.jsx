@@ -16,9 +16,7 @@ export default function Theme(){
     darkRef.current.style.display = theme == 'light' ? 'block' : 'none';
   }, [theme]);
   
-  function changeTheme(){
-    setTheme(theme == 'dark' ? 'light' : 'dark');
-  }
+  function changeTheme(){setTheme(theme == 'dark' ? 'light' : 'dark');}
 
   const lightRef = useRef(null);
   const darkRef = useRef(null);

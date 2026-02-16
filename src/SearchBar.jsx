@@ -4,29 +4,22 @@ import './App.css'
 export default function SearchBar({searchCards, resetSearchValue}){
   const searchRef = useRef(null);
 
-  function searchFocus(){
-    searchRef.current.focus();
-  }
+  function searchFocus(){searchRef.current.focus();}
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.ctrlKey && e.key === "k") {
         e.preventDefault();
         searchFocus();
       }
-    };
+    }
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => {window.removeEventListener("keydown", handleKeyDown);}
   }, []);
 
   const [resetSearchButton, setResetSearchButton] = useState(false);
   function displayResetSearchButton(){
-    if(searchRef.current.value.trim() != ""){
-      setResetSearchButton(true);
-    }else{
-      setResetSearchButton(false);
-    }
+    if(searchRef.current.value.trim() != ""){setResetSearchButton(true);}
+    else{setResetSearchButton(false);}
   }
 
   function resetSearch(){
@@ -38,8 +31,6 @@ export default function SearchBar({searchCards, resetSearchValue}){
     <div className='search_bar' title='Search' onClick={searchFocus}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
         viewBox="0 0 24 24"
         fill="none"
         stroke="var(--white-hue)"

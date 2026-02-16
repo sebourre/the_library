@@ -2,13 +2,9 @@ import './CardWindow.css'
 
 export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote, cardLog}){
   function shorten(text, n){
-    if(!text){
-      return;
-    }else if(text.length > n){
-      return text.slice(0, n) + '...';
-    }else{
-      return text;
-    }
+    if(!text){return}
+    else if(text.length > n){return text.slice(0, n) + '...'}
+    else{return text;}
   }
   
   function trueDate(date){

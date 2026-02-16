@@ -3,18 +3,14 @@ import './LogWindow.css'
 
 export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn, formSubmit, logWindowRef}){
   const [imagePreview, setImagePreview] = useState(null)
-  function updateImagePreview(e){
-    setImagePreview(e.target.value)
-  }
+  function updateImagePreview(e){setImagePreview(e.target.value)}
 
   const [error, setError] = useState(null)
   function formValidation(e){
     const inputs = logWindowRef.current.querySelectorAll('input');
     let empty = false;
     inputs.forEach(input => {
-      if(!input.value){
-        empty = true;
-      }
+      if(!input.value){empty = true;}
     });
     if(empty){
       setError('Input(s) empty.');

@@ -8,19 +8,12 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
   const booksAdjustmentsRef = useRef(null);
   function changeAccentColor(e){
     const element = e.target;
-    if(element.classList.contains('selected')){
-      return;
-    }
+    if(element.classList.contains('selected')){return;}
     element.classList.add('selected');
-    if(element.id == 'mode'){
-      document.documentElement.style.setProperty('--accent-color', `var(--secondary-color)`);
-    }else{
-      document.documentElement.style.setProperty('--accent-color', `var(--${element.id}-hue)`);
-    }
+    if(element.id == 'mode'){document.documentElement.style.setProperty('--accent-color', `var(--secondary-color)`);}
+    else{document.documentElement.style.setProperty('--accent-color', `var(--${element.id}-hue)`);}
     booksAdjustmentsRef.current.querySelectorAll('div').forEach(div => {
-      if(div != element){
-        div.classList.remove('selected');
-      }
+      if(div != element){div.classList.remove('selected');}
     });
   }
 

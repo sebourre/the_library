@@ -20,24 +20,17 @@ export default function App(){
     const saveCards = localStorage.getItem('cards');
     return saveCards ? JSON.parse(saveCards) : [];
   });
-  useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(cards))
-  }, [cards]);
+  useEffect(() => {localStorage.setItem('cards', JSON.stringify(cards));}, [cards]);
 
   const booksWindowRef = useRef(null);
   const [booksWindowOn, setBooksWindowOn] = useState(false);
   function displayBooksWindow(){
     setBooksWindowOn(!booksWindowOn);
-    if(!booksWindowOn){
-      booksWindowRef.current.style.display = 'flex';
-    }else{
-      booksWindowRef.current.style.display = 'none';
-    }
+    if(!booksWindowOn){booksWindowRef.current.style.display = 'flex';}
+    else{booksWindowRef.current.style.display = 'none';}
   }
 
-  function reload(){
-    location.reload();
-  }
+  function reload(){location.reload();}
 
   const [searchValue, setSearchValue] = useState('');
   function searchCards(searchRef){
@@ -50,26 +43,17 @@ export default function App(){
   const [bookmarksOn, setBookmarksOn] = useState(false);
   const filteredCards = (() => {
     let c = bookmarksOn ? cards.filter(card => card.bookmarked === true) : cards;
-    if(typesOn == 'games'){
-      c = c.filter(card => card.type === 'Game');
-    }else if(typesOn == 'movies'){
-      c = c.filter(card => card.type === 'Movie');
-    }else if(typesOn == 'series'){
-      c = c.filter(card => card.type === 'Series');
-    }
-    if(searchValue){
-      c = c.filter(card => card.title.toLowerCase().includes(searchValue));
-    }
+    if(typesOn == 'games'){c = c.filter(card => card.type === 'Game');}
+    else if(typesOn == 'movies'){c = c.filter(card => card.type === 'Movie');}
+    else if(typesOn == 'series'){c = c.filter(card => card.type === 'Series');}
+    if(searchValue){c = c.filter(card => card.title.toLowerCase().includes(searchValue));}
     return c;
   })();
 
   function isBookmarked(cardId){
     const bookmarkedCard = cards.map(card => {
-      if(card.id == cardId){
-        return {...card, bookmarked: !card.bookmarked};
-      }else{
-        return card;
-      }
+      if(card.id == cardId){return {...card, bookmarked: !card.bookmarked};}
+      else{return card;}
     })
     setCards(bookmarkedCard);
   }
@@ -110,9 +94,7 @@ export default function App(){
     const saveAnimation = localStorage.getItem('animation');
     return saveAnimation ? JSON.parse(saveAnimation) : true;
   });
-  useEffect(() => {
-    localStorage.setItem('animation', JSON.stringify(animationOn))
-  }, [animationOn]);
+  useEffect(() => {localStorage.setItem('animation', JSON.stringify(animationOn))}, [animationOn]);
 
   const messageRef = useRef(null);
   const [message, setMessage] = useState(null);
@@ -157,9 +139,7 @@ export default function App(){
     setCards(editedCard);
   }
 
-  function onDelete(cardId){
-    setCards(curr => curr.filter(card => card.id !== cardId));
-  }
+  function onDelete(cardId){setCards(curr => curr.filter(card => card.id !== cardId));}
 
   const cardWindowRef = useRef(null);
   const [cardBookmarked, setCardBookmarked] = useState(null);
