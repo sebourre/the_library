@@ -1,9 +1,10 @@
+import { useState } from 'react';
 import './CardWindow.css'
 
 export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote, cardLog}){
   function shorten(text, n){
     if(!text){return}
-    else if(text.length > n){return text.slice(0, n) + '...'}
+    else if(text.length > n && !maximize){return text.slice(0, n) + '...'}
     else{return text;}
   }
   
@@ -25,16 +26,18 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
     const day = date.slice(8, 10);
     return `${day} ${month} ${year}`;
   }
+
+  const [maximize, setMaximize] = useState(false);
   
   return(
-    <div ref={cardWindowRef} className='card_window'>
+    <div ref={cardWindowRef} className={maximize ? 'card_window card_window_maximized' : 'card_window'}>
       <img src={cardImg}/>
       <div className='card_window_content'>
         <div className='card_window_ribbon' style={{display: cardBookmarked ? 'block' : 'none'}}></div>
         <div className='card_window_buttons'>
           <svg
             className='card_window_maximize'
-            onClick={() => console.log('Maximize')}
+            onClick={() => setMaximize(!maximize)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

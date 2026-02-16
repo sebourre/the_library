@@ -30,6 +30,16 @@
   height: auto;
 }
 
+.card_window_maximized{
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+}
+
 .card_window_content{
   position: absolute;
   top: 0;
