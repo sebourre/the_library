@@ -76,6 +76,15 @@
   overflow-wrap: break-word;
 }
 
+.card_window_maximized h2{
+  font-size: 4rem;
+}
+@media (max-width: 480px){
+  .card_window_maximized h2{
+    font-size: 3rem;
+  }
+}
+
 .card_window_separator{
   display: flex;
   align-items: center;
