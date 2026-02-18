@@ -196,7 +196,7 @@ export default function App(){
             filteredCards.map((card, index)=> 
             <Card 
               styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
-              styleCardOptions={!animationOn ? {transition: 'none'} : null}
+              styleCardOptions={!animationOn ? {opacity: 1} : null}
               styleCardInfo={!animationOn ? {backgroundColor: 'var(--secondary-color)'} : null}
               styleCardBar={!animationOn ? {width: '80%'} : null}
               styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
