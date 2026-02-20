@@ -77,6 +77,19 @@
   outline: none;
 }
 
+.search_bar svg:hover{
+  animation: fill .1s linear forwards;
+}
+
+@keyframes fill{
+  from{
+    fill: transparent;
+  }
+  to{
+    fill: var(--white-hue);
+  }
+}
+
 .search_end{
   display: flex;
   align-items: center;
@@ -132,8 +145,8 @@
   cursor: pointer;
 }
 
-.books:hover, .search_bar svg:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
-  animation: jiggle .3s linear;
+.books:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
+  animation: jiggle .3s linear infinite;
 }
 
 @keyframes jiggle{
@@ -151,19 +164,6 @@
   }
   100%{
     transform: rotate(0deg);
-  }
-}
-
-.search_bar svg:hover{
-  animation: fill .1s linear forwards;
-}
-
-@keyframes fill{
-  from{
-    fill: transparent;
-  }
-  to{
-    fill: var(--white-hue);
   }
 }
 

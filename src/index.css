@@ -48,18 +48,15 @@ h1{
   cursor: pointer;
 }
 h1:hover{
-  animation: duplication .5s ease-in-out;
+  animation: duplication .2s ease-out forwards;
 }
 
 @keyframes duplication{
-  0%{
+  from{
     text-shadow: 0 0 0 var(--accent-color);
   }
-  50%{
+  to{
     text-shadow: 3px 3px 0 var(--accent-color);
-  }
-  100%{
-    text-shadow: 0 0 0 var(--accent-color);
   }
 }
 
