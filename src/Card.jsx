@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type, searchValue}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardGreen, styleCardOrange, styleCardRed, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type, searchValue}){
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
@@ -124,14 +124,16 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
-        <div 
-          className='card_note'
-          style={{
-            backgroundColor:
-              note >= 75 ? 'var(--green-hue)' : 
-              note >= 40 ? 'var(--orange-hue)' : 
-              'var(--red-hue)'
-          }}
+        <div className={'card_note ' + (
+            note >= 75 ? 'green' : 
+            note >= 40 ? 'orange' : 
+            'red'
+          )}
+          style={
+            note >= 75 ? styleCardGreen : 
+            note >= 40 ? styleCardOrange : 
+            styleCardRed
+          }
         >
           <p>{note}</p>
         </div>

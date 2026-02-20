@@ -27,6 +27,22 @@
   border-radius: 3px;
   object-fit: cover;
 }
+.card .green, .card .orange, .card .red{
+  transition: .1s;
+  background-color: var(--tertiary-color);
+}
+.card:hover .green{
+  transition: .1s;
+  background-color: var(--green-hue);
+}
+.card:hover .orange{
+  transition: .1s;
+  background-color: var(--orange-hue);
+}
+.card:hover .red{
+  transition: .1s;
+  background-color: var(--red-hue);
+}
 
 @media (max-width: 480px){
   .card img{

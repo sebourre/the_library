@@ -198,7 +198,10 @@ export default function App(){
               styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
               styleCardOptions={!animationOn ? {opacity: 1} : null}
               styleCardInfo={!animationOn ? {backgroundColor: 'var(--secondary-color)'} : null}
-              styleCardBar={!animationOn ? {width: '80%'} : null}
+              styleCardBar={!animationOn ? {width: '80%', background: 'linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%)'} : null}
+              styleCardGreen={!animationOn ? {backgroundColor: 'var(--green-hue)'} : null}
+              styleCardOrange={!animationOn ? {backgroundColor: 'var(--orange-hue)'} : null}
+              styleCardRed={!animationOn ? {backgroundColor: 'var(--red-hue)'} : null}
               styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
               key={card.id} 
               displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
