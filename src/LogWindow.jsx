@@ -81,8 +81,8 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       </div>
       <div className='log_row'>
         <div className='log_inputs'>
-          <label htmlFor="note">Note:</label>
-          <input type="number" name='note' placeholder='0/100' min={0} max={100} />
+          <label htmlFor="rating">Rating:</label>
+          <input type="number" name='rating' placeholder='0/100' min={0} max={100} />
         </div>
         <div className='log_inputs'>
           <label htmlFor="date_of_release">Date of release:</label>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './BooksWindow.css';
 
-export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount}){
+export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount, dates, ratings}){
   const [sort, setSort] = useState('digits');
   const [booksPlus, setBooksPlus] = useState(null);
 
@@ -12,14 +12,34 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
   useEffect(() => {localStorage.setItem('accentColor', JSON.stringify(accentColor))}, [accentColor]);
   accentColor == 'mode' ? document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)') : document.documentElement.style.setProperty('--accent-color', `var(--${accentColor}-hue)`);
 
+  function typePercentage(typeCount){
+    if(typeCount == 0) return '0%';
+    const total = gamesCount + moviesCount + seriesCount;
+    return Math.round((typeCount / total) * 100) + '%';
+  }
+
   return(
     <div ref={booksWindowRef} className='books_window'>
       <div className='books_list'>
-        <p>Games<span>{gamesCount}</span></p>
-        <p>Movies<span>{moviesCount}</span></p>
-        <p>Series<span>{seriesCount}</span></p>
+        <h4>Count</h4>
+        <p>Games<span>{gamesCount + ' | ' + typePercentage(gamesCount)}</span></p>
+        <p>Movies<span>{moviesCount + ' | ' + typePercentage(moviesCount)}</span></p>
+        <p>Series<span>{seriesCount + ' | ' + typePercentage(seriesCount)}</span></p>
+        <p>Total<span>{gamesCount + moviesCount + seriesCount}</span></p>
       </div>
       <span className='books_separator'></span>
+      <div className='books_list'>
+        <h4>Date</h4>
+        <p>Newest<span>{new Date(Math.max(...dates.map(date => new Date(date)))).toLocaleDateString()}</span></p>
+        <p>Oldest<span>{new Date(Math.min(...dates.map(date => new Date(date)))).toLocaleDateString()}</span></p>
+      </div>
+      <span className='books_separator'></span>
+      <div className='books_list'>
+        <h4>Rating</h4>
+        <p>Highest<span>{Math.max(...ratings.map(Number))}</span></p>
+        <p>Lowest<span>{Math.min(...ratings.map(Number))}</span></p>
+        <p>Average<span>{Math.round(ratings.reduce((sum, rating) => sum + parseInt(rating), 0)/ratings.length)}</span></p>
+      </div>
       <span className='books_separator'></span>
       <div className='books_settings'>
         <div title='Sort'>

@@ -152,7 +152,7 @@
   transition: .3s;
   width: 80%;
 }
-.card_note:hover ~ .card_bar{
+.card_rating:hover ~ .card_bar{
   background: linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%);
 }
 
@@ -172,7 +172,7 @@
   cursor: pointer;
 }
 
-.card_note{
+.card_rating{
   position: absolute;
   display: flex;
   align-items: center;
@@ -185,11 +185,11 @@
   border-radius: 50%;
   cursor: default;
 }
-.card_note input{
+.card_rating input{
   margin-top: 2px;
   background-color: transparent;
 }
-.card_note input:focus{
+.card_rating input:focus{
   outline: none;
 }
 

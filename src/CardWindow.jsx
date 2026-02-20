@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './CardWindow.css'
 
-export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardNote, cardLog}){
+export default function CardWindow({cardWindowRef, displayCardWindow, cardBookmarked, cardImg, cardTitle, cardType, cardMaker, cardTag, cardDate, cardRating, cardLog}){
   function shorten(text, n){
     if(!text){return}
     else if(text.length > n && !maximize){return text.slice(0, n) + '...'}
@@ -130,14 +130,14 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
             </svg>
-            <b>Note:</b> {cardNote}
+            <b>Rating:</b> {cardRating}
           </p>
           <div className='card_window_bar'>
             <div 
               className='card_window_point' 
               style={{
-                left: (100 - (cardNote == 100 ? 99 : cardNote == 0 ? 1 : cardNote)) + '%',
-                transform: `translate(-${cardNote}%, -50%)`
+                left: (100 - (cardRating == 100 ? 99 : cardRating == 0 ? 1 : cardRating)) + '%',
+                transform: `translate(-${cardRating}%, -50%)`
               }}
             ></div>
           </div>

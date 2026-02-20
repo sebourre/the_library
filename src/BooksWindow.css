@@ -24,6 +24,9 @@
   color: var(--white-hue);
   font-weight: bold;
 }
+.books_list p:last-of-type{
+  margin-bottom: .5rem;
+}
 .books_list span{
   all : unset;
   margin-left: auto;

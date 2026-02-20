@@ -83,6 +83,12 @@ h3{
   text-align: center;
   font-size: 1.5rem;
 }
+
+h4{
+  text-align: center;
+  font-size: 1.2rem;
+}
+
 span{
   margin-top: 3rem;
   color: var(--accent-color);

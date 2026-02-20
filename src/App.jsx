@@ -81,7 +81,7 @@ export default function App(){
       maker: formData.get('maker'), 
       date: formData.get('date_of_release'), 
       tag: formData.get('tag'), 
-      note: formData.get('note'),
+      rating: formData.get('rating'),
       type: formData.get('type'),
       log: new Date().toLocaleString()
     };
@@ -119,10 +119,10 @@ export default function App(){
     action ? setMessage(`${title} bookmarked`) : setMessage(`${title} unbookmarked`);
   }
 
-  function editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType){
+  function editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newRating, newType){
     e.preventDefault();
-    const newData = [newSrc, newTitle, newMaker, newDate, newTag, newNote, newType];
-    const info = ['src', 'title', 'maker', 'date', 'tag', 'note', 'type'];
+    const newData = [newSrc, newTitle, newMaker, newDate, newTag, newRating, newType];
+    const info = ['src', 'title', 'maker', 'date', 'tag', 'rating', 'type'];
     const cleanedData = [];
     const editedCard = cards.map(card => {
       if(card.id == id){
@@ -131,7 +131,7 @@ export default function App(){
           data.trim() == "" ? data = card[info[i]]: null;
           cleanedData.push(data);
         }
-        return {...card, src: cleanedData[0], title: cleanedData[1], maker: cleanedData[2], date: cleanedData[3], tag: cleanedData[4], note: cleanedData[5], type: cleanedData[6]};
+        return {...card, src: cleanedData[0], title: cleanedData[1], maker: cleanedData[2], date: cleanedData[3], tag: cleanedData[4], rating: cleanedData[5], type: cleanedData[6]};
       }else{
         return card;
       }
@@ -149,7 +149,7 @@ export default function App(){
   const [cardMaker, setCardMaker] = useState(null);
   const [cardTag, setCardTag] = useState(null);
   const [cardDate, setCardDate] = useState(null);
-  const [cardNote, setCardNote] = useState(null);
+  const [cardRating, setCardRating] = useState(null);
   const [cardLog, setCardLog] = useState(null);
   function displayCardWindow(boolean, id){
     headerRef.current.style.filter = boolean ? 'blur(10px)' : 'none';
@@ -165,7 +165,7 @@ export default function App(){
       setCardMaker(cards[id].maker);
       setCardTag(cards[id].tag);
       setCardDate(cards[id].date);
-      setCardNote(cards[id].note);
+      setCardRating(cards[id].rating);
       setCardLog(cards[id].log);
     }
   }
@@ -190,6 +190,8 @@ export default function App(){
           gamesCount={cards.filter(card => card.type === 'Game').length} 
           moviesCount={cards.filter(card => card.type === 'Movie').length} 
           seriesCount={cards.filter(card => card.type === 'Series').length}
+          dates={cards.map(card => card.date)}
+          ratings={cards.map(card => card.rating)}
         />
         <div ref={libraryRef} className='library'>
           {filteredCards.length != 0 ? 
@@ -205,7 +207,7 @@ export default function App(){
               styleCardType={!animationOn ? {color: 'var(--secondary-color)'} : null}
               key={card.id} 
               displayCardWindow={(boolean, id) => displayCardWindow(boolean, id)}
-              formSubmit={(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType) => editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType)}
+              formSubmit={(e, id, newSrc, newTitle, newMaker, newDate, newTag, newRating, newType) => editCard(e, id, newSrc, newTitle, newMaker, newDate, newTag, newRating, newType)}
               pos={index}
               isBookmarked={(cardId, bookmark) => isBookmarked(cardId, bookmark)}
               updateMessage={(bookmarked, title) => updateMessage(bookmarked, title)}
@@ -217,7 +219,7 @@ export default function App(){
               maker={card.maker}
               date={card.date}
               tag={card.tag}
-              note={card.note}
+              rating={card.rating}
               type={card.type}
               searchValue={searchValue}
             />
@@ -234,7 +236,7 @@ export default function App(){
         cardMaker={cardMaker} 
         cardTag={cardTag} 
         cardDate={cardDate} 
-        cardNote={cardNote}
+        cardRating={cardRating}
         cardLog={cardLog}
       />
       <Infos cards={cards}/>

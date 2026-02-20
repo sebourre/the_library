@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardGreen, styleCardOrange, styleCardRed, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, note, type, searchValue}){
+export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardGreen, styleCardOrange, styleCardRed, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, rating, type, searchValue}){
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
@@ -24,11 +24,11 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
     const newMaker = formData.get('edit_maker');
     const newDate = formData.get('edit_date');
     const newTag = formData.get('edit_tag');
-    const newNote = formData.get('edit_note');
+    const newRating = formData.get('edit_rating');
     const newType = formData.get('edit_type');
     clearForm();
     setEdit(false);
-    formSubmit(e, id, newSrc, newTitle, newMaker, newDate, newTag, newNote, newType);
+    formSubmit(e, id, newSrc, newTitle, newMaker, newDate, newTag, newRating, newType);
     updateMessage('edit', title);
   }
 
@@ -124,18 +124,18 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
-        <div className={'card_note ' + (
-            note >= 75 ? 'green' : 
-            note >= 40 ? 'orange' : 
+        <div className={'card_rating ' + (
+            rating >= 75 ? 'green' : 
+            rating >= 40 ? 'orange' : 
             'red'
           )}
           style={
-            note >= 75 ? styleCardGreen : 
-            note >= 40 ? styleCardOrange : 
+            rating >= 75 ? styleCardGreen : 
+            rating >= 40 ? styleCardOrange : 
             styleCardRed
           }
         >
-          <p>{note}</p>
+          <p>{rating}</p>
         </div>
         <form ref={cardEditRef} style={{display: edit ? 'block' : 'none'}} onSubmit={formValidation} autoComplete='off'>
           <input type='url' name='edit_src' placeholder='url'/>
@@ -144,9 +144,9 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
           <input type='text' inputMode='numeric' name='edit_date' pattern='\d{4}-\d{2}-\d{2}' placeholder={date} onChange={validFormat}/>
           <input type='text' name='edit_tag' placeholder={tag}/>
           <div 
-            className='card_note'
+            className='card_rating'
             style={{backgroundColor: 'var(--secondary-color)'}}>
-            <input type='number' name='edit_note' placeholder={note} min={0} max={100}/>
+            <input type='number' name='edit_rating' placeholder={rating} min={0} max={100}/>
           </div>
           <input type='text' name='edit_type' placeholder={type}/>
           <button type='submit' className='card_edit'>Edit</button>
