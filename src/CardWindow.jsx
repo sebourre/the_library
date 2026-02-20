@@ -37,7 +37,8 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
         <div className='card_window_buttons'>
           <svg
             className='card_window_maximize'
-            onClick={() => setMaximize(!maximize)}
+            style={maximize ? {display: 'none'} : {display: 'block'}}
+            onClick={() => setMaximize(true)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -47,6 +48,20 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             <path d="M4 16v2a2 2 0 0 0 2 2h2" />
             <path d="M16 4h2a2 2 0 0 1 2 2v2" />
             <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+          </svg>
+          <svg
+            className='card_window_minimize'
+            style={maximize ? {display: 'block'} : {display: 'none'}}
+            onClick={() => setMaximize(false)}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--white-hue)"
+          >
+            <path d="M15 19v-2a2 2 0 0 1 2 -2h2" />
+            <path d="M15 5v2a2 2 0 0 0 2 2h2" />
+            <path d="M5 15h2a2 2 0 0 1 2 2v2" />
+            <path d="M5 9h2a2 2 0 0 0 2 -2v-2" />
           </svg>
           <svg
             className='card_window_close'
@@ -110,6 +125,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             </svg>
             <b>Date of release:</b> {cardDate ? trueDate(cardDate) : '-'}
           </p>
+          <br />
           <p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
@@ -120,7 +136,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             <div 
               className='card_window_point' 
               style={{
-                left: (100 - cardNote) + '%',
+                left: (100 - (cardNote == 100 ? 99 : cardNote == 0 ? 1 : cardNote)) + '%',
                 transform: `translate(-${cardNote}%, -50%)`
               }}
             ></div>

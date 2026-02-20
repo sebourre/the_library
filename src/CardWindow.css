@@ -133,7 +133,7 @@
   right: .5rem;
 }
 
-.card_window_maximize{
+.card_window_maximize, .card_window_minimize{
   cursor: pointer;
 }
 
