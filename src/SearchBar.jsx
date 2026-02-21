@@ -16,6 +16,20 @@ export default function SearchBar({searchCards, resetSearchValue}){
     return () => {window.removeEventListener("keydown", handleKeyDown);}
   }, []);
 
+  const [placeholder, setPlaceholder] = useState("Search");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  useEffect(() => {
+    if(isSearchFocused){
+      const dots = ["", ".", "..", "..."];
+      let i = 0;
+      const interval = setInterval(() => {
+        setPlaceholder(`Search${dots[i]}`);
+        i = (i + 1) % dots.length;
+      }, 300);
+      return () => clearInterval(interval);
+    }
+  }, [isSearchFocused]);
+
   const [resetSearchButton, setResetSearchButton] = useState(false);
   function displayResetSearchButton(){
     if(searchRef.current.value.trim() != ""){setResetSearchButton(true);}
@@ -38,7 +52,15 @@ export default function SearchBar({searchCards, resetSearchValue}){
         <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
         <path d="M21 21l-6 -6" />
       </svg>
-      <input type="search" ref={searchRef} className='search' onChange={() => {searchCards(searchRef); displayResetSearchButton();}} placeholder='Search'/>
+      <input 
+        type="search" 
+        ref={searchRef} 
+        className='search' 
+        onChange={() => {searchCards(searchRef); displayResetSearchButton();}} 
+        onFocus={() => setIsSearchFocused(true)}
+        onBlur={() => {setIsSearchFocused(false); setPlaceholder("Search");}}
+        placeholder={placeholder}
+      />
       <div className='search_end'>
         <code
           className='search_shortcut'
