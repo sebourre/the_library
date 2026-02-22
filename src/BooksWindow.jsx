@@ -22,23 +22,23 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
     <div ref={booksWindowRef} className='books_window'>
       <div className='books_list'>
         <h4>Count</h4>
-        <p>Games<span>{gamesCount + ' | ' + typePercentage(gamesCount)}</span></p>
-        <p>Movies<span>{moviesCount + ' | ' + typePercentage(moviesCount)}</span></p>
-        <p>Series<span>{seriesCount + ' | ' + typePercentage(seriesCount)}</span></p>
+        <p>Games<span>{typePercentage(gamesCount) + ' | ' + gamesCount}</span></p>
+        <p>Movies<span>{typePercentage(moviesCount) + ' | ' + moviesCount}</span></p>
+        <p>Series<span>{typePercentage(seriesCount) + ' | ' + seriesCount}</span></p>
         <p>Total<span>{gamesCount + moviesCount + seriesCount}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_list'>
         <h4>Date</h4>
-        <p>Newest<span>{new Date(Math.max(...dates.map(date => new Date(date)))).toLocaleDateString()}</span></p>
-        <p>Oldest<span>{new Date(Math.min(...dates.map(date => new Date(date)))).toLocaleDateString()}</span></p>
+        <p>Newest<span>{dates.length > 0 ? new Date(Math.max(...dates.map(date => new Date(date)))).toLocaleDateString() : '/'}</span></p>
+        <p>Oldest<span>{dates.length > 0 ? new Date(Math.min(...dates.map(date => new Date(date)))).toLocaleDateString() : '/'}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_list'>
         <h4>Rating</h4>
-        <p>Highest<span>{Math.max(...ratings.map(Number))}</span></p>
-        <p>Lowest<span>{Math.min(...ratings.map(Number))}</span></p>
-        <p>Average<span>{Math.round(ratings.reduce((sum, rating) => sum + parseInt(rating), 0)/ratings.length)}</span></p>
+        <p>Highest<span>{ratings.length > 0 ? Math.max(...ratings.map(Number)) : '/'}</span></p>
+        <p>Lowest<span>{ratings.length > 0 ? Math.min(...ratings.map(Number)) : '/'}</span></p>
+        <p>Average<span>{ratings.length > 0 ? Math.round(ratings.reduce((sum, rating) => sum + parseInt(rating), 0)/ratings.length) : '/'}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_settings'>
