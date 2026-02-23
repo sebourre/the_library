@@ -121,7 +121,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
       <img src={src}/>
       <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
         <p style={{display: edit ? 'none' : 'block'}}>{hightlight(title, searchValue)}</p>
-        <p style={{display: edit ? 'none' : 'block'}}>{maker}</p>
+        <p style={{display: edit ? 'none' : 'block'}}>{hightlight(maker, searchValue)}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{date}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{tag}</p>
         <div className={'card_rating ' + (

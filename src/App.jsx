@@ -46,7 +46,7 @@ export default function App(){
     if(typesOn == 'games'){c = c.filter(card => card.type === 'Game');}
     else if(typesOn == 'movies'){c = c.filter(card => card.type === 'Movie');}
     else if(typesOn == 'series'){c = c.filter(card => card.type === 'Series');}
-    if(searchValue){c = c.filter(card => card.title.toLowerCase().includes(searchValue));}
+    if(searchValue){c = c.filter(card => card.title.toLowerCase().includes(searchValue) || card.maker.toLowerCase().includes(searchValue));}
     return c;
   })();
 
