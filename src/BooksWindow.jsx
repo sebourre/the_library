@@ -25,7 +25,6 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
         <p>Games<span>{typePercentage(gamesCount) + ' | ' + gamesCount}</span></p>
         <p>Movies<span>{typePercentage(moviesCount) + ' | ' + moviesCount}</span></p>
         <p>Series<span>{typePercentage(seriesCount) + ' | ' + seriesCount}</span></p>
-        <p>Total<span>{gamesCount + moviesCount + seriesCount}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_list'>
