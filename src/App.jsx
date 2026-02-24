@@ -5,6 +5,7 @@ import BooksWindow from './BooksWindow.jsx'
 import SearchBar from './SearchBar.jsx'
 import Types from './Types.jsx'
 import Bookmarks from './Bookmarks.jsx'
+import Sort from './Sort.jsx'
 import Log from './Log.jsx'
 import LogWindow from './LogWindow.jsx'
 import Animation from './Animation.jsx'
@@ -21,7 +22,6 @@ export default function App(){
     return saveCards ? JSON.parse(saveCards) : [];
   });
   useEffect(() => {localStorage.setItem('cards', JSON.stringify(cards));}, [cards]);
-  console.log(cards);
 
   const booksWindowRef = useRef(null);
   const [booksWindowOn, setBooksWindowOn] = useState(false);
@@ -40,6 +40,7 @@ export default function App(){
   }
 
   const [typesOn, setTypesOn] = useState(null);
+  const [sortOn, setSortOn] = useState('digits');
 
   const [bookmarksOn, setBookmarksOn] = useState(false);
   const filteredCards = (() => {
@@ -48,6 +49,7 @@ export default function App(){
     else if(typesOn == 'movies'){c = c.filter(card => card.type === 'Movie');}
     else if(typesOn == 'series'){c = c.filter(card => card.type === 'Series');}
     if(searchValue){c = c.filter(card => card.title.toLowerCase().includes(searchValue) || card.maker.toLowerCase().includes(searchValue));}
+    if(sortOn == 'alphabet'){c = [...c].sort((a, b) => a.title.localeCompare(b.title, undefined, {sensitivity: 'base'}));}
     return c;
   })();
 
@@ -180,6 +182,7 @@ export default function App(){
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
+          <Sort changeSort={(sort) => setSortOn(sort)}/>
           <Log setLogWindowOn={(logWindowOn) => setLogWindowOn(logWindowOn)} displayLogWindow={(logWindowOn) => displayLogWindow(logWindowOn)} logWindowOn={logWindowOn}/>
           <Animation changeAnimation={(animation) => setAnimationOn(animation)}/>
           <Theme />
@@ -196,7 +199,7 @@ export default function App(){
         />
         <div ref={libraryRef} className='library'>
           {filteredCards.length != 0 ? 
-            filteredCards.map((card, index)=> 
+            filteredCards.map((card, index) => 
             <Card 
               styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
               styleCardHead={!animationOn ? {color: 'var(--accent-color)'} : null}

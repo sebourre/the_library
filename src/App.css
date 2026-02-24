@@ -140,12 +140,12 @@
   }
 }
 
-.bookmarks, .log, .animation, .theme{
+.bookmarks, .sort, .log, .animation, .theme{
   display: flex;
   cursor: pointer;
 }
 
-.books:hover, .bookmarks:hover, .log:hover, .animation:hover, .theme:hover{
+.books:hover, .bookmarks:hover, .sort:hover, .log:hover, .animation:hover, .theme:hover{
   animation: jiggle .3s linear infinite;
 }
 
