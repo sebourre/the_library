@@ -140,14 +140,14 @@ select{
   padding: 3px 5px;
 }
 
+mark{
+  color: var(--primary-color);
+  background-color: var(--accent-color);
+}
+
 @media(prefers-color-scheme: light){
   :root{
     --primary-color: whitesmoke;
     --secondary-color: rgb(25, 25, 25);
   }
-}
-
-mark{
-  background-color: var(--accent-color);
-  color: var(--primary-color);
 }

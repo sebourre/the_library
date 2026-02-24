@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import './Card.css'
 
-export default function Card({styleCard, styleCardOptions, styleCardInfo, styleCardBar, styleCardGreen, styleCardOrange, styleCardRed, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, rating, type, searchValue}){
+export default function Card({styleCard, styleCardHead, styleCardOptions, styleCardInfo, styleCardMark, styleCardBar, styleCardGreen, styleCardOrange, styleCardRed, styleCardType, formSubmit, displayCardWindow, pos, isBookmarked, updateMessage, onDelete, id, bookmarked, src, title, maker, date, tag, rating, type, searchValue}){
   const cardEditRef = useRef(null);
   const [edit, setEdit] = useState(false);
 
@@ -42,7 +42,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
     const regex = new RegExp(`(${search})`, "gi");
     const parts = text.split(regex);
     return parts.map((part, i) =>
-      regex.test(part) ? <mark key={i}>{part}</mark> : part
+      regex.test(part) ? <mark key={i} style={styleCardMark}>{part}</mark> : part
     );
   }
   
@@ -57,7 +57,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
         }
       }}
     >
-      <div className='card_head'>
+      <div className='card_head' style={styleCardHead}>
         <p>{pos + 1}</p>
         <div className='card_options' style={styleCardOptions}>
           <svg
@@ -117,7 +117,7 @@ export default function Card({styleCard, styleCardOptions, styleCardInfo, styleC
             <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
           </svg>
         </div>
-        </div>
+      </div>
       <img src={src}/>
       <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
         <p style={{display: edit ? 'none' : 'block'}}>{hightlight(title, searchValue)}</p>

@@ -51,14 +51,20 @@
 }
 
 .card_head{
+  transition: .1s;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 5px;
-  color: var(--accent-color);
+  color: var(--tertiary-color);
   font-size: 1.2rem;
   font-weight: bold;
 }
+.card:hover .card_head{
+  transition: .1s;
+  color: var(--accent-color);
+}
+
 .card_options{
   transition: .1s;
   display: flex;
@@ -101,6 +107,16 @@
 }
 .card_info > p:not(:first-of-type){
   text-align: end;
+}
+.card_info mark{
+  transition: .1s;
+  background-color: rgba(245, 245, 245, 0.5);
+  color: var(--primary-color);
+}
+.card:hover .card_info mark{
+  transition: .1s;
+  color: var(--primary-color);
+  background-color: var(--accent-color);
 }
 .card_info input{
   margin-top: 2px;

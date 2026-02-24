@@ -21,6 +21,7 @@ export default function App(){
     return saveCards ? JSON.parse(saveCards) : [];
   });
   useEffect(() => {localStorage.setItem('cards', JSON.stringify(cards));}, [cards]);
+  console.log(cards);
 
   const booksWindowRef = useRef(null);
   const [booksWindowOn, setBooksWindowOn] = useState(false);
@@ -198,8 +199,10 @@ export default function App(){
             filteredCards.map((card, index)=> 
             <Card 
               styleCard={!animationOn ? {filter: 'grayscale(0)'} : null}
+              styleCardHead={!animationOn ? {color: 'var(--accent-color)'} : null}
               styleCardOptions={!animationOn ? {opacity: 1} : null}
               styleCardInfo={!animationOn ? {backgroundColor: 'var(--secondary-color)'} : null}
+              styleCardMark={!animationOn ? {color: 'var(--primary-color)', backgroundColor: 'var(--accent-color)'} : null}
               styleCardBar={!animationOn ? {width: '80%', background: 'linear-gradient(to right, var(--green-hue) 25%, var(--orange-hue) 25% 60%, var(--red-hue) 60%)'} : null}
               styleCardGreen={!animationOn ? {backgroundColor: 'var(--green-hue)'} : null}
               styleCardOrange={!animationOn ? {backgroundColor: 'var(--orange-hue)'} : null}
