@@ -2,7 +2,10 @@ import { useState } from 'react'
 import './App.css'
 
 export default function Sort({changeSort}){
-  const [sort, setSort] = useState('digits');
+  const [sort, setSort] = useState(() => {
+    const saveSort = localStorage.getItem('sort');
+    return saveSort ? JSON.parse(saveSort) : 'digits';
+  });
 
   return(
     <div className='sort' title='Sort'>

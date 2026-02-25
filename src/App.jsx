@@ -40,7 +40,11 @@ export default function App(){
   }
 
   const [typesOn, setTypesOn] = useState(null);
-  const [sortOn, setSortOn] = useState('digits');
+  const [sortOn, setSortOn] = useState(() => {
+    const saveSort = localStorage.getItem('sort');
+    return saveSort ? JSON.parse(saveSort) : 'digits';
+  });
+  useEffect(() => {localStorage.setItem('sort', JSON.stringify(sortOn))}, [sortOn]);
 
   const [bookmarksOn, setBookmarksOn] = useState(false);
   const filteredCards = (() => {
