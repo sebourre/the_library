@@ -168,16 +168,20 @@
 }
 
 .infos, .clock{
-  position: absolute;
-  bottom: 1rem;
+  position: fixed;
+  bottom: .8rem;
+  padding: .2rem;
   font-size: 1rem;
   font-weight: bold;
+  border-radius: 2px;
+  background-color: rgba(25, 25, 25, .3);;
+  backdrop-filter: blur(3px);
 }
 .infos{
-  left: 1rem;
+  left: .8rem;
 }
 .clock{
-  right: 1rem;
+  right: .8rem;
 }
 
 .message{
