@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import Books from './Books.jsx'
 import BooksWindow from './BooksWindow.jsx'
@@ -40,6 +40,8 @@ export default function App(){
   }
 
   const [typesOn, setTypesOn] = useState(null);
+  useEffect(() => {document.title = typesOn ? `The Library - ${typesOn[0].toUpperCase() + typesOn.slice(1)}` : 'The Library';}, [typesOn]);
+  
   const [sortOn, setSortOn] = useState(() => {
     const saveSort = localStorage.getItem('sort');
     return saveSort ? JSON.parse(saveSort) : 'digits';
