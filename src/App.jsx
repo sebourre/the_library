@@ -195,9 +195,8 @@ export default function App(){
       <div className='container'>
         <BooksWindow 
           booksWindowRef={booksWindowRef} 
-          gamesCount={cards.filter(card => card.type === 'Game').length} 
-          moviesCount={cards.filter(card => card.type === 'Movie').length} 
-          seriesCount={cards.filter(card => card.type === 'Series').length}
+          cards={cards.length} 
+          types={cards.map(card => card.type)}
           dates={cards.map(card => card.date)}
           ratings={cards.map(card => card.rating)}
         />

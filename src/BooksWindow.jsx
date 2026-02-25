@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './BooksWindow.css';
 
-export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, seriesCount, dates, ratings}){
+export default function BooksWindow({booksWindowRef, cards, types, dates, ratings}){
   const [booksPlus, setBooksPlus] = useState(null);
 
   const [accentColor, setAccentColor] = useState(() => {
@@ -11,19 +11,19 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
   useEffect(() => {localStorage.setItem('accentColor', JSON.stringify(accentColor))}, [accentColor]);
   accentColor == 'mode' ? document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)') : document.documentElement.style.setProperty('--accent-color', `var(--${accentColor}-hue)`);
 
-  function typePercentage(typeCount){
-    if(typeCount == 0) return '0%';
-    const total = gamesCount + moviesCount + seriesCount;
-    return Math.round((typeCount / total) * 100) + '%';
+  function percentage(n){
+    if(n == 0) return '0%';
+    const total = cards;
+    return Math.round((n / total) * 100) + '%';
   }
 
   return(
     <div ref={booksWindowRef} className='books_window'>
       <div className='books_list'>
         <h4>Count</h4>
-        <p>Games<span>{typePercentage(gamesCount) + ' | ' + gamesCount}</span></p>
-        <p>Movies<span>{typePercentage(moviesCount) + ' | ' + moviesCount}</span></p>
-        <p>Series<span>{typePercentage(seriesCount) + ' | ' + seriesCount}</span></p>
+        <p>Games<span>{percentage(types.filter(type => type == 'Game').length) + ' | ' + types.filter(type => type == 'Game').length}</span></p>
+        <p>Movies<span>{percentage(types.filter(type => type == 'Movie').length) + ' | ' + types.filter(type => type == 'Movie').length}</span></p>
+        <p>Series<span>{percentage(types.filter(type => type == 'Series').length) + ' | ' + types.filter(type => type == 'Series').length}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_list'>
@@ -37,6 +37,9 @@ export default function BooksWindow({booksWindowRef, gamesCount, moviesCount, se
         <p>Highest<span>{ratings.length > 0 ? Math.max(...ratings.map(Number)) : '/'}</span></p>
         <p>Lowest<span>{ratings.length > 0 ? Math.min(...ratings.map(Number)) : '/'}</span></p>
         <p>Average<span>{ratings.length > 0 ? Math.round(ratings.reduce((sum, rating) => sum + parseInt(rating), 0)/ratings.length) : '/'}</span></p>
+        <p>Green rate<span>{ratings.length > 0 ? percentage(ratings.filter(rating => Number(rating) >= 75).length) + ' | ' + ratings.filter(rating => Number(rating) >= 75).length : '/'}</span></p>
+        <p>Orange rate<span>{ratings.length > 0 ? percentage(ratings.filter(rating => Number(rating) >= 40 && Number(rating) < 75).length) + ' | ' + ratings.filter(rating => Number(rating) >= 40 && Number(rating) < 75).length : '/'}</span></p>
+        <p>Red rate<span>{ratings.length > 0 ? percentage(ratings.filter(rating => Number(rating) < 40).length) + ' | ' + ratings.filter(rating => Number(rating) < 40).length : '/'}</span></p>
       </div>
       <span className='books_separator'></span>
       <div className='books_settings'>
