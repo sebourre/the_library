@@ -1,11 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 export default function Animation({changeAnimation}){
+  const [width, setWidth] = useState(window.innerWidth);
   const [animation, setAnimation] = useState(() => {
     const saveAnimation = localStorage.getItem('animation');
     return saveAnimation ? JSON.parse(saveAnimation) : true;
   });
+
+  useEffect(() => {
+    const handleResize = () => {setWidth(window.innerWidth);}
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if(width <= 768){
+      setAnimation(false);
+      changeAnimation(false);
+    }
+  }, [width, changeAnimation]);
 
   return(
     <div className='animation' title='Animation'>

@@ -167,6 +167,12 @@
   }
 }
 
+@media (max-width: 768px){
+  .animation{
+    display: none;
+  }
+}
+
 .infos, .clock{
   position: fixed;
   bottom: .8rem;
