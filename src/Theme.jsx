@@ -12,6 +12,8 @@ export default function Theme(){
     root.style.setProperty('--primary-color', theme == 'light' ? 'whitesmoke' : 'rgb(25, 25, 25)');
     root.style.setProperty('--secondary-color', theme == 'light' ? 'rgb(25, 25, 25)' : 'whitesmoke');
     root.style.setProperty('--tertiary-color', theme == 'light' ? 'rgb(120, 120, 120)' : 'rgb(80, 80, 80)');
+    document.querySelector('link[rel="icon"]').href = theme == 'light' ? 'books-dark.svg' : 'books-light.svg';
+    console.log(document.querySelector('link[rel="icon"]'));
     lightRef.current.style.display = theme == 'dark' ? 'block' : 'none';
     darkRef.current.style.display = theme == 'light' ? 'block' : 'none';
   }, [theme]);
