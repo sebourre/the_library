@@ -31,8 +31,6 @@ export default function App(){
     else{booksWindowRef.current.style.display = 'none';}
   }
 
-  function reload(){location.reload();}
-
   const [searchValue, setSearchValue] = useState('');
   function searchCards(searchRef){
     const value = searchRef.current.value.trim().toLowerCase();
@@ -183,7 +181,7 @@ export default function App(){
     <>
       <header ref={headerRef}>
         <Books displayBooksWindow={displayBooksWindow} booksWindowOn={booksWindowOn}/>
-        <h1 onClick={reload}>The Library</h1>
+        <a href="https://sebourre.github.io/the_library/"><h1>The Library</h1></a>
         <div className='settings'>
           <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
