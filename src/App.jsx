@@ -177,6 +177,8 @@ export default function App(){
     }
   }
 
+  function deleteAllCards(){setCards([]);}
+
   return(
     <>
       <header ref={headerRef}>
@@ -199,6 +201,7 @@ export default function App(){
           types={cards.map(card => card.type)}
           dates={cards.map(card => card.date)}
           ratings={cards.map(card => card.rating)}
+          deleteAllCards={deleteAllCards}
         />
         <div ref={libraryRef} className='library'>
           {filteredCards.length != 0 ? 
