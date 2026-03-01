@@ -85,7 +85,8 @@ export default function BooksWindow({booksWindowRef, cards, types, dates, rating
         </div>
         <div className='books_additional' style={{display: booksPlus == 'additional' ? 'flex' : 'none'}}>
           <svg 
-            onClick={deleteAllCards}
+            style={cards == 0 ? {stroke: 'var(--red-hue)', cursor: 'not-allowed'} : null}
+            onClick={cards != 0 ? deleteAllCards : null}
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
             fill="none"
