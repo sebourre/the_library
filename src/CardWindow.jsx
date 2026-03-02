@@ -33,7 +33,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
     <div ref={cardWindowRef} className={maximize ? 'card_window card_window_maximized' : 'card_window'}>
       <img src={cardImg}/>
       <div className='card_window_content'>
-        <div className='card_window_ribbon' style={{display: cardBookmarked ? 'block' : 'none'}}></div>
+        <div className={maximize ? 'card_window_ribbon card_window_ribbon_maximized' : 'card_window_ribbon'} style={{display: cardBookmarked ? 'block' : 'none'}}></div>
         <div className='card_window_buttons'>
           <svg
             className='card_window_maximize'
