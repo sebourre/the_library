@@ -136,7 +136,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             <div 
               className='card_window_point' 
               style={{
-                left: (100 - (cardRating == 100 ? 99 : cardRating == 0 ? 1 : cardRating)) + '%',
+                left: (100 - cardRating) + '%',
                 transform: `translate(-${cardRating}%, -50%)`
               }}
             ></div>

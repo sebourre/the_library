@@ -149,7 +149,7 @@
   width: 15rem;
   height: .5rem;
   border-radius: 2px;
-  background-image: linear-gradient(to right, var(--green-hue) 20%, var(--orange-hue) 30% 55%, var(--red-hue) 65%);
+  background-image: linear-gradient(to right, var(--green-hue) 15%, var(--orange-hue) 35% 50%, var(--red-hue) 70%);
 }
 
 @media (max-width: 480px){
@@ -164,7 +164,8 @@
   width: .5rem;
   height: 1rem;
   border-radius: 2px;
-  background-color: var(--black-hue);
+  background-color: var(--white-hue);
+  outline: 2px solid var(--tertiary-color);
 }
 
 .card_window_log{
