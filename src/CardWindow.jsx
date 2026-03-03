@@ -107,14 +107,14 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
               <path d="m18 15 4-4"/>
               <path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/>
             </svg>
-            <b>Maker:</b> {shorten(cardMaker, 20)}
+            <b>{maximize ? 'Maker:' : null}</b> {shorten(cardMaker, 20)}
           </p>
           <p title={cardTag}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/>
               <circle cx="7.5" cy="7.5" r=".5" fill="var(--white-hue)"/>
             </svg>
-            <b>Tag:</b> {shorten(cardTag, 20)}
+            <b>{maximize ? 'Tag:' : null}</b> {shorten(cardTag, 20)}
           </p>
           <p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
@@ -123,14 +123,14 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
               <rect width="18" height="18" x="3" y="4" rx="2"/>
               <path d="M3 10h18"/>
             </svg>
-            <b>Date of release:</b> {cardDate ? trueDate(cardDate) : '-'}
+            <b>{maximize ? 'Date of release:' : null}</b> {cardDate ? trueDate(cardDate) : '-'}
           </p>
           <br />
           <p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
             </svg>
-            <b>Rating:</b> {cardRating}
+            <b>{maximize ? 'Rating:' : null}</b> {cardRating}
           </p>
           <div className='card_window_bar'>
             <div 
