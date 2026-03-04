@@ -79,7 +79,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           <h2 title={cardTitle}>{shorten(cardTitle, 25)}</h2>
         </div>
         <div className='card_window_separator'>
-          <div>
+          <div className='card_window_type' style={maximize ? {paddingRight: '10px'} : null}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)" style={{display: cardType == 'Game' ? 'block' : 'none'}}>
               <line x1="6" x2="10" y1="11" y2="11"/>
               <line x1="8" x2="8" y1="9" y2="13"/>
@@ -97,7 +97,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
               <path d="m17 2-5 5-5-5"/>
               <rect width="20" height="15" x="2" y="7" rx="2"/>
             </svg>
-            {cardType}
+            {maximize ? cardType : null}
           </div>
         </div>
         <div className='card_window_footer'>
