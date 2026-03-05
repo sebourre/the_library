@@ -160,6 +160,15 @@
   }
 }
 
+.card_window_bar_maximized{
+  width: 20rem;
+  height: 1rem;
+  border-radius: 3px;
+  background-image: linear-gradient(to right, var(--green-hue) 15%, var(--orange-hue) 35% 50%, var(--red-hue) 70%);
+  outline: 2px solid var(--white-hue);
+  outline-offset: 2px;
+}
+
 .card_window_point{
   position: absolute;
   top: 50%;
@@ -168,6 +177,16 @@
   border-radius: 2px;
   background-color: var(--white-hue);
   outline: 2px solid var(--tertiary-color);
+}
+
+.card_window_point_maximized{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0 3px;
+  color: var(--black-hue);
+  font-size: .9rem;
+  font-weight: bold;
 }
 
 .card_window_log{
