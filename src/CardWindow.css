@@ -65,6 +65,23 @@
   width: 1.5rem;
 }
 
+.card_window_buttons{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+}
+
+.card_window_maximize, .card_window_minimize{
+  cursor: pointer;
+}
+
+.card_window_close{
+  cursor: pointer;
+}
+
 .card_window_header{
   display: flex;
   flex-direction: column;
@@ -110,14 +127,34 @@
   background-color: rgba(25, 25, 25, .7);
 }
 
-.card_window_footer{
+.card_window_info{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: .5rem;
   width: 100%;
-  height: 55%;
+  height: 30%;
+}
+.card_window_info p{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card_window_info p svg{
+  width: 20px;
+  height: 20px;
+}
+
+.card_window_footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .5rem;
+  width: 100%;
+  height: 25%;
+  padding: .5rem;
 }
 .card_window_footer p{
   display: flex;
@@ -127,23 +164,6 @@
 .card_window_footer p svg{
   width: 20px;
   height: 20px;
-}
-
-.card_window_buttons{
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  position: absolute;
-  top: .5rem;
-  right: .5rem;
-}
-
-.card_window_maximize, .card_window_minimize{
-  cursor: pointer;
-}
-
-.card_window_close{
-  cursor: pointer;
 }
 
 .card_window_bar{
