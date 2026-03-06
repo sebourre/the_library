@@ -58,10 +58,10 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
         <path d="M6 6l12 12" />
       </svg>
       <h3>Log</h3>
-      <div className='log_inputs'>
-        <label htmlFor="title">Title:</label>
+      <fieldset className='log_inputs'>
+        <legend htmlFor="title">Title</legend>
         <input type="text" name='title'/>
-      </div>
+      </fieldset>
       <div className='log_row'>
         <div className='log_inputs'>
           <label htmlFor="image">Image:</label>

@@ -80,6 +80,7 @@ h2{
 }
 
 h3{
+  margin: .5rem 0;
   text-align: center;
   font-size: 1.5rem;
 }
@@ -113,6 +114,16 @@ svg{
   stroke-width: 2px;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+fieldset{
+  border: 2px solid var(--white-hue);
+  border-radius: 3px;
+}
+
+legend{
+  margin: 0 5px;
+  padding: 5px;
 }
 
 input, select{
