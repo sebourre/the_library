@@ -59,43 +59,43 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       </svg>
       <h3>Log</h3>
       <fieldset className='log_inputs'>
-        <legend htmlFor="title">Title</legend>
-        <input type="text" name='title'/>
+        <legend>Title</legend>
+        <input type="text" name='title' placeholder='Title'/>
       </fieldset>
       <div className='log_row'>
-        <div className='log_inputs'>
-          <label htmlFor="image">Image:</label>
-          <input type="url" name='image' onChange={updateImagePreview} placeholder='url' />
-        </div>
+        <fieldset className='log_inputs'>
+          <legend>Image</legend>
+          <input type="url" name='image' onChange={updateImagePreview} placeholder='URL' />
+        </fieldset>
         <div className='image_preview'>
           <img src={imagePreview} />
         </div>
       </div>
-      <div className='log_inputs'>
-        <label htmlFor="maker">Maker:</label>
-        <input type="text" name='maker'/>
-      </div>
-      <div className='log_inputs'>
-        <label htmlFor="tag">Tag:</label>
-        <input type="text" name='tag'/>
-      </div>
+      <fieldset className='log_inputs'>
+        <legend>Maker</legend>
+        <input type="text" name='maker' placeholder='Maker'/>
+      </fieldset>
+      <fieldset className='log_inputs'>
+        <legend>Tag</legend>
+        <input type="text" name='tag' placeholder='Tag'/>
+      </fieldset>
       <div className='log_row'>
-        <div className='log_inputs'>
-          <label htmlFor="rating">Rating:</label>
+        <fieldset className='log_inputs'>
+          <legend>Rating</legend>
           <input type="number" name='rating' placeholder='0/100' min={0} max={100} />
-        </div>
-        <div className='log_inputs'>
-          <label htmlFor="date_of_release">Date of release:</label>
+        </fieldset>
+        <fieldset className='log_inputs'>
+          <legend>Date of release</legend>
           <input type="date" name='date_of_release'/>
-        </div>
-        <div className='log_inputs'>
-          <label htmlFor="type">Type:</label>
+        </fieldset>
+        <fieldset className='log_inputs'>
+          <legend>Type</legend>
           <select name='type'>
             <option value="Game">Game</option>
             <option value="Movie">Movie</option>
             <option value="Series">Series</option>
           </select>
-        </div>
+        </fieldset>
       </div>
       <div className='log_footer'>
         <p className='log_error'>{error}</p>

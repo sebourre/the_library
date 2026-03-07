@@ -127,10 +127,9 @@ legend{
 }
 
 input, select{
-  color: var(--black-hue);
+  color: var(--white-hue);
   border: none;
-  border-radius: 3px;
-  background-color: var(--white-hue);
+  background-color: transparent;
 }
 input:focus{
   outline: 2px solid var(--black-hue);
