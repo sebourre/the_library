@@ -117,13 +117,14 @@ svg{
 }
 
 fieldset{
+  padding: 3px 5px;
   border: 2px solid var(--white-hue);
   border-radius: 3px;
 }
 
 legend{
-  margin: 0 5px;
-  padding: 5px;
+  margin: 0 auto;
+  padding: 0 5px;
 }
 
 input, select{
@@ -132,12 +133,15 @@ input, select{
   background-color: transparent;
 }
 input:focus{
-  outline: 2px solid var(--black-hue);
+  outline: none;
 }
 input[type=text], input[type=url], input[type=search]{
   width: 100%;
   padding: 0 3px;
   font-size: 1rem;
+}
+input[type=url]{
+  width: 15rem;
 }
 input[type=date]{
   width: fit-content;
