@@ -60,7 +60,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       <h3>Log</h3>
       <fieldset className='log_inputs'>
         <legend>Title</legend>
-        <input type="text" name='title' placeholder='Title'/>
+        <input type="text" name='title' placeholder='Half-Life'/>
       </fieldset>
       <div className='log_row'>
         <fieldset className='log_inputs'>
@@ -73,11 +73,11 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       </div>
       <fieldset className='log_inputs'>
         <legend>Maker</legend>
-        <input type="text" name='maker' placeholder='Maker'/>
+        <input type="text" name='maker' placeholder='VALVe'/>
       </fieldset>
       <fieldset className='log_inputs'>
         <legend>Tag</legend>
-        <input type="text" name='tag' placeholder='Tag'/>
+        <input type="text" name='tag' placeholder='FPS'/>
       </fieldset>
       <div className='log_row'>
         <fieldset className='log_inputs'>
