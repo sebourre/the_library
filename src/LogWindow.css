@@ -36,6 +36,11 @@
   gap: .3rem;
 }
 
+.image_import{
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
 .image_preview{
   overflow: hidden;
   margin-top: auto;
