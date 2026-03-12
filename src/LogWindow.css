@@ -39,6 +39,11 @@
 .image_import{
   margin-top: 1rem;
   cursor: pointer;
+  border-radius: 2px;
+}
+.image_import:hover{
+  background-color: rgba(245, 245, 245, .2);
+  outline: 3px solid rgba(245, 245, 245, .2);
 }
 
 .image_preview{
