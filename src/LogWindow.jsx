@@ -2,6 +2,9 @@ import { useState, useRef } from 'react'
 import './LogWindow.css'
 
 export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn, formSubmit, logWindowRef}){
+  const importRef = useRef(null);
+  function fileFocus(){importRef.current.click()}
+  
   const [imagePreview, setImagePreview] = useState(null)
   function updateImagePreview(e){setImagePreview(e.target.value)}
 
@@ -69,6 +72,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
         </fieldset>
         <svg 
           className='image_import'
+          onClick={fileFocus}
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 
           fill="none" 
@@ -79,6 +83,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
           <path d="m17 22 3-3"/>
           <circle cx="9" cy="9" r="2"/>
         </svg>
+        <input type="file" name='import' ref={importRef} onChange={updateImagePreview} accept='image/*' />
         <div className='image_preview'>
           <img src={imagePreview} />
         </div>

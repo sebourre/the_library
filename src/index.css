@@ -143,6 +143,9 @@ input[type=text], input[type=url], input[type=search]{
 input[type=url]{
   width: 14rem;
 }
+input[type=file]{
+  display: none;
+}
 input[type=date]{
   width: fit-content;
   padding: 3px;
