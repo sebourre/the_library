@@ -6,7 +6,14 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
   function fileFocus(){importRef.current.click()}
   
   const [imagePreview, setImagePreview] = useState(null)
-  function updateImagePreview(e){setImagePreview(e.target.value)}
+  function updateImagePreview(e){
+    if(e.target.type == 'file' && e.target.files[0]){
+      const url = URL.createObjectURL(e.target.files[0])
+      setImagePreview(url);
+      return;
+    }
+    setImagePreview(e.target.value);
+  }
 
   const [error, setError] = useState(null)
   function formValidation(e){
