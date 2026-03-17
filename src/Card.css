@@ -96,6 +96,12 @@
   }
 }
 
+@media (max-width: 768px){
+  .card_options svg:hover{
+    animation: none;
+  }
+}
+
 .card_info{
   transition: .1s;
   position: relative;

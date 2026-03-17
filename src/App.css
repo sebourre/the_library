@@ -90,6 +90,12 @@
   }
 }
 
+@media (max-width: 768px){
+  .search_bar svg:hover{
+    animation: none;
+  }
+}
+
 .search_end{
   display: flex;
   align-items: center;
@@ -168,6 +174,9 @@
 }
 
 @media (max-width: 768px){
+  .bookmarks:hover, .sort:hover, .log:hover, .theme:hover{
+    animation: none;
+  }
   .animation{
     display: none;
   }
