@@ -36,12 +36,12 @@
   gap: .3rem;
 }
 
-.image_import{
+.image_import, .image_clear{
   margin-top: 1rem;
   cursor: pointer;
   border-radius: 2px;
 }
-.image_import:hover{
+.image_import:hover, .image_clear:hover{
   background-color: rgba(245, 245, 245, .2);
   outline: 3px solid rgba(245, 245, 245, .2);
 }

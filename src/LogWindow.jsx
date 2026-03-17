@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import './LogWindow.css'
 
 export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn, formSubmit, logWindowRef}){
+  const inputImageRef = useRef(null);
   const importRef = useRef(null);
   function fileFocus(){importRef.current.click()}
   
@@ -10,9 +11,15 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
     if(e.target.type == 'file' && e.target.files[0]){
       const url = URL.createObjectURL(e.target.files[0])
       setImagePreview(url);
+      inputImageRef.current.value = url;
       return;
     }
     setImagePreview(e.target.value);
+  }
+
+  function clearInputImage(){
+    inputImageRef.current.value = null;
+    setImagePreview(null);
   }
 
   const [error, setError] = useState(null)
@@ -75,10 +82,11 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       <div className='log_row'>
         <fieldset className='log_inputs'>
           <legend>Image</legend>
-          <input type="url" name='image' onChange={updateImagePreview} placeholder='URL' />
+          <input type="url" name='image' ref={inputImageRef} onChange={updateImagePreview} placeholder='URL' />
         </fieldset>
         <svg 
           className='image_import'
+          style={{display: imagePreview ? "none" : "block"}}
           onClick={fileFocus}
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 
@@ -89,6 +97,18 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
           <path d="m14 19 3 3v-5.5"/>
           <path d="m17 22 3-3"/>
           <circle cx="9" cy="9" r="2"/>
+        </svg>
+        <svg
+          className='image_clear'
+          style={{display: imagePreview ? "block" : "none"}}
+          onClick={clearInputImage}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="var(--white-hue)"
+        >
+          <path d="M18 6l-12 12" />
+          <path d="M6 6l12 12" />
         </svg>
         <input type="file" name='import' ref={importRef} onChange={updateImagePreview} accept='image/*' />
         <div className='image_preview'>
