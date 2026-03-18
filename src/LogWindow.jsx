@@ -23,14 +23,31 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
   }
 
   const [error, setError] = useState(null)
+  const [errorKey, setErrorKey] = useState(0);
   function formValidation(e){
-    const inputs = logWindowRef.current.querySelectorAll('input');
-    let empty = false;
+    const inputs = logWindowRef.current.querySelectorAll('input:not([type="file"])');
+    const select = logWindowRef.current.querySelector('select');
+    let empty = 0;
     inputs.forEach(input => {
-      if(!input.value){empty = true;}
+      if(!input.value){
+        empty += 1;
+        if(input.name == 'title'){setError('Enter a title.'); }
+        else if(input.name == 'image'){setError('Choose an image.');}
+        else if(input.name == 'maker'){setError('Enter a maker.');} 
+        else if(input.name == 'tag'){setError('Enter a tag.');}
+        else if(input.name == 'rating'){setError('Enter a rating.');}
+        else if(input.name == 'date_of_release'){setError('Enter a date of release.');} 
+      }
     });
-    if(empty){
-      setError('Input(s) empty.');
+    if(empty != 0){
+      if(empty > 1){setError('Inputs empty.');}
+      setErrorKey(prev => prev + 1);
+      e.preventDefault();
+      return;
+    }
+    if(select.value == "Type"){
+      setError('Select a type.');
+      setErrorKey(prev => prev + 1);
       e.preventDefault();
       return;
     }
@@ -150,7 +167,8 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
         </fieldset>
         <fieldset className='log_inputs'>
           <legend>Type</legend>
-          <select name='type'>
+          <select name='type' defaultValue="Type">
+            <option value="Type" disabled>Type</option>
             <option value="Game">Game</option>
             <option value="Movie">Movie</option>
             <option value="Series">Series</option>
@@ -158,7 +176,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
         </fieldset>
       </div>
       <div className='log_footer'>
-        <p className='log_error'>{error}</p>
+        <p key={errorKey} className='log_error'>{error}</p>
         <div className='log_buttons'>
           <svg
             ref={resetRef}

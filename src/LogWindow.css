@@ -75,6 +75,22 @@
 
 .log_error{
   color: var(--red-hue);
+  animation: error 3s ease forwards;
+}
+
+@keyframes error{
+  0%{
+    opacity: 1;
+    text-shadow: 0 0 3px var(--red-hue);
+  }
+  50%{
+    opacity: 1;
+    text-shadow: 0 0 0 var(--red-hue);
+  }
+  100%{
+    opacity: 0;
+    text-shadow: 0 0 0 var(--red-hue);
+  }
 }
 
 .log_buttons{
