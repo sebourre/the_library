@@ -28,16 +28,17 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
   }
 
   const [maximize, setMaximize] = useState(false);
+  const [view, setView] = useState(false);
   
   return(
     <div ref={cardWindowRef} className={maximize ? 'card_window card_window_maximized' : 'card_window'}>
       <img src={cardImg}/>
-      <div className='card_window_content'>
+      <div className={maximize ? 'card_window_content card_window_content_maximized' : 'card_window_content'}>
         <div className={maximize ? 'card_window_ribbon card_window_ribbon_maximized' : 'card_window_ribbon'} style={{display: cardBookmarked ? 'block' : 'none'}}></div>
         <div className='card_window_buttons'>
           <svg
             className='card_window_maximize'
-            style={maximize ? {display: 'none'} : {display: 'block'}}
+            style={{display: maximize ? 'none' : 'block'}}
             onClick={() => setMaximize(true)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -51,7 +52,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           </svg>
           <svg
             className='card_window_minimize'
-            style={maximize ? {display: 'block'} : {display: 'none'}}
+            style={{display: maximize ? 'block' : 'none'}}
             onClick={() => setMaximize(false)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -65,7 +66,11 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           </svg>
           <svg
             className='card_window_close'
-            onClick={() => displayCardWindow(false, null)}
+            onClick={() => {
+              displayCardWindow(false, null);
+              setMaximize(false);
+              setView(false);
+            }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -116,7 +121,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             </svg>
             <b>{maximize ? 'Tag:' : null}</b> {shorten(cardTag, 20)}
           </p>
-          <p>
+          <p title={cardDate}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--white-hue)">
               <path d="M8 2v4"/>
               <path d="M16 2v4"/>
@@ -149,6 +154,21 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           </div>
         </div>
         <div className='card_window_log'>Logged on {cardLog}</div>
+        <svg 
+          className='card_window_view'
+          style={{display: maximize && !view ? 'block' : 'none'}}
+          onClick={() => setView(!view)}
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none"
+          stroke="rgba(245, 245, 245, 0.7)"
+        >
+          <path d="M15 15.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997a1 1 0 0 1-1.517-.86z"/>
+          <path d="M21 12.17V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/>
+          <path d="m6 21 5-5"/>
+          <circle cx="9" cy="9" r="2"/>
+        </svg>
+        <a href={cardImg} target='_blank'><img src={cardImg} className='card_window_view_img' style={{display: view && maximize ? 'block' : 'none'}}/></a>
         <a href={`https://www.google.com/search?q=${cardTitle}`} target='_blank'>
           <svg
             className='card_window_search'

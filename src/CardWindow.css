@@ -51,6 +51,11 @@
   backdrop-filter: blur(5px);
 }
 
+.card_window_content_maximized{
+  background-image: linear-gradient(to top, var(--tertiary-color) 55%, rgba(25, 25, 25, .5));
+  backdrop-filter: blur(3px);
+}
+
 .card_window_ribbon{
   position: absolute;
   opacity: .7;
@@ -217,6 +222,32 @@
   font-size: .7rem;
   font-weight: bold;
   font-style: italic;
+}
+
+.card_window_view{
+  position: absolute;
+  bottom: .5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.75;
+  cursor: pointer;
+}
+.card_window_view:hover{
+  stroke: var(--white-hue);
+}
+
+.card_window_view_img{
+  position: absolute;
+  bottom: .5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 7rem;
+  max-height: 5rem;
+  border: 2px solid var(--white-hue);
+  border-radius: 3px;
+  object-fit: cover;
 }
 
 .card_window_search{
