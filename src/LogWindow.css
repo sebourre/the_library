@@ -36,6 +36,10 @@
   gap: .3rem;
 }
 
+.log_window input[type=url]{
+  width: 14rem;
+}
+
 .image_import, .image_clear{
   margin-top: 1rem;
   cursor: pointer;

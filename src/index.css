@@ -140,9 +140,6 @@ input[type=text], input[type=url], input[type=search]{
   padding: 0 3px;
   font-size: 1rem;
 }
-input[type=url]{
-  width: 14rem;
-}
 input[type=file]{
   display: none;
 }
