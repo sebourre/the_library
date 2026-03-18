@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './LogWindow.css'
 
 export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn, formSubmit, logWindowRef}){
@@ -53,6 +53,22 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
     }, 500);
   }
 
+  const placeholders = [
+    {title: 'Counter-Strike', maker: 'VALVe', tag: 'FPS'},
+    {title: 'League of Legends', maker: 'Riot Games', tag: 'MOBA'},
+    {title: 'Minecraft', maker: 'Mojang', tag: 'Sandbox'},
+    {title: 'Interstellar', maker: 'Christopher Nolan', tag: 'Sci-fi'},
+    {title: 'La La Land', maker: 'Damien Chazelle', tag: 'Musical'},
+    {title: 'Pulp Fiction', maker: 'Quentin Tarantino', tag: 'Crime'},
+    {title: 'Breaking Bad', maker: 'Vince Gilligan', tag: 'Drama'},
+    {title: 'The Office', maker: 'Greg Daniels', tag: 'Comedy'},
+    {title: 'Game of Thrones', maker: 'David Benioff & D.B. Weiss', tag: 'Fantasy'}
+  ]
+  const [random, setRandom] = useState(0);
+  useEffect(() => {
+    if(logWindowOn){setRandom(Math.floor(Math.random() * placeholders.length));}
+  }, [logWindowOn, placeholders.length]);
+
   return(
     <form
       ref={logWindowRef}
@@ -77,7 +93,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       <h3>Log</h3>
       <fieldset className='log_inputs'>
         <legend>Title</legend>
-        <input type="text" name='title' placeholder='Half-Life'/>
+        <input type="text" name='title' placeholder={placeholders[random].title}/>
       </fieldset>
       <div className='log_row'>
         <fieldset className='log_inputs'>
@@ -117,11 +133,11 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
       </div>
       <fieldset className='log_inputs'>
         <legend>Maker</legend>
-        <input type="text" name='maker' placeholder='VALVe'/>
+        <input type="text" name='maker' placeholder={placeholders[random].maker}/>
       </fieldset>
       <fieldset className='log_inputs'>
         <legend>Tag</legend>
-        <input type="text" name='tag' placeholder='FPS'/>
+        <input type="text" name='tag' placeholder={placeholders[random].tag}/>
       </fieldset>
       <div className='log_row'>
         <fieldset className='log_inputs'>
