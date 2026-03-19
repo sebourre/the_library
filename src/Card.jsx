@@ -118,7 +118,7 @@ export default function Card({styleCard, styleCardHead, styleCardOptions, styleC
           </svg>
         </div>
       </div>
-      <img src={src}/>
+      <img src={src} alt={`Image of ${title}`}/>
       <div className='card_info' style={styleCardInfo} onClick={edit ? null : () => displayCardWindow(true, id)}>
         <p style={{display: edit ? 'none' : 'block'}}>{hightlight(title, searchValue)}</p>
         <p style={{display: edit ? 'none' : 'block'}}>{hightlight(maker, searchValue)}</p>

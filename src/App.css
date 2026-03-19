@@ -173,6 +173,12 @@
   }
 }
 
+@media (max-width: 1024px){
+  .books:hover, .bookmarks:hover, .sort:hover, .log:hover, .animation:hover, .theme:hover{
+    animation: jiggle .3s linear forwards;
+  }
+}
+
 @media (max-width: 768px){
   .bookmarks:hover, .sort:hover, .log:hover, .theme:hover{
     animation: none;

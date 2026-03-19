@@ -32,7 +32,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
   
   return(
     <div ref={cardWindowRef} className={maximize ? 'card_window card_window_maximized' : 'card_window'}>
-      <img src={cardImg}/>
+      <img src={cardImg} alt={`Image of ${cardTitle}`}/>
       <div className={maximize ? 'card_window_content card_window_content_maximized' : 'card_window_content'}>
         <div className={maximize ? 'card_window_ribbon card_window_ribbon_maximized' : 'card_window_ribbon'} style={{display: cardBookmarked ? 'block' : 'none'}}></div>
         <div className='card_window_buttons'>
@@ -45,6 +45,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             fill="none"
             stroke="var(--white-hue)"
           >
+            <title>Maximize</title>
             <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
             <path d="M4 16v2a2 2 0 0 0 2 2h2" />
             <path d="M16 4h2a2 2 0 0 1 2 2v2" />
@@ -59,6 +60,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             fill="none"
             stroke="var(--white-hue)"
           >
+            <title>Minimize</title>
             <path d="M15 19v-2a2 2 0 0 1 2 -2h2" />
             <path d="M15 5v2a2 2 0 0 0 2 2h2" />
             <path d="M5 15h2a2 2 0 0 1 2 2v2" />
@@ -76,6 +78,7 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
             fill="none"
             stroke="var(--white-hue)"
           >
+            <title>Close</title>
             <path d="M18 6l-12 12" />
             <path d="M6 6l12 12" />
           </svg>
@@ -163,13 +166,14 @@ export default function CardWindow({cardWindowRef, displayCardWindow, cardBookma
           fill="none"
           stroke="rgba(245, 245, 245, 0.7)"
         >
+          <title>View image</title>
           <path d="M15 15.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997a1 1 0 0 1-1.517-.86z"/>
           <path d="M21 12.17V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/>
           <path d="m6 21 5-5"/>
           <circle cx="9" cy="9" r="2"/>
         </svg>
-        <a href={cardImg} target='_blank'><img src={cardImg} className='card_window_view_img' style={{display: view && maximize ? 'block' : 'none'}}/></a>
-        <a href={`https://www.google.com/search?q=${cardTitle}`} target='_blank'>
+        <a href={cardImg} target='_blank'><img src={cardImg} alt={`Image of ${cardTitle}`} className='card_window_view_img' style={{display: view && maximize ? 'block' : 'none'}}/></a>
+        <a href={`https://www.google.com/search?q=${cardTitle}`} target='_blank' title='Search on Google'>
           <svg
             className='card_window_search'
             xmlns="http://www.w3.org/2000/svg"

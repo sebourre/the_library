@@ -183,9 +183,9 @@ export default function App(){
     <>
       <header ref={headerRef}>
         <Books displayBooksWindow={displayBooksWindow} booksWindowOn={booksWindowOn}/>
-        <a href="https://sebourre.github.io/the_library/"><h1>The Library</h1></a>
+        <a href="https://sebourre.github.io/the_library/" title='Reload'><h1>The Library</h1></a>
         <div className='settings'>
-          <SearchBar searchCards={(searchRef) => searchCards(searchRef)} resetSearchValue={() => setSearchValue('')}/>
+          <SearchBar searchCards={(searchRef) => searchCards(searchRef)} clearSearchValue={() => setSearchValue('')}/>
           <Types displayTypesCards={(types) => setTypesOn(types)} />
           <Bookmarks filterCards={(bookmarks) => setBookmarksOn(bookmarks)}/>
           <Sort changeSort={(sort) => setSortOn(sort)}/>

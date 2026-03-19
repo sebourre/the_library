@@ -104,6 +104,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
         fill="none"
         stroke="var(--white-hue)"
       >
+        <title>Close</title>
         <path d="M18 6l-12 12" />
         <path d="M6 6l12 12" />
       </svg>
@@ -126,6 +127,7 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
           fill="none" 
           stroke="var(--white-hue)" 
         >
+          <title>Import</title>
           <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21"/>
           <path d="m14 19 3 3v-5.5"/>
           <path d="m17 22 3-3"/>
@@ -140,12 +142,13 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
           fill="none"
           stroke="var(--white-hue)"
         >
+          <title>Clear</title>
           <path d="M18 6l-12 12" />
           <path d="M6 6l12 12" />
         </svg>
         <input type="file" name='import' ref={importRef} onChange={updateImagePreview} accept='image/*' />
         <div className='image_preview'>
-          <img src={imagePreview} />
+          <img src={imagePreview} alt='Image preview'/>
         </div>
       </div>
       <fieldset className='log_inputs'>
@@ -187,10 +190,11 @@ export default function LogWindow({setLogWindowOn, displayLogWindow, logWindowOn
             fill="none"
             stroke="var(--white-hue)"
           >
+            <title>Reset</title>
             <path d="M19.933 13.041a8 8 0 1 1 -9.925 -8.788c3.899 -1 7.935 1.007 9.425 4.747" />
             <path d="M20 4v5h-5" />
           </svg>
-          <button type='submit' className='log_in'>
+          <button type='submit' className='log_in' title='Log in'>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

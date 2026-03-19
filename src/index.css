@@ -87,6 +87,7 @@ h3{
 
 h4{
   text-align: center;
+  color: var(--white-hue);
   font-size: 1.2rem;
 }
 

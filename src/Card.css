@@ -23,7 +23,9 @@
 }
 .card img{
   width: auto;
+  min-height: 70px;
   max-height: 70px;
+  color: var(--accent-color);
   border-radius: 3px;
   object-fit: cover;
 }

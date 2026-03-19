@@ -9,7 +9,7 @@ export default function BooksWindow({booksWindowRef, cards, types, dates, rating
     return saveAccentColor ? JSON.parse(saveAccentColor) : 'red';
   });
   useEffect(() => {localStorage.setItem('accentColor', JSON.stringify(accentColor))}, [accentColor]);
-  accentColor == 'mode' ? document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)') : document.documentElement.style.setProperty('--accent-color', `var(--${accentColor}-hue)`);
+  accentColor == 'theme' ? document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)') : document.documentElement.style.setProperty('--accent-color', `var(--${accentColor}-hue)`);
 
   function percentage(n){
     if(n == 0) return '0%';
@@ -75,7 +75,7 @@ export default function BooksWindow({booksWindowRef, cards, types, dates, rating
           </svg>
         </div>
         <div className='books_adjustments' style={{display: booksPlus == 'adjustments' ? 'flex' : 'none'}}>
-          <div id="mode" title='Mode' className={accentColor == 'mode' ? 'selected' : null} style={{backgroundImage: 'linear-gradient(110deg, var(--white-hue) 50%, var(--black-hue) 50%)'}} onClick={() => {setAccentColor('mode'); document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)');}}></div>
+          <div id="theme" title='Theme' className={accentColor == 'theme' ? 'selected' : null} style={{backgroundImage: 'linear-gradient(110deg, var(--white-hue) 50%, var(--black-hue) 50%)'}} onClick={() => {setAccentColor('theme'); document.documentElement.style.setProperty('--accent-color', 'var(--secondary-color)');}}></div>
           <div id="violet" title='Violet' className={accentColor == 'violet' ? 'selected' : null} style={{backgroundColor: 'var(--violet-hue)'}} onClick={() => {setAccentColor('violet'); document.documentElement.style.setProperty('--accent-color', 'var(--violet-hue)');}}></div>
           <div id="blue" title='Blue' className={accentColor == 'blue' ? 'selected' : null} style={{backgroundColor: 'var(--blue-hue)'}} onClick={() => {setAccentColor('blue'); document.documentElement.style.setProperty('--accent-color', 'var(--blue-hue)');}}></div>
           <div id="green" title='Green' className={accentColor == 'green' ? 'selected' : null} style={{backgroundColor: 'var(--green-hue)'}} onClick={() => {setAccentColor('green'); document.documentElement.style.setProperty('--accent-color', 'var(--green-hue)');}}></div>
